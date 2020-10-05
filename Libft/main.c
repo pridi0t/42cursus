@@ -3,13 +3,12 @@
 #include <ctype.h>
 #include "libft.h"
 
-size_t ft_strlen(const char *s);
-
 int main(void)
 {
 	char * s1 = "apple";
 	char * s2 = "not human";
-	char c = 'c';
+	char c1 = 'c';
+	char c2 = '0';
 
 	printf("========== strlen ==========\n");
 	printf("1. ft_strlen ----------\n");
@@ -30,14 +29,25 @@ int main(void)
 	printf("A = %d \n", isalpha('A'));
 	printf("z = %d \n", isalpha('z'));
 	printf("1 = %d \n", isalpha('1'));
-	printf("%c = %d \n", 'c', isalpha(c));
+	printf("%c = %d \n", 'c', isalpha(c1));
 
 	printf("2. ft_isalpha ----------\n");
 	printf("a = %d \n", ft_isalpha('a'));
 	printf("A = %d \n", ft_isalpha('A'));
 	printf("z = %d \n", ft_isalpha('z'));
 	printf("1 = %d \n", ft_isalpha('1'));
-	printf("%c = %d \n", 'c', ft_isalpha(c));
+	printf("%c = %d \n", 'c', ft_isalpha(c1));
+
+	printf("========== ft_isdigit ==========\n");
+	printf("1. isdigit ----------\n");
+	printf("'0' = %d \n", isdigit(c2));
+	printf("'0'= %d \n", isdigit('0'));
+	printf("0 = %d \n", isdigit(0));
+	
+	printf("2. ft_isdigit ----------\n");
+	printf("'0' = %d \n", ft_isdigit(c2));
+	printf("'0' = %d \n", ft_isdigit('0'));
+	printf("0 = %d \n", ft_isdigit(0));
 
 	return 0;
 }
