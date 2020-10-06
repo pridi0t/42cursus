@@ -10,6 +10,7 @@ int main(void)
 	char c1 = 'c';
 	char c2 = '0';
 	int n = 0;
+	int c = 'a';
 
 	printf("========== strlen ==========\n");
 	printf("1. ft_strlen ----------\n");
@@ -98,6 +99,22 @@ int main(void)
 	{
 		printf("%c = %d\n", n, ft_isprint(n));
 		n++;
+	}
+	
+	printf("========== ft_toupper ==========\n");
+	printf("1. toupper ----------\n");
+	while (c <= 123)
+	{
+		printf("%c = %c\n", c, toupper(c));
+		c++;
+	}
+	
+	c = 'a';
+	printf("2. ft_toupper ----------\n");
+	while (c <= 123)
+	{
+		printf("%c = %c\n", c, ft_toupper(c));
+		c++;
 	}
 	return 0;
 }
