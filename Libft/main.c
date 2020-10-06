@@ -9,6 +9,7 @@ int main(void)
 	char * s2 = "not human";
 	char c1 = 'c';
 	char c2 = '0';
+	int n = 0;
 
 	printf("========== strlen ==========\n");
 	printf("1. ft_strlen ----------\n");
@@ -49,5 +50,20 @@ int main(void)
 	printf("'0' = %d \n", ft_isdigit('0'));
 	printf("0 = %d \n", ft_isdigit(0));
 
+	printf("========== ft_isalnum ==========\n");
+	printf("1. isalnum ----------\n");
+	while (n <= 128)
+	{
+		printf("%c = %d\n", n, isalnum(n));
+		n++;
+	}
+
+	n = 0;
+	printf("2. ft_isalnum ----------\n");
+	while (n <= 128)
+	{
+		printf("%c = %d\n", n, ft_isalnum(n));
+		n++;
+	}
 	return 0;
 }
