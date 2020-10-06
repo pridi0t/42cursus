@@ -65,5 +65,22 @@ int main(void)
 		printf("%c = %d\n", n, ft_isalnum(n));
 		n++;
 	}
+
+	n = -1;
+	printf("========== ft_isascii ==========\n");
+	printf("1. isascii ----------\n");
+	while (n <= 129)
+	{
+		printf("%c = %d\n", n, isascii(n));
+		n++;
+	}
+
+	n = -1;
+	printf("2. ft_isascii ----------\n");
+	while (n <= 129)
+	{
+		printf("%c = %d\n", n, ft_isascii(n));
+		n++;
+	}
 	return 0;
 }
