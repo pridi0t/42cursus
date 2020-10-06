@@ -6,11 +6,11 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 20:14:27 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/06 20:14:57 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/10/06 20:22:34 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_isascii(int c)
+int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
 		return (1);

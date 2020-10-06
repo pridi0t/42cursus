@@ -82,5 +82,22 @@ int main(void)
 		printf("%c = %d\n", n, ft_isascii(n));
 		n++;
 	}
+
+	n = 31;
+	printf("========== ft_isprint ==========\n");
+	printf("1. isprint ----------\n");
+	while (n <= 126)
+	{
+		printf("%c = %d\n", n, isprint(n));
+		n++;
+	}
+
+	n = 31;
+	printf("2. ft_isprint ----------\n");
+	while (n <= 126)
+	{
+		printf("%c = %d\n", n, ft_isprint(n));
+		n++;
+	}
 	return 0;
 }
