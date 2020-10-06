@@ -116,5 +116,22 @@ int main(void)
 		printf("%c = %c\n", c, ft_toupper(c));
 		c++;
 	}
+
+	c = 'A';
+	printf("========== ft_lower ==========\n");
+	printf("1. tolower ----------\n");
+	while (c <= 91)
+	{
+		printf("%c = %c\n", c, tolower(c));
+		c++;
+	}
+	
+	c = 'A';
+	printf("2. ft_tolower ----------\n");
+	while (c <= 91)
+	{
+		printf("%c = %c\n", c, ft_tolower(c));
+		c++;
+	}
 	return 0;
 }
