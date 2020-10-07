@@ -11,6 +11,8 @@ int main(void)
 	char c2 = '0';
 	int n = 0;
 	int c = 'a';
+	char str1[] = "almost every programmer should know memset!";
+	char str2[] = "almost every programmer should know memset!";
 
 	printf("========== strlen ==========\n");
 	printf("1. ft_strlen ----------\n");
@@ -133,5 +135,15 @@ int main(void)
 		printf("%c = %c\n", c, ft_tolower(c));
 		c++;
 	}
+
+	printf("========== ft_memset ==========\n");
+	printf("1. memset ----------\n");
+	memset(str1, '-', 6);
+	puts(str1);
+
+	printf("2. ft_memset ----------\n");
+	ft_memset(str2, '-', 6);
+	puts(str2);
+
 	return 0;
 }
