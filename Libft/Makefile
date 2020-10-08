@@ -6,7 +6,7 @@
 #    By: jitlee <jitlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 16:47:10 by jitlee            #+#    #+#              #
-#    Updated: 2020/10/07 17:06:59 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/08 23:09:31 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,14 +18,15 @@ AR = ar rcs
 RM = rm -f
 
 FILES		= ft_memset \
-				ft_isalpha \
-				ft_isdigit \
-				ft_isalnum \
-				ft_isprint \
-				ft_toupper \
-				ft_tolower \
-				ft_isascii \
-				ft_strlen
+			  	ft_bzero	\
+			  	ft_strlen	\
+				ft_isalpha	\
+				ft_isdigit	\
+				ft_isalnum	\
+				ft_isascii	\
+				ft_isprint	\
+				ft_toupper	\
+				ft_tolower
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
