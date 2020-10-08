@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/28 19:50:00 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/08 23:18:36 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/10/08 23:59:33 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
+void	*memcpy(void *restrict dst, const void *restrict src, size_t n);
 size_t	ft_strlen(const char *s);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
