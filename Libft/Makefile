@@ -6,7 +6,7 @@
 #    By: jitlee <jitlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 16:47:10 by jitlee            #+#    #+#              #
-#    Updated: 2020/10/09 00:00:13 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/09 17:15:30 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ RM = rm -f
 FILES		= ft_memset \
 			  	ft_bzero	\
 				ft_memcpy	\
+				ft_memccpy	\
 			  	ft_strlen	\
 				ft_isalpha	\
 				ft_isdigit	\
