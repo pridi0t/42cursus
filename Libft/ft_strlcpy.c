@@ -1,36 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/09 16:49:29 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/11 17:44:00 by hyojang          ###   ########.fr       */
+/*   Created: 2020/10/11 16:12:01 by hyojang           #+#    #+#             */
+/*   Updated: 2020/10/11 17:37:00 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t			i;
-	unsigned char	*dst2;
-	unsigned char	*src2;
+	size_t	srclen;
+	size_t	i;
 
-	i = 0;
-	src2 = (unsigned char *)src;
-	while (*(src2 + i) != (unsigned char)c && *(src2 + i) != 0)
-		i++;
-	i++;
-	if (i <= n)
+	srclen = 0;
+	i = -1;
+	while (*(src + srclen) != 0)
+		srclen++;
+	if (dstsize == 0)
+		return (srclen);
+	if (srclen < dstsize)
 	{
-		dst2 = (unsigned char *)ft_memcpy(dst, src, i);
-		return (dst2 + i);
+		while (*(src + ++i) != 0)
+			*(dst + i) = *(src + i);
 	}
 	else
 	{
-		dst2 = (unsigned char *)ft_memcpy(dst, src, n);
-		return (0);
+		while (++i < (dstsize - 1))
+			*(dst + i) = *(src + i);
 	}
+	*(dst + i) = 0;
+	return (srclen);
 }
