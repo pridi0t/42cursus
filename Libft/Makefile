@@ -6,7 +6,7 @@
 #    By: jitlee <jitlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 16:47:10 by jitlee            #+#    #+#              #
-#    Updated: 2020/10/11 19:31:29 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/11 21:10:43 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ FILES		= ft_memset \
 			  	ft_strlen	\
 				ft_strlcpy	\
 				ft_strlcat	\
+				ft_strchr	\
 				ft_isalpha	\
 				ft_isdigit	\
 				ft_isalnum	\
