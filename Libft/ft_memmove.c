@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/12 17:04:11 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/12 17:58:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/10/12 18:22:49 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,12 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	dest = (char *)dst;
 	sc = (char *)src;
+	i = -1;
+	if (len == 0 || (dest == 0 && sc == 0))
+		return (dst);
 	if (dst <= src)
-	{
-		i = 0;
-		while (i < (int)len)
-		{
+		while (++i < (int)len)
 			*(dest + i) = *(sc + i);
-			i++;
-		}
-	}
 	else
 	{
 		i = len - 1;
