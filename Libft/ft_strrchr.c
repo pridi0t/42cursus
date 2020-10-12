@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 22:50:56 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/11 23:14:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/10/12 15:47:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	ch;
-	size_t	i;
+	unsigned char	ch;
+	int				i;
 
-	ch = (char)c;
+	ch = (unsigned char)c;
 	i = 0;
 	while (*(s + i) != 0)
 		i++;
-	if (ch != 0)
-	{
-		while (i > 0 && *(s + i) != ch)
-			i--;
-		if (i != 0)
-			return ((char *)s + i);
-		return (0);
-	}
-	else
+	while (i >= 0 && *(s + i) != ch)
+		i--;
+	if (i >= 0)
 		return ((char *)s + i);
+	return (0);
 }
