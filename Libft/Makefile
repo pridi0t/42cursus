@@ -6,7 +6,7 @@
 #    By: jitlee <jitlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 16:47:10 by jitlee            #+#    #+#              #
-#    Updated: 2020/10/15 14:54:29 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/15 17:30:15 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FILES		= ft_memset \
 				ft_memccpy	\
 				ft_memmove	\
 				ft_memchr	\
+				ft_memcmp	\
 			  	ft_strlen	\
 				ft_strlcpy	\
 				ft_strlcat	\
