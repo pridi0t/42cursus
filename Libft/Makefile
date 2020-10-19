@@ -6,7 +6,7 @@
 #    By: jitlee <jitlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 16:47:10 by jitlee            #+#    #+#              #
-#    Updated: 2020/10/18 23:35:18 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/19 18:35:20 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ FILES		= ft_memset \
 				ft_strdup	\
 				ft_substr	\
 				ft_strjoin	\
-				ft_strtrim
+				ft_strtrim	\
+				ft_itoa
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
