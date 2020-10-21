@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/28 15:03:10 by hyojang           #+#    #+#              #
-#    Updated: 2020/10/21 20:28:35 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/21 20:58:26 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ FILES		= ft_memset \
 				ft_substr		\
 				ft_strjoin		\
 				ft_strtrim		\
+				ft_split		\
 				ft_itoa			\
 				ft_strmapi		\
 				ft_putchar_fd	\
