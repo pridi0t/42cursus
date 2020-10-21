@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jitlee <jitlee@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/07 16:47:10 by jitlee            #+#    #+#              #
-#    Updated: 2020/10/21 17:35:37 by hyojang          ###   ########.fr        #
+#    Created: 2020/09/28 15:03:10 by hyojang           #+#    #+#              #
+#    Updated: 2020/10/21 20:28:35 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
