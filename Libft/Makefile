@@ -6,7 +6,7 @@
 #    By: jitlee <jitlee@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/07 16:47:10 by jitlee            #+#    #+#              #
-#    Updated: 2020/10/21 16:17:01 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/21 17:07:03 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,34 +18,35 @@ AR = ar rcs
 RM = rm -f
 
 FILES		= ft_memset \
-			  	ft_bzero	\
-				ft_memcpy	\
-				ft_memccpy	\
-				ft_memmove	\
-				ft_memchr	\
-				ft_memcmp	\
-			  	ft_strlen	\
-				ft_strlcpy	\
-				ft_strlcat	\
-				ft_strchr	\
-				ft_strrchr	\
-				ft_strnstr	\
-				ft_strncmp	\
-				ft_atoi		\
-				ft_isalpha	\
-				ft_isdigit	\
-				ft_isalnum	\
-				ft_isascii	\
-				ft_isprint	\
-				ft_toupper	\
-				ft_tolower	\
-				ft_calloc	\
-				ft_strdup	\
-				ft_substr	\
-				ft_strjoin	\
-				ft_strtrim	\
-				ft_itoa		\
-				ft_strmapi
+			  	ft_bzero		\
+				ft_memcpy		\
+				ft_memccpy		\
+				ft_memmove		\
+				ft_memchr		\
+				ft_memcmp		\
+			  	ft_strlen		\
+				ft_strlcpy		\
+				ft_strlcat		\
+				ft_strchr		\
+				ft_strrchr		\
+				ft_strnstr		\
+				ft_strncmp		\
+				ft_atoi			\
+				ft_isalpha		\
+				ft_isdigit		\
+				ft_isalnum		\
+				ft_isascii		\
+				ft_isprint		\
+				ft_toupper		\
+				ft_tolower		\
+				ft_calloc		\
+				ft_strdup		\
+				ft_substr		\
+				ft_strjoin		\
+				ft_strtrim		\
+				ft_itoa			\
+				ft_strmapi		\
+				ft_putchar_fd
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
