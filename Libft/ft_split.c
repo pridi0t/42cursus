@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 20:56:29 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/22 19:27:53 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/10/22 19:53:44 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ size_t	plen(char *s, char c)
 	return (cnt);
 }
 
-char	*strin(char *s, char c, size_t *i)
+char	*strin(char *mem, char *s, char c, size_t *i)
 {
 	size_t	len;
-	char	*mem;
 
 	len = 0;
 	while (*(s + len) != c && *(s + len) != 0)
@@ -60,6 +59,21 @@ char	**ncheck(char **mem)
 	return (mem);
 }
 
+char	**mfree(char **mem)
+{
+	int i;
+
+	i = 0;
+	while (mem[i] != 0)
+	{
+		free(mem[i]);
+		i++;
+	}
+	free(mem);
+	mem = 0;
+	return (0);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	size_t	i;
@@ -69,7 +83,7 @@ char	**ft_split(char const *s, char c)
 	mem = 0;
 	if (*s == 0 && c == 0)
 		return (ncheck(mem));
-	mem = (char **)malloc(sizeof(char *) * (plen((char *)s, c) + 1));
+	mem = (char **)ft_calloc(sizeof(char *) * (plen((char *)s, c) + 1));
 	if (mem == 0)
 		return (0);
 	i = 0;
@@ -78,9 +92,9 @@ char	**ft_split(char const *s, char c)
 	{
 		if (*(s + i) != c && *(s + i) != 0)
 		{
-			mem[++cnt] = strin(((char *)s + i), c, &i);
-			if (mem[cnt] == 0)
-				return (0);
+			mem[++cnt] = strin(mem[cnt], ((char *)s + i), c, &i);
+			if (mem == 0)
+				return (mfree(mem));
 		}
 		while (*(s + i) == c && *(s + i) != 0)
 			i++;
