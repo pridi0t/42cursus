@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/28 15:03:10 by hyojang           #+#    #+#              #
-#    Updated: 2020/10/22 23:47:04 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/23 00:24:12 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ FILES		= ft_memset \
 				ft_putendl_fd	\
 				ft_putnbr_fd
 
-BONUS_FILES = ft_lstnew
+BONUS_FILES = ft_lstnew		\
+			  ft_lstadd_front
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
