@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/28 15:03:10 by hyojang           #+#    #+#              #
-#    Updated: 2020/10/23 02:10:07 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/26 16:06:51 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ BONUS_FILES = ft_lstnew			\
 			  ft_lstlast		\
 			  ft_lstadd_back	\
 			  ft_lstdelone		\
+			  ft_lstclear		\
 			  ft_lstiter
 
 SRCS_DIR = ./
