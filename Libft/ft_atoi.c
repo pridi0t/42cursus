@@ -6,11 +6,12 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 15:03:31 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/17 17:59:30 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/10/27 01:06:48 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	check(char c)
 {
@@ -60,6 +61,8 @@ int	ft_atoi(const char *str)
 		result = (result * 10) + (*(str + i) - '0');
 		i++;
 	}
+	if (i == 0)
+		return (0);
 	if (check(*(str + --i)) == 3)
 		return (r_check(result, sign));
 	return (0);
