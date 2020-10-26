@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/09/28 15:03:10 by hyojang           #+#    #+#              #
-#    Updated: 2020/10/26 16:06:51 by hyojang          ###   ########.fr        #
+#    Updated: 2020/10/26 17:42:55 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,8 @@ BONUS_FILES = ft_lstnew			\
 			  ft_lstadd_back	\
 			  ft_lstdelone		\
 			  ft_lstclear		\
-			  ft_lstiter
+			  ft_lstiter		\
+			  ft_lstmap
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
