@@ -6,19 +6,21 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:13:09 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/19 04:01:15 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/24 01:06:16 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t  ft_cstrlen(char *str, char c)
+int		ft_cstrlen(char *str, char c)
 {
-    size_t len;
+    int len;
     
     len = 0;
     while (str[len] != c && str[len] != 0)
         len++;
+	if (len >= 0 && str[len] == 0 && str[len - 1] != c)
+		return (-1);
     return (len);
 }
 
@@ -47,37 +49,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (srclen);
 }
 
-size_t	len_check(const char *str)
-{
-	size_t i;
-
-	i = 0;
-	while (*(str + i) != 0)
-		i++;
-	return (i);
-}
-
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t srclen;
-	size_t dstlen;
-	size_t i;
-
-	srclen = len_check(src);
-	dstlen = len_check(dst);
-	i = 0;
-	while (*(src + i) != 0 && (i + 1 + dstlen) < dstsize)
-	{
-		*(dst + dstlen + i) = *(src + i);
-		i++;
-	}
-	*(dst + dstlen + i) = 0;
-	if (dstlen > dstsize)
-		return (srclen + dstsize);
-	return (srclen + dstlen);
-}
-
-char	*ft_cstrjoin(char const *s1, char const *s2, size_t s2Size)
+char	*ft_cstrjoin(char const *s1, char const *s2, size_t s2size)
 {
 	size_t	s1len;
 	size_t	s2len;
@@ -85,10 +57,10 @@ char	*ft_cstrjoin(char const *s1, char const *s2, size_t s2Size)
 
 	s1len = ft_cstrlen((char *)s1, 0);
 	s2len = ft_cstrlen((char *)s2, 0);
-	mem = malloc(s1len + s2Size + 1);
+	mem = malloc(s1len + s2size + 1);
 	if (mem == 0)
 		return (0);
 	ft_strlcpy(mem, s1, (s1len + 1));
-	ft_strlcpy((mem + s1len), s2, (s2Size + 1));
+	ft_strlcpy((mem + s1len), s2, (s2size + 1));
 	return (mem);
 }

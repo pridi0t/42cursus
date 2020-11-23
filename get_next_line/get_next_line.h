@@ -6,12 +6,12 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:13:57 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/19 03:35:02 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/23 18:01:03 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
+#ifndef GET_NEXT_LINE_H
+#define GET_NEXT_LINE_H
 #include <unistd.h>
 #include <stdlib.h>
 
