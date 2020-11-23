@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:13:09 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/24 01:06:16 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/24 03:13:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 int		ft_cstrlen(char *str, char c)
 {
     int len;
+	int strlen;
     
     len = 0;
-    while (str[len] != c && str[len] != 0)
+	strlen = 0;
+	while (str[len] != 0)
+		strlen;
+    while (str[len] != c)
+	{
         len++;
-	if (len >= 0 && str[len] == 0 && str[len - 1] != c)
-		return (-1);
+		if (len > strlen)
+			return (-1);
+	}
     return (len);
 }
 
@@ -62,5 +68,18 @@ char	*ft_cstrjoin(char const *s1, char const *s2, size_t s2size)
 		return (0);
 	ft_strlcpy(mem, s1, (s1len + 1));
 	ft_strlcpy((mem + s1len), s2, (s2size + 1));
+	return (mem);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	len;
+	char	*mem;
+
+	len = ft_strlen(s1);
+	mem = (char *)malloc(len + 1);
+	if (mem == 0)
+		return (0);
+	ft_strlcpy(mem, s1, len + 1);
 	return (mem);
 }
