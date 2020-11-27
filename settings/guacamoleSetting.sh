@@ -8,3 +8,6 @@ echo "set nu" >> ~/.vimrc
 echo "set autoindent" >> ~/.vimrc
 echo "set cindent" >> ~/.vimrc
 echo "set showmatch" >> ~/.vimrc
+export MAIL="hyojang@student.42seoul.kr"
+alias cc="gcc -Werror -Wall -Wextra"
+alias norm="norminette"
