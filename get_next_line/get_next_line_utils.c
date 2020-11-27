@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:13:09 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/27 17:33:00 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/28 03:27:23 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,22 @@ char	*ft_strdup(const char *s1)
 	return (mem);
 }
 
-void	*ft_memset(void *b, int c, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t			i;
-	unsigned char	*cb;
+	size_t	slen;
+	char	*mem;
 
-	cb = b;
-	i = 0;
-	while (i < len)
-	{
-		*(cb + i) = (unsigned char)c;
-		i++;
-	}
-	return (b);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	slen = ft_strlen(s + start);
+	mem = malloc(len + 1);
+	if (mem == 0)
+		return (0);
+	if (slen >= len)
+		ft_strlcpy(mem, (s + start), len + 1);
+	else
+		ft_strlcpy(mem, (s + start), slen + 1);
+	return (mem);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
