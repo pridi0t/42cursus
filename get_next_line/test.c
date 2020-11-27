@@ -9,11 +9,13 @@ int main(void)
 	char *line;
 
 	result = 1;
-	fd = open("a.txt", O_RDONLY);
-	while (result != 0)
+	fd = open("b.txt", O_RDONLY);
+	while (result > 0)
 	{
 		result = get_next_line(fd, &line);
+		printf("result = %d\n",result);
 		printf("%s\n", line);
+		free(line);
 	}
 	return 0;
 }

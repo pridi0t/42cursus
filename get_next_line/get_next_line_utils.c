@@ -6,28 +6,20 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:13:09 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/24 03:13:46 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/27 17:33:00 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_cstrlen(char *str, char c)
+size_t	ft_strlen(const char *s)
 {
-    int len;
-	int strlen;
-    
-    len = 0;
-	strlen = 0;
-	while (str[len] != 0)
-		strlen;
-    while (str[len] != c)
-	{
-        len++;
-		if (len > strlen)
-			return (-1);
-	}
-    return (len);
+	size_t i;
+
+	i = 0;
+	while (*(s + i) != 0)
+		i++;
+	return (i);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
@@ -55,31 +47,50 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (srclen);
 }
 
-char	*ft_cstrjoin(char const *s1, char const *s2, size_t s2size)
-{
-	size_t	s1len;
-	size_t	s2len;
-	char	*mem;
-
-	s1len = ft_cstrlen((char *)s1, 0);
-	s2len = ft_cstrlen((char *)s2, 0);
-	mem = malloc(s1len + s2size + 1);
-	if (mem == 0)
-		return (0);
-	ft_strlcpy(mem, s1, (s1len + 1));
-	ft_strlcpy((mem + s1len), s2, (s2size + 1));
-	return (mem);
-}
-
 char	*ft_strdup(const char *s1)
 {
 	size_t	len;
 	char	*mem;
 
-	len = ft_strlen(s1);
+	len = ft_strlen((char *)s1);
 	mem = (char *)malloc(len + 1);
 	if (mem == 0)
 		return (0);
 	ft_strlcpy(mem, s1, len + 1);
+	return (mem);
+}
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*cb;
+
+	cb = b;
+	i = 0;
+	while (i < len)
+	{
+		*(cb + i) = (unsigned char)c;
+		i++;
+	}
+	return (b);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	s1len;
+	size_t	s2len;
+	char	*mem;
+
+	if (s1 == 0)
+		return (ft_strdup(""));
+	else if (s2 == 0)
+		return (ft_strdup(s1));
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	mem = malloc(s1len + s2len + 1);
+	if (mem == 0)
+		return (0);
+	ft_strlcpy(mem, s1, (s1len + 1));
+	ft_strlcpy((mem + s1len), s2, (s2len + 1));
 	return (mem);
 }
