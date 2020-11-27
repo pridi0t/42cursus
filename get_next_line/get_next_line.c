@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 19:42:41 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/28 04:32:33 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/28 06:07:58 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ int		get_next_line(int fd, char **line)
 		buf[end] = 0;
 		if ((nidx = find_new(buf)) != -1)
 		{
-			*line = ft_strjoin(*line, ft_substr(buf, 0, nidx));
+			*line = ft_cstrjoin(*line, buf, 0, nidx);
 			tmp = ft_substr(buf, nidx + 1, end - nidx + 1);
 			return (1);
 		}
-		*line = ft_strjoin(*line, buf);
+		*line = ft_cstrjoin(*line, buf, 0, end);
 	}
 	return (0);
 }

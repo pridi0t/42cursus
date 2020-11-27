@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:13:09 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/28 03:27:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/28 05:53:32 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (mem);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_cstrjoin(char *s1, char const *s2, int start, int end)
 {
 	size_t	s1len;
 	size_t	s2len;
@@ -94,6 +94,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (mem == 0)
 		return (0);
 	ft_strlcpy(mem, s1, (s1len + 1));
-	ft_strlcpy((mem + s1len), s2, (s2len + 1));
+	ft_strlcpy((mem + s1len), s2 + start, (end - start + 1));
+	free(s1);
 	return (mem);
 }
