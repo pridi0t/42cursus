@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 00:13:09 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/28 05:53:32 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/30 16:22:50 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,17 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (srclen);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_cstrdup(const char *s1)
 {
 	size_t	len;
 	char	*mem;
 
+	if (s1[0] == 0)
+	{
+		mem = (char *)malloc(BUFFER_SIZE + 1);
+		mem[0] = 0;
+		return (mem);
+	}
 	len = ft_strlen((char *)s1);
 	mem = (char *)malloc(len + 1);
 	if (mem == 0)
@@ -66,7 +72,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*mem;
 
 	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
+		return (ft_cstrdup(""));
 	slen = ft_strlen(s + start);
 	mem = malloc(len + 1);
 	if (mem == 0)
@@ -85,9 +91,9 @@ char	*ft_cstrjoin(char *s1, char const *s2, int start, int end)
 	char	*mem;
 
 	if (s1 == 0)
-		return (ft_strdup(""));
+		return (ft_cstrdup(""));
 	else if (s2 == 0)
-		return (ft_strdup(s1));
+		return (ft_cstrdup(s1));
 	s1len = ft_strlen(s1);
 	s2len = ft_strlen(s2);
 	mem = malloc(s1len + s2len + 1);

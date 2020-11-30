@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 19:42:41 by hyojang           #+#    #+#             */
-/*   Updated: 2020/11/28 06:07:58 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/11/30 17:27:14 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,34 @@ int		tmp_exception(char ***line, char **tmp)
 	size_t	len;
 	int		nidx;
 
-	if (*tmp == 0)
-		*tmp = ft_strdup("");
 	len = ft_strlen(*tmp);
 	if ((nidx = find_new(*tmp)) == 0)
 	{
-		**line = ft_strdup("");
-		*tmp = ft_substr(*tmp, nidx + 1, len);
+		**line = ft_cstrdup("");
+		ft_strlcpy(*tmp, *tmp + nidx + 1, len);
 		return (1);
 	}
 	else if (nidx > 0 && len != 0)
 	{
 		**line = ft_substr(*tmp, 0, nidx);
-		*tmp = ft_substr(*tmp, nidx + 1, len - nidx + 1);
+		ft_strlcpy(*tmp, *tmp + nidx + 1, len - nidx + 1);
 		return (1);
 	}
 	else if (*tmp != 0)
 	{
-		**line = ft_strdup(*tmp);
+		**line = ft_cstrdup(*tmp);
 		free(*tmp);
 		*tmp = 0;
+	}
+	return (0);
+}
+
+int		rcheck(int end, char ***line)
+{
+	if (end < 0)
+	{
+		**line = 0;
+		return (-1);
 	}
 	return (0);
 }
@@ -63,8 +71,10 @@ int		get_next_line(int fd, char **line)
 	int			end;
 	int			nidx;
 
-	if (fd == -1 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || line == 0)
 		return (-1);
+	if (tmp == 0)
+		tmp = ft_cstrdup("");
 	if (tmp_exception(&line, &tmp) == 1)
 		return (1);
 	while ((end = read(fd, buf, BUFFER_SIZE)) > 0)
@@ -78,5 +88,5 @@ int		get_next_line(int fd, char **line)
 		}
 		*line = ft_cstrjoin(*line, buf, 0, end);
 	}
-	return (0);
+	return (rcheck(end, &line));
 }
