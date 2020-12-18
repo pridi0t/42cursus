@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/14 16:48:14 by hyojang          ###   ########.fr       */
+/*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
+/*   Updated: 2020/12/18 16:22:49 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	ft_printf(const char *args, ...)
-{
-	va_list p;
-	int size;
+# include <stdarg.h>
 
-	va_start(p, args);
-}
+typedef struct {
+	char	flag;
+	int		width;
+	int		precision;
+	char	specifier;
+}			t_format;
+#endif
