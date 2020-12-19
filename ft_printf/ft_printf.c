@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/19 16:21:26 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/19 17:13:53 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 
 int	catoi(char *str[], int *i)
 {
-	char s[20];
+	char	s[20];
+	int		i;
 	
+	i = 0;
 	s = ft_memset(s, 0, sizeof(s));
-	while (str[*i] )
+	while (ft_isdigit(str[*i]) != 0 && i < sizeof(s))
+	{
+		s[i] = str[*i];
+		(*i)++;
+	}
+	if (ft_strlen(s) == 0 || ft_atoi(s) == 0)
+		return (-1);
+	return (ft_atoi(s));
 }
 
 int	set_format(t_format *t, char *str[], int *i)
@@ -35,7 +44,7 @@ int	set_format(t_format *t, char *str[], int *i)
 		if (str[*i] == '0' && t->flag != 0)
 			return (-1);
 	}
-	if (str[*i] >= '1' && str[*i] <= '9')
+	if (ft_isdigit(str[*i]) != 0 && str[*i] != '0')
 	{
 		tmp = catoi(t, str, i);
 		(*i)++;
