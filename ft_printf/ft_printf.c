@@ -6,23 +6,23 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/21 14:09:06 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/21 17:50:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	catoi(char *str[], int *i)
+int	catoi(char *str, int *i)
 {
 	char	s[20];
 	int		j;
 	
 	j = 0;
 	ft_memset(s, 0, sizeof(s));
-	while (ft_isdigit(*str[*i]) != 0)
+	while (ft_isdigit(str[*i]) != 0)
 	{
-		s[j] = *str[*i];
+		s[j] = str[*i];
 		(*i)++;
 		j++;
 	}
@@ -35,62 +35,56 @@ int	char_categorize(char c)
 {
 	if (c == '-' || c == '0' || c == '*')
 		return (1);
-	else if(c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i'\
-			|| c == 'u' || c == 'x' || c == 'X')
+	else if(c == 'c' || c == 's') 
+		return (2);
+	else if(c == 'p')
+		return (2);
+	else if(c == 'd' || c == 'i' || c == 'u')
+		return (2);
+	else if(c == 'x' || c == 'X')
 		return (2);
 	return (0);
 }
 
-int	set_format(t_format *t, char *str[], int *i)
+int	set_format(t_format *t, char *str, int *i)
 {
-	int tmp;
-
-	tmp = 0;
 	t->flag1 = 0;
 	t->flag2 = 0;
 	t->width = -1;
 	t->dot = 0;
 	t->precision = -1;
 	t->specifier = 0;
-	if (char_categorize(*str[*i]) == 1)
+	if (char_categorize(str[*i]) == 1)
 	{
-		t->flag1 = *str[*i];
+		t->flag1 = str[*i];
 		(*i)++;
-		if (char_categorize(*str[*i]) == 1 && t->flag1 != 0)
+		if (char_categorize(str[*i]) == 1 && t->flag1 != 0)
 		{
-			t->flag2 = *str[*i];
+			t->flag2 = str[*i];
 			(*i)++;
 		}
-		if (char_categorize(*str[*i]) == 1 && t->flag2 != 0)
+		if (char_categorize(str[*i]) == 1 && t->flag2 != 0)
 			return (-1);
 	}
-	if (ft_isdigit(*str[*i]) != 0 && *str[*i] != '0')
+	if (ft_isdigit(str[*i]) != 0 && str[*i] != '0')
 	{
-		tmp = catoi(str, i);
-		if (tmp == -1 || tmp == 0)
+		t->width = catoi(str, i);
+		if (t->width == -1 || t->width == 0)
 			return (-1);
 	}
-	if (*str[*i] == '.')
+	if (str[*i] == '.')
 	{
-		if (tmp > 0)
-		{
-			t->width = tmp;
-			tmp = 0;
-		}
 		t->dot = 1;
 		(*i)++;
 	}
-	if (ft_isdigit(*str[*i]) != 0 && t->dot == 1)
+	if (ft_isdigit(str[*i]) != 0 && t->dot == 1)
 	{
 		t->precision = catoi(str, i);
 		if (t-> precision == -1)
 			return (-1);
-		(*i)++;
 	}
-	if (char_categorize(*str[*i]) == 2)
-		t->specifier = *str[*i];
-	if (t->specifier == 0)
-		return (-1);
+	if (char_categorize(str[*i]) == 2)
+		t->specifier = str[*i];
 	return (0);
 }
 
@@ -110,9 +104,14 @@ int	ft_printf(const char *str, ...)
 			read = 1;
 		else if (str[i] == '%' && read == 1)
 		{
-			i++;
-			if (set_format(&t, str, &i) == -1)
+			write(1, "%", 1);
+			read = 0;
+		}
+		else if (read == 1)
+		{
+			if (set_format(&t, (char *)str, &i) == -1)
 				return (-1);
+			read = 0;
 		}
 		else
 			write(1, &str[i], 1);
@@ -121,7 +120,7 @@ int	ft_printf(const char *str, ...)
 
 	va_end(p);
 
-	printf("== result ==\n");
+	printf("\n== result ==\n");
 	printf("flag1 = %c, %d\n", t.flag1, t.flag1);
 	printf("flag2 = %c, %d\n", t.flag2, t.flag2);
 	printf("width = %d\n", t.width);
