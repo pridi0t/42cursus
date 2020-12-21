@@ -1,33 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/21 13:45:43 by hyojang          ###   ########.fr       */
+/*   Created: 2020/12/21 10:25:31 by hyojang           #+#    #+#             */
+/*   Updated: 2020/12/21 13:28:35 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t i;
 
-typedef struct {
-	char	flag1;
-	char	flag2;
-	int		width;
-	int		dot;
-	int		precision;
-	char	specifier;
-}			t_format;
+	i = 0;
+	while (*(s + i) != 0)
+		i++;
+	return (i);
+}
 
-size_t		ft_strlen(const char *s);
-void		*ft_memset(void *b, int c, size_t len);
-int			ft_isdigit(int c);
-int			ft_atoi(const char *str);
-#endif
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*cb;
+
+	cb = b;
+	i = 0;
+	while (i < len)
+	{
+		*(cb + i) = (unsigned char)c;
+		i++;
+	}
+	return (b);
+}
+
+int		ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
