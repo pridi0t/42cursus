@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/23 12:02:05 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/23 16:20:23 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	ft_printf(const char *str, ...)
 
 	va_end(p);
 
+	/*
 	printf("\n== result ==\n");
 	printf("flag1 = %c, %d\n", t.flag1, t.flag1);
 	printf("flag2 = %c, %d\n", t.flag2, t.flag2);
@@ -52,6 +53,7 @@ int	ft_printf(const char *str, ...)
 	printf("dot = %d\n", t.dot);
 	printf("precision = %d\n", t.precision);
 	printf("specifier = %c %d\n", t.specifier, t.specifier);
+	*/
 
 	return (0);
 }
