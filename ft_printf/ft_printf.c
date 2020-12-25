@@ -6,12 +6,20 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/23 16:20:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/25 12:47:31 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+
+int	call_function(t_format *t, va_list p)
+{
+	if (t->specifier == 'c')
+		if (print_c(t, p) == -1)
+			return (-1);
+	return (0);
+}
 
 int	ft_printf(const char *str, ...)
 {
@@ -35,6 +43,8 @@ int	ft_printf(const char *str, ...)
 		else if (read == 1)
 		{
 			if (set_format(&t, (char *)str, &i) == -1)
+				return (-1);
+			if (call_function(&t, p) == -1)
 				return (-1);
 			read = 0;
 		}
