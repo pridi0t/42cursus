@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/25 12:52:40 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/25 19:58:23 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ typedef struct {
 	int		precision;
 	char	specifier;
 }			t_format;
+typedef struct {
+	int		read;
+	int		result;
+}			t_status;
 // etc
 int			ft_atoi(const char *str);
 // ft_printf
@@ -37,5 +41,5 @@ int			ft_isdigit(int c);
 int			catoi(char *str, int *i);
 int			char_categorize(char c);
 // ft_printf_c
-int			print_c(t_format *t, va_list p);
+int			print_c(t_format *t, t_status *s, va_list p);
 #endif

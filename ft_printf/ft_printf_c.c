@@ -6,14 +6,14 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 15:22:51 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/25 12:53:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/25 19:52:42 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	print_c(t_format *t, va_list p)
+int	print_c(t_format *t, t_status *s, va_list p)
 {
 	int		i;
 	int		lsort;
@@ -34,9 +34,7 @@ int	print_c(t_format *t, va_list p)
 		return (-1);
 	if (t->flag1 == '-')
 		lsort = 1;
-	if (t->width == -1)
-		write(1, &c, 1);
-	else
+	if (t->width >= 2)
 	{
 		while (i < t->width)
 		{
@@ -46,8 +44,14 @@ int	print_c(t_format *t, va_list p)
 				write(1, &c, 1);
 			else
 				write(1, " ", 1);
+			(s->result)++;
 			i++;
 		}
 	}
-	return (0);
+	else
+	{
+		write(1, &c, 1);
+		(s->result)++;
+	}
+	return (s->result);
 }

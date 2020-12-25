@@ -6,17 +6,17 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/25 12:47:31 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/25 19:57:09 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int	call_function(t_format *t, va_list p)
+int	call_function(t_format *t, t_status *s, va_list p)
 {
 	if (t->specifier == 'c')
-		if (print_c(t, p) == -1)
+		if (print_c(t, s, p) == -1)
 			return (-1);
 	return (0);
 }
@@ -24,37 +24,43 @@ int	call_function(t_format *t, va_list p)
 int	ft_printf(const char *str, ...)
 {
 	t_format	t;
+	t_status	s;
 	va_list		p;
 	int			i;
-	int			read;
+	int			tmp;
 
 	i = 0;
-	read = 0;
+	s.read = 0;
+	s.result = 0;
 	va_start(p, str);
 	while (str[i] != 0)
 	{
-		if (str[i] == '%' && read == 0)
-			read = 1;
-		else if (str[i] == '%' && read == 1)
+		if (str[i] == '%' && s.read == 0)
+			s.read = 1;
+		else if (str[i] == '%' && s.read == 1)
 		{
 			write(1, "%", 1);
-			read = 0;
+			s.read = 0;
+			s.result++;
 		}
-		else if (read == 1)
+		else if (s.read == 1)
 		{
 			if (set_format(&t, (char *)str, &i) == -1)
 				return (-1);
-			if (call_function(&t, p) == -1)
+			tmp = call_function(&t, &s, p);
+			if (tmp == -1)
 				return (-1);
-			read = 0;
+			s.result += tmp;
+			s.read = 0;
 		}
 		else
+		{
 			write(1, &str[i], 1);
+			s.result++;
+		}
 		i++;
 	}
-
 	va_end(p);
-
 	/*
 	printf("\n== result ==\n");
 	printf("flag1 = %c, %d\n", t.flag1, t.flag1);
@@ -64,6 +70,5 @@ int	ft_printf(const char *str, ...)
 	printf("precision = %d\n", t.precision);
 	printf("specifier = %c %d\n", t.specifier, t.specifier);
 	*/
-
-	return (0);
+	return (s.result);
 }
