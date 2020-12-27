@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/25 19:58:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/27 20:53:44 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void		*ft_memset(void *b, int c, size_t len);
 int			ft_isdigit(int c);
 int			catoi(char *str, int *i);
 int			char_categorize(char c);
+// ft_printf_utils
+size_t		ft_strlen(const char *s);
 // ft_printf_c
 int			print_c(t_format *t, t_status *s, va_list p);
+// ft_printf_s
+int			print_s(t_format *t, t_status *s, va_list p);
 #endif
