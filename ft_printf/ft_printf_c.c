@@ -6,22 +6,14 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 15:22:51 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/25 19:52:42 by hyojang          ###   ########.fr       */
+/*   Updated: 2020/12/27 12:33:53 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	print_c(t_format *t, t_status *s, va_list p)
+int	exception_c(t_format *t, int *lsort)
 {
-	int		i;
-	int		lsort;
-	char	c;
-
-	lsort = 0;
-	i = 0;
-	c = va_arg(p, int);
 	if (t->flag1 == '0' || t->flag1 == '*')
 		return (-1);
 	if (t->flag2 == '0' || t->flag2 == '*')
@@ -33,14 +25,22 @@ int	print_c(t_format *t, t_status *s, va_list p)
 	if (t->precision != -1 || t->width == 0)
 		return (-1);
 	if (t->flag1 == '-')
-		lsort = 1;
+		*lsort = 1;
+	return (0);
+}
+
+int	write_c(t_format *t, t_status *s, int *lsort, char *c)
+{
+	int i;
+
+	i = 0;
 	if (t->width >= 2)
 	{
 		while (i < t->width)
 		{
-			if (i == 0 && lsort == 1)
+			if (i == 0 && *lsort == 1)
 				write(1, &c, 1);
-			else if (i == (t->width - 1) && lsort != 1)
+			else if (i == (t->width - 1) && *lsort != 1)
 				write(1, &c, 1);
 			else
 				write(1, " ", 1);
@@ -54,4 +54,16 @@ int	print_c(t_format *t, t_status *s, va_list p)
 		(s->result)++;
 	}
 	return (s->result);
+}
+
+int	print_c(t_format *t, t_status *s, va_list p)
+{
+	int		lsort;
+	char	c;
+
+	lsort = 0;
+	c = va_arg(p, int);
+	if (exception_c(t, &lsort) == -1)
+		return (-1);
+	return (write_c(t, s, &lsort, &c));
 }
