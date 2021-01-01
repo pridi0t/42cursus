@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 12:53:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/01 19:46:46 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/02 03:02:58 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	print_result(int sign, int space, int len, char *str)
 int	print_s(t_format *t, t_status *s, va_list p)
 {
 	char	*str;
-	int		lsort;
 	
-	lsort = 0;
 	s->result = 0;
 	str = 0;
 	if (t->flag2 != 0 || (t-> flag1 != '-' && t->flag1 != '*'))
@@ -112,7 +110,11 @@ int	print_s(t_format *t, t_status *s, va_list p)
 	}
 	else if (t->width == -1 && t->precision == -1)
 	{
-		if (t->flag1 == '-' && t->dot == 0)
+		if (t-> flag1 == 0)
+		{
+			write(1, str, ft_strlen(str));
+		}
+		else if (t->flag1 == '-' && t->dot == 0)
 		{
 			write(1, str, ft_strlen(str));
 			return (ft_strlen(str));
@@ -120,5 +122,6 @@ int	print_s(t_format *t, t_status *s, va_list p)
 		write(1, "", 1);
 		return (0);
 	}
-	return (0);
+	write(1, str, ft_strlen(str));
+	return (ft_strlen(str));
 }

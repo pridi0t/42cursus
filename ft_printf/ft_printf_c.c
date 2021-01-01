@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 15:22:51 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/27 15:30:58 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/02 03:06:05 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ int	print_c(t_format *t, t_status *s, va_list p)
 		write(1, &c, 1);
 		(s->result)++;
 	}
-	return (0);
+	return (s->result);
 }
