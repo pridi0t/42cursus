@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/23 14:41:53 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/05 20:27:36 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_format(t_format *t)
 	t->flag2 = 0;
 	t->width = -1;
 	t->dot = 0;
+	t->flag3 = 0;
 	t->precision = -1;
 	t->specifier = 0;
 }
@@ -50,6 +51,11 @@ int		set_other(t_format *t, char *str, int *i)
 	if (str[*i] == '.')
 	{
 		t->dot = 1;
+		(*i)++;
+	}
+	if (str[*i] == '*')
+	{
+		t->flag3 = str[*i];
 		(*i)++;
 	}
 	if (ft_isdigit(str[*i]) != 0 && t->dot == 1)

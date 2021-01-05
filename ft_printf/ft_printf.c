@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/02 13:09:04 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/05 20:19:31 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	call_function(t_format *t, t_status *s, va_list p)
 {
 	if (t->specifier == 'c')
-		return  (print_c(t, s, p));
+		return (print_c(t, s, p));
 	if (t->specifier == 's')
 		return (print_s(t, p));
 	return (0);
@@ -62,14 +62,5 @@ int	ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(p);
-	/*
-	printf("\n== result ==\n");
-	printf("flag1 = %c, %d\n", t.flag1, t.flag1);
-	printf("flag2 = %c, %d\n", t.flag2, t.flag2);
-	printf("width = %d\n", t.width);
-	printf("dot = %d\n", t.dot);
-	printf("precision = %d\n", t.precision);
-	printf("specifier = %c %d\n", t.specifier, t.specifier);
-	*/
 	return (s.result);
 }

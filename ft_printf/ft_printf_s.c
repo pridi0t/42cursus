@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 12:53:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/05 20:04:34 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/05 20:30:43 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,17 @@ int	print_s(t_format *t, va_list p)
 		t->width = 0;
 	if (t->precision == -1)
 		t->precision = 0;
-	str = va_arg(p, char *);
+	if (t->flag1 == '*' || t->flag2 == '*')
+		t->width = va_arg(p, int);
+	if (t->flag3 == '*')
+	{
+		t->precision = va_arg(p, int);
+		if (t->precision < 0)
+			str = "(null)";
+		return (s_result(t, 0, ft_strlen(str), str));
+	}
+	if ((str = va_arg(p, char *)) == 0)
+		str = "(null)";
 	if (t->precision == 0 && t->dot == 0 && (t->width <= (int)ft_strlen(str)))
 		return (s_result(t, 0, ft_strlen(str), str));
 	if (t->precision == 0 && t->dot == 0 && (t->width > (int)ft_strlen(str)))
@@ -54,8 +64,8 @@ int	print_s(t_format *t, va_list p)
 	{
 		if (t->width < (int)ft_strlen(str))
 			return (s_result(t, 0, ft_strlen(str), str));
-			return (s_result(t, (t->width - ft_strlen(str)), \
-						ft_strlen(str), str));
+		return (s_result(t, (t->width - ft_strlen(str)), \
+					ft_strlen(str), str));
 	}
 	else if (t->precision <= (int)ft_strlen(str))
 	{

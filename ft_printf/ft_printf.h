@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/02 13:08:07 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/05 20:21:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct {
 	char	flag2;
 	int		width;
 	int		dot;
+	int		flag3;
 	int		precision;
 	char	specifier;
 }			t_format;
