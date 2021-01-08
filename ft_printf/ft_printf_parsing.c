@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/05 20:27:36 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/08 17:37:12 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		set_other(t_format *t, char *str, int *i)
 		t->dot = 1;
 		(*i)++;
 	}
-	if (str[*i] == '*')
+	if (str[*i] == '*' || str[*i] == '-')
 	{
 		t->flag3 = str[*i];
 		(*i)++;
