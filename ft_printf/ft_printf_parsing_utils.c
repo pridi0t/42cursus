@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 10:25:31 by hyojang           #+#    #+#             */
-/*   Updated: 2020/12/23 14:37:50 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/11 23:17:18 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ int		catoi(char *str, int *i)
 	return (ft_atoi(s));
 }
 
-int		char_categorize(char c)
+int		isspecifier(char c)
 {
-	if (c == '-' || c == '0' || c == '*')
-		return (1);
-	else if (c == 'c' || c == 's' || c == 'p' || c == 'd' || \
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || \
 			c == 'i' || c == 'u' || c == 'x' || c == 'X')
-		return (2);
+		return (1);
 	return (0);
 }

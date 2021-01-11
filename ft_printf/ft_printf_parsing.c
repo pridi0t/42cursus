@@ -6,76 +6,65 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/08 17:37:12 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/11 23:39:54 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_format(t_format *t)
+void	t_set1(t_format *t, char *str, int *i, va_list p)
 {
-	t->flag1 = 0;
-	t->flag2 = 0;
-	t->width = -1;
-	t->dot = 0;
-	t->flag3 = 0;
-	t->precision = -1;
-	t->specifier = 0;
-}
-
-int		set_flag(t_format *t, char *str, int *i)
-{
-	if (char_categorize(str[*i]) == 1)
+	if (str[*i] == '-' || str[*i] == '0')
 	{
-		t->flag1 = str[*i];
+		t->flag = str[*i];
 		(*i)++;
-		if (char_categorize(str[*i]) == 1 && t->flag1 != 0)
-		{
-			t->flag2 = str[*i];
-			(*i)++;
-		}
-		if (char_categorize(str[*i]) == 1 && t->flag2 != 0)
-			return (-1);
+		if (str[*i] == '0' && str[*i] == '-')
+			t->flag = str[*i];
+		(*i)++;
 	}
-	return (0);
-}
-
-int		set_other(t_format *t, char *str, int *i)
-{
-	if (ft_isdigit(str[*i]) != 0 && str[*i] != '0')
-	{
+	if (str[*i] == '*')
+		t->width = va_arg(p, int);
+	else if (ft_isdigit(str[*i]) != 0)
 		t->width = catoi(str, i);
-		if (t->width == -1 || t->width == 0)
-			return (-1);
-	}
 	if (str[*i] == '.')
 	{
 		t->dot = 1;
 		(*i)++;
 	}
-	if (str[*i] == '*' || str[*i] == '-')
+}
+
+int		t_set2(t_format *t, char *str, int *i, va_list p)
+{
+	if (str[*i] == '*')
 	{
-		t->flag3 = str[*i];
+		t->precision = va_arg(p, int);
 		(*i)++;
 	}
-	if (ft_isdigit(str[*i]) != 0 && t->dot == 1)
+	else if (ft_isdigit(str[*i]) != 0 || str[*i] == '-')
 	{
 		t->precision = catoi(str, i);
 		if (t->precision == -1)
 			return (-1);
 	}
-	if (char_categorize(str[*i]) != 2)
+	if (isspecifier(str[*i]) != 2)
 		return (-1);
 	t->specifier = str[*i];
 	return (0);
 }
 
-int		set_format(t_format *t, char *str, int *i)
+int		set_format(t_format *t, char *str, int *i, va_list p)
 {
-	init_format(t);
-	if (set_flag(t, str, i) == -1)
+	t->flag = 0;
+	t->width = -1;
+	t->dot = 0;
+	t->precision = -1;
+	t->specifier = 0;
+	t_set1(t, str, i, p);
+	if (t_set2(t, str, i, p) == -1)
 		return (-1);
-	if (set_other(t, str, i) == -1)
-		return (-1);
+	if (t->width == -1)
+		t->width = 0;
+	if (t->precision == -1)
+		t->precision = 0;
 	return (0);
 }
