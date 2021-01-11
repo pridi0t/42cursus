@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 15:22:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 00:02:01 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 00:32:43 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ int	print_c(t_format *t, va_list p)
 	char	c;
 
 	c = va_arg(p, int);
-	write(1, "1", 1);
 	if (t->width < 0 || t->precision != 0)
-		write(1, "1", 1);
 		return (-1);
 	return (result_c(t, &c));
 }

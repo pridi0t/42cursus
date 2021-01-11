@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/11 23:39:54 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 00:45:53 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void	t_set1(t_format *t, char *str, int *i, va_list p)
 	{
 		t->flag = str[*i];
 		(*i)++;
-		if (str[*i] == '0' && str[*i] == '-')
+		if (t->flag == '0' && str[*i] == '-')
+		{
 			t->flag = str[*i];
-		(*i)++;
+			(*i)++;
+		}
 	}
 	if (str[*i] == '*')
 		t->width = va_arg(p, int);
@@ -39,14 +41,15 @@ int		t_set2(t_format *t, char *str, int *i, va_list p)
 	{
 		t->precision = va_arg(p, int);
 		(*i)++;
+		if (t->precision < 0)
+		{
+			t->dot = 0;
+			t->precision = 0;
+		}
 	}
 	else if (ft_isdigit(str[*i]) != 0 || str[*i] == '-')
-	{
 		t->precision = catoi(str, i);
-		if (t->precision == -1)
-			return (-1);
-	}
-	if (isspecifier(str[*i]) != 2)
+	if (isspecifier(str[*i]) != 1)
 		return (-1);
 	t->specifier = str[*i];
 	return (0);

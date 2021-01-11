@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 10:32:40 by hyojang           #+#    #+#              #
-#    Updated: 2021/01/11 23:43:52 by hyojang          ###   ########.fr        #
+#    Updated: 2021/01/12 00:37:09 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ FILES = ft_atoi					\
 		ft_printf_parsing		\
 		ft_printf_parsing_utils	\
 		ft_printf_utils			\
-		ft_printf_c
+		ft_printf_c				\
+		ft_printf_s
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

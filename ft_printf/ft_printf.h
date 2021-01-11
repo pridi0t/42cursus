@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/11 23:43:18 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 00:41:06 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ size_t		ft_strlen(const char *s);
 // ft_printf_c
 int			print_c(t_format *t, va_list p);
 // ft_printf_s
-//int			print_s(t_format *t, va_list p);
+int			print_s(t_format *t, va_list p);
 // ft_printf_d
 //int			print_d(t_format *t, va_list p);
 #endif

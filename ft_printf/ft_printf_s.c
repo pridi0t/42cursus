@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 12:53:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/08 17:37:49 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 00:47:01 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	s_result(t_format *t, int space, int size, char *str)
 
 	i = 0;
 	result = 0;
-	if (t->flag1 == '-')
+	if (t->flag == '-')
 		write(1, str, size);
 	while (i < space)
 	{
@@ -27,13 +27,13 @@ int	s_result(t_format *t, int space, int size, char *str)
 		i++;
 		result++;
 	}
-	if (t->flag1 != '-')
+	if (t->flag != '-')
 		write(1, str, size);
 	result += size;
 	return (result);
 }
 
-int excep_s(t_format *t, char *str)
+int	excep_s(t_format *t, char *str)
 {
 	if (t->precision == 0 && t->dot == 0 && (t->width <= (int)ft_strlen(str)))
 		return (s_result(t, 0, ft_strlen(str), str));
@@ -64,17 +64,9 @@ int	print_s(t_format *t, va_list p)
 	char	*str;
 
 	str = 0;
-	if (t->width == -1)
-		t->width = 0;
-	if (t->precision == -1)
-		t->precision = 0;
-	if (t->flag1 == '*' || t->flag2 == '*')
-		t->width = va_arg(p, int);
-	if (t->flag3 == '*')
+	if (t->precision < 0)
 	{
-		t->precision = va_arg(p, int);
-		if (t->precision < 0)
-			str = "(null)";
+		str = "(null)";
 		return (s_result(t, 0, ft_strlen(str), str));
 	}
 	if ((str = va_arg(p, char *)) == 0)
