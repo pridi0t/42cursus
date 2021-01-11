@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 00:38:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 00:49:33 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	call_function(t_format *t, va_list p)
 		return (print_c(t, p));
 	if (t->specifier == 's')
 		return (print_s(t, p));
-	//if (t->specifier == 'd')
-		//return (print_d(t, p));
+	if (t->specifier == 'd')
+		return (print_d(t, p));
 	return (0);
 }
 
