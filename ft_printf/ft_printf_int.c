@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 12:31:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 12:24:37 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 20:56:41 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	print_int(t_format *t, char *str)
 	result = 0;
 	if (str[0] == '0' && t->dot == 1)
 		str = "";
-	if (t->precision > (int)ft_strlen(str))
+	if (t->precision >= (int)ft_strlen(str))
 	{
 		if (t->precision > t->width)
 			return (d_ps(t, str));
