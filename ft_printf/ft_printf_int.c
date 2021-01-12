@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 12:31:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 11:53:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 12:24:37 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,16 +95,11 @@ int	d_wsp(t_format *t, char *str)
 	return (t->width);
 }
 
-int	print_int(t_format *t, va_list p)
+int	print_int(t_format *t, char *str)
 {
-	char	*str;
 	int		result;
 
 	result = 0;
-	if (t->specifier == 'u')
-		str = ft_uitoa(va_arg(p, unsigned int));
-	else
-		str = ft_itoa(va_arg(p, int));
 	if (str[0] == '0' && t->dot == 1)
 		str = "";
 	if (t->precision > (int)ft_strlen(str))

@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 10:32:40 by hyojang           #+#    #+#              #
-#    Updated: 2021/01/12 11:53:08 by hyojang          ###   ########.fr        #
+#    Updated: 2021/01/12 12:18:32 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ RM = rm -f
 
 FILES = ft_atoi					\
 		ft_itoa					\
+		ft_itox					\
 		ft_uitoa				\
 		ft_printf				\
 		ft_printf_parsing		\

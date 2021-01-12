@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 11:53:30 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 12:43:42 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 int	call_function(t_format *t, va_list p)
 {
+	char *str;
+
+	str = 0;
 	if (t->specifier == 'c')
 		return (print_c(t, p));
 	if (t->specifier == 's')
 		return (print_s(t, p));
-	if (t->specifier == 'd' || t->specifier == 'i' || t->specifier == 'u')
-		return (print_int(t, p));
-	return (0);
+	if (t->specifier == 'u')
+		str = ft_uitoa(va_arg(p, unsigned int));
+	else if (t->specifier == 'd' || t->specifier == 'i')
+		str = ft_itoa(va_arg(p, int));
+	else if (t->specifier == 'x')
+		str = ft_itox(va_arg(p, unsigned int), 'a');
+	else if (t->specifier == 'X')
+		str = ft_itox(va_arg(p, unsigned int), 'A');
+	return (print_int(t, str));
 }
 
 int	ft_printf(const char *str, ...)

@@ -6,13 +6,13 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:35:03 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 12:18:13 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 12:45:11 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int		numlen_check(long num)
+static int		hexlen_check(long num)
 {
 	int	len;
 
@@ -26,37 +26,49 @@ static int		numlen_check(long num)
 	}
 	while (num > 0)
 	{
-		num /= 10;
+		num /= 16;
 		len++;
 	}
 	return (len);
 }
 
-char			*ft_itoa(int n)
+static void		convert(long num, char c, char *mem)
+{
+	int len;
+	int flag;
+
+	len = hexlen_check(num) - 1;
+	flag = 0;
+	if (num < 0)
+	{
+		num *= -1;
+		flag = 1;
+	}
+	while (len >= flag)
+	{
+		if ((num % 16) >= 10)
+			*(mem + len) = ((num % 16) + (c - 10));
+		else
+			*(mem + len) = ((num % 16) + '0');
+		num /= 16;
+		len--;
+	}
+}
+
+char			*ft_itox(unsigned int n, char c)
 {
 	long	num;
 	int		len;
-	int		flag;
 	char	*mem;
 
-	flag = 0;
-	len = numlen_check(n);
+	len = hexlen_check(n);
 	mem = malloc(len + 1);
 	if (mem == 0)
 		return (0);
 	*(mem + len--) = 0;
 	num = n;
 	if (n < 0)
-	{
-		num *= -1;
 		*mem = '-';
-		flag = 1;
-	}
-	while (len >= flag)
-	{
-		*(mem + len) = (num % 10) + '0';
-		num /= 10;
-		len--;
-	}
+	convert(num, c, mem);
 	return (mem);
 }
