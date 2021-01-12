@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 12:31:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 03:17:26 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 09:59:51 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	print_d(t_format *t, va_list p)
 	result = 0;
 	num = va_arg(p, int);
 	str = ft_itoa(num);
+	if (str[0] == '0' && t->dot == 1)
+		str = "";
 	if (t->precision > (int)ft_strlen(str))
 	{
 		// precision > strlen, (ignore width)
@@ -82,6 +84,8 @@ int	print_d(t_format *t, va_list p)
 		// width > strlen > precision
 		if (t->flag == '-')
 			write(1, str, ft_strlen(str));
+		if (t->flag == '0' && t->precision != 0)
+			t->flag = 0;
 		if (t->flag == '0')
 		{
 			if (num < 0)
