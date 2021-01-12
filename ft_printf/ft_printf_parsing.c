@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 00:45:53 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 20:19:07 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	t_set1(t_format *t, char *str, int *i, va_list p)
 		}
 	}
 	if (str[*i] == '*')
+	{
 		t->width = va_arg(p, int);
+		(*i)++;
+	}
 	else if (ft_isdigit(str[*i]) != 0)
 		t->width = catoi(str, i);
 	if (str[*i] == '.')
