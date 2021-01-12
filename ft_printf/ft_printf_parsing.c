@@ -6,11 +6,20 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 20:19:07 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 20:31:25 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	cor_width(t_format *t)
+{
+	if (t->width < 0)
+	{
+		t->flag = '-';
+		t->width *= -1;
+	}
+}
 
 void	t_set1(t_format *t, char *str, int *i, va_list p)
 {
@@ -27,6 +36,7 @@ void	t_set1(t_format *t, char *str, int *i, va_list p)
 	if (str[*i] == '*')
 	{
 		t->width = va_arg(p, int);
+		cor_width(t);
 		(*i)++;
 	}
 	else if (ft_isdigit(str[*i]) != 0)
