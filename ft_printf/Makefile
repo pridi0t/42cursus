@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 10:32:40 by hyojang           #+#    #+#              #
-#    Updated: 2021/01/12 00:49:06 by hyojang          ###   ########.fr        #
+#    Updated: 2021/01/12 11:53:08 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,14 @@ RM = rm -f
 
 FILES = ft_atoi					\
 		ft_itoa					\
+		ft_uitoa				\
 		ft_printf				\
 		ft_printf_parsing		\
 		ft_printf_parsing_utils	\
 		ft_printf_utils			\
 		ft_printf_c				\
 		ft_printf_s				\
-		ft_printf_d
+		ft_printf_int
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

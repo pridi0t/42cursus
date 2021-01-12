@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 12:31:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 11:21:44 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 11:53:39 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ int	prtc(int n, char c)
 	return (i);
 }
 
-int	d_ps(t_format *t, char *str, int *num)
+int	d_ps(t_format *t, char *str)
 {
 	int result;
 
 	result = 0;
-	if (*num < 0)
+	if (str[0] == '-')
 	{
 		write(1, "-", 1);
 		str++;
@@ -41,11 +41,11 @@ int	d_ps(t_format *t, char *str, int *num)
 	return (result);
 }
 
-int	d_wps(t_format *t, char *str, int *num)
+int	d_wps(t_format *t, char *str)
 {
 	if (t->flag == '-')
 	{
-		if (*num < 0)
+		if (str[0] == '-')
 		{
 			write(1, "-", 1);
 			str++;
@@ -56,10 +56,10 @@ int	d_wps(t_format *t, char *str, int *num)
 		prtc(t->width - t->precision, ' ');
 		return (t->width);
 	}
-	if (*num < 0)
+	if (str[0] == '-')
 		t->width--;
 	prtc(t->width - t->precision, ' ');
-	if (*num < 0)
+	if (str[0] == '-')
 	{
 		write(1, "-", 1);
 		str++;
@@ -69,7 +69,7 @@ int	d_wps(t_format *t, char *str, int *num)
 	return (t->width);
 }
 
-int	d_wsp(t_format *t, char *str, int *num)
+int	d_wsp(t_format *t, char *str)
 {
 	int result;
 
@@ -80,7 +80,7 @@ int	d_wsp(t_format *t, char *str, int *num)
 		write(1, str, ft_strlen(str));
 	if (t->flag == '0')
 	{
-		if (*num < 0)
+		if (str[0] == '-')
 		{
 			write(1, "-", 1);
 			str++;
@@ -95,25 +95,26 @@ int	d_wsp(t_format *t, char *str, int *num)
 	return (t->width);
 }
 
-int	print_d(t_format *t, va_list p)
+int	print_int(t_format *t, va_list p)
 {
 	char	*str;
-	int		num;
 	int		result;
 
 	result = 0;
-	num = va_arg(p, int);
-	str = ft_itoa(num);
+	if (t->specifier == 'u')
+		str = ft_uitoa(va_arg(p, unsigned int));
+	else
+		str = ft_itoa(va_arg(p, int));
 	if (str[0] == '0' && t->dot == 1)
 		str = "";
 	if (t->precision > (int)ft_strlen(str))
 	{
 		if (t->precision > t->width)
-			return (d_ps(t, str, &num));
-		return (d_wps(t, str, &num));
+			return (d_ps(t, str));
+		return (d_wps(t, str));
 	}
 	else if (t->width > (int)ft_strlen(str))
-		return (d_wsp(t, str, &num));
+		return (d_wsp(t, str));
 	write(1, str, ft_strlen(str));
 	result += ft_strlen(str);
 	return (result);

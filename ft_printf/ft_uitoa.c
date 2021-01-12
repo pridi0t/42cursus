@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/19 17:35:03 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 11:46:41 by hyojang          ###   ########.fr       */
+/*   Created: 2021/01/12 11:28:13 by hyojang           #+#    #+#             */
+/*   Updated: 2021/01/12 11:46:59 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int		numlen_check(long num)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char			*ft_uitoa(unsigned int n)
 {
 	long	num;
 	int		len;
