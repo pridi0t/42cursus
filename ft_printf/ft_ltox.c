@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itox.c                                          :+:      :+:    :+:   */
+/*   ft_ltox.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 16:08:20 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 16:08:28 by hyojang          ###   ########.fr       */
+/*   Created: 2021/01/12 16:09:05 by hyojang           #+#    #+#             */
+/*   Updated: 2021/01/12 16:12:09 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int		hexlen_check(long num)
+static int		hexlen_check(long long num)
 {
 	int	len;
 
@@ -32,7 +32,7 @@ static int		hexlen_check(long num)
 	return (len);
 }
 
-static void		convert(long num, char c, char *mem)
+static void		convert(long long num, char *mem)
 {
 	int len;
 	int flag;
@@ -47,7 +47,7 @@ static void		convert(long num, char c, char *mem)
 	while (len >= flag)
 	{
 		if ((num % 16) >= 10)
-			*(mem + len) = ((num % 16) + (c - 10));
+			*(mem + len) = ((num % 16) + 87);
 		else
 			*(mem + len) = ((num % 16) + '0');
 		num /= 16;
@@ -55,11 +55,11 @@ static void		convert(long num, char c, char *mem)
 	}
 }
 
-char			*ft_itox(unsigned int n, char c)
+char			*ft_ltox(long long n)
 {
-	long	num;
-	int		len;
-	char	*mem;
+	long long	num;
+	int			len;
+	char		*mem;
 
 	len = hexlen_check(n);
 	mem = malloc(len + 1);
@@ -69,6 +69,6 @@ char			*ft_itox(unsigned int n, char c)
 	num = n;
 	if (n < 0)
 		*mem = '-';
-	convert(num, c, mem);
+	convert(num, mem);
 	return (mem);
 }

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 13:51:50 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 16:12:45 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct {
 int			ft_atoi(const char *str);
 char		*ft_itoa(int n);
 char		*ft_itox(unsigned int n, char c);
+char		*ft_ltox(long long n);
 char		*ft_uitoa(unsigned int n);
 // ft_printf
 int			ft_printf(const char *str, ...);
@@ -46,6 +47,8 @@ int			isspecifier(char c);
 size_t		ft_strlen(const char *s);
 // ft_printf_percent
 int			print_percent(t_format *t);
+// ft_printf_p
+int			print_p(t_format *t, va_list p);
 // ft_printf_c
 int			print_c(t_format *t, va_list p);
 // ft_printf_s

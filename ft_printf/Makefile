@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 10:32:40 by hyojang           #+#    #+#              #
-#    Updated: 2021/01/12 13:28:19 by hyojang          ###   ########.fr        #
+#    Updated: 2021/01/12 16:13:06 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ RM = rm -f
 FILES = ft_atoi					\
 		ft_itoa					\
 		ft_itox					\
+		ft_ltox					\
 		ft_uitoa				\
 		ft_printf				\
 		ft_printf_parsing		\
@@ -28,6 +29,7 @@ FILES = ft_atoi					\
 		ft_printf_percent		\
 		ft_printf_c				\
 		ft_printf_s				\
+		ft_printf_p				\
 		ft_printf_int
 
 SRCS_DIR = ./

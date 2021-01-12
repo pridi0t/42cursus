@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 13:45:33 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 16:02:34 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	call_function(t_format *t, va_list p)
 		return (print_c(t, p));
 	if (t->specifier == 's')
 		return (print_s(t, p));
+	if (t->specifier == 'p')
+		return (print_p(t, p));
 	if (t->specifier == 'u')
 		str = ft_uitoa(va_arg(p, unsigned int));
 	else if (t->specifier == 'd' || t->specifier == 'i')
