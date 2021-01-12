@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 10:32:40 by hyojang           #+#    #+#              #
-#    Updated: 2021/01/12 12:18:32 by hyojang          ###   ########.fr        #
+#    Updated: 2021/01/12 13:28:19 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ FILES = ft_atoi					\
 		ft_printf_parsing		\
 		ft_printf_parsing_utils	\
 		ft_printf_utils			\
+		ft_printf_percent		\
 		ft_printf_c				\
 		ft_printf_s				\
 		ft_printf_int

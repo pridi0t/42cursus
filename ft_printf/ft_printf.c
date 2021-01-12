@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 12:43:42 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 13:45:33 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	call_function(t_format *t, va_list p)
 	char *str;
 
 	str = 0;
+	if (t->specifier == '%')
+		return (print_percent(t));
 	if (t->specifier == 'c')
 		return (print_c(t, p));
 	if (t->specifier == 's')

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/21 10:25:31 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/11 23:17:18 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/12 13:43:56 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		catoi(char *str, int *i)
 int		isspecifier(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || \
-			c == 'i' || c == 'u' || c == 'x' || c == 'X')
+			c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%')
 		return (1);
 	return (0);
 }
