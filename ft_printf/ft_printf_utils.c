@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 15:11:21 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 17:14:06 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 19:15:04 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-int	rc(int n, char c)
+int		rc(int n, char c)
 {
 	int i;
 
