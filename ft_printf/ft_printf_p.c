@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:10 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 15:15:04 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 16:37:23 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			result_p(t_format *t, char *str)
 	}
 	write(1, "0x", 2);
 	write(1, str, ft_strlen(str));
-	return (ft_strlen(str));
+	return (ft_strlen(str) + 2);
 }
 
 int			print_p(t_format *t, va_list p)

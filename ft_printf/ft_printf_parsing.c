@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 20:31:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 16:32:00 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int		t_set2(t_format *t, char *str, int *i, va_list p)
 	}
 	else if (ft_isdigit(str[*i]) != 0 || str[*i] == '-')
 		t->precision = catoi(str, i);
+	if (t->flag == '0' && t->dot == 1 && t->precision == 0)
+		t->flag = 0;
 	if (isspecifier(str[*i]) != 1)
 		return (-1);
 	t->specifier = str[*i];

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 15:44:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 17:13:55 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int			catoi(char *str, int *i);
 int			isspecifier(char c);
 // ft_printf_utils
 size_t		ft_strlen(const char *s);
+int			rc(int n, char c);
 // ft_printf_percent
 int			print_percent(t_format *t);
 // ft_printf_p

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 15:11:21 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 15:44:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 17:14:06 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,18 @@ size_t	ft_strlen(const char *s)
 	i = 0;
 	while (*(s + i) != 0)
 		i++;
+	return (i);
+}
+
+int	rc(int n, char c)
+{
+	int i;
+
+	i = 0;
+	while (i < n)
+	{
+		write(1, &c, 1);
+		i++;
+	}
 	return (i);
 }
