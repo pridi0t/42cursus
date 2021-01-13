@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:22:57 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 16:12:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 15:44:25 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ typedef struct {
 	int		precision;
 	char	specifier;
 }			t_format;
-typedef struct {
-	int		read;
-	int		result;
-}			t_status;
 // etc
 int			ft_atoi(const char *str);
 char		*ft_itoa(int n);

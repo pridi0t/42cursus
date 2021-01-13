@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 16:25:47 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 20:14:21 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 15:43:03 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 int	call_function(t_format *t, va_list p)
 {
-	char *str;
+	int		result;
+	char	*str;
 
 	str = 0;
 	if (t->specifier == '%')
-		return (print_percent(t));
-	if (t->specifier == 'c')
-		return (print_c(t, p));
-	if (t->specifier == 's')
-		return (print_s(t, p));
-	if (t->specifier == 'p')
-		return (print_p(t, p));
-	if (t->specifier == 'u')
+		result = print_percent(t);
+	else if (t->specifier == 'c')
+		result = print_c(t, p);
+	else if (t->specifier == 's')
+		result = print_s(t, p);
+	else if (t->specifier == 'p')
+		result = print_p(t, p);
+	else if (t->specifier == 'u')
 		str = ft_uitoa(va_arg(p, unsigned int));
 	else if (t->specifier == 'd' || t->specifier == 'i')
 		str = ft_itoa(va_arg(p, int));
@@ -33,42 +34,37 @@ int	call_function(t_format *t, va_list p)
 		str = ft_itox(va_arg(p, unsigned int), 'a');
 	else if (t->specifier == 'X')
 		str = ft_itox(va_arg(p, unsigned int), 'A');
-	return (print_int(t, str));
+	if (str != 0)
+		result = print_int(t, str);
+	if (str != 0)
+		free(str);
+	return (result);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	t_format	t;
-	t_status	s;
 	va_list		p;
 	int			i;
-	int			tmp;
+	int			result;
 
-	i = 0;
-	s.read = 0;
-	s.result = 0;
+	i = -1;
+	result = 0;
 	va_start(p, str);
-	while (str[i] != 0)
+	while (str[++i] != 0)
 	{
-		if (str[i] == '%' && s.read == 0)
-			s.read = 1;
-		else if (s.read == 1)
+		if (str[i] == '%')
 		{
-			if (set_format(&t, (char *)str, &i, p) == -1)
-				return (-1);
-			tmp = call_function(&t, p);
-			if (tmp == -1)
-				return (-1);
-			s.result += tmp;
-			s.read = 0;
+			i++;
+			set_format(&t, (char *)str, &i, p);
+			result += call_function(&t, p);
 		}
 		else
 		{
 			write(1, &str[i], 1);
-			s.result++;
+			result++;
 		}
-		i++;
 	}
 	va_end(p);
-	return (s.result);
+	return (result);
 }

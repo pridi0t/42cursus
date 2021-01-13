@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:10 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 16:18:07 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 15:15:04 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ int			result_p(t_format *t, char *str)
 
 int			print_p(t_format *t, va_list p)
 {
-	char *str;
+	int		result;
+	char	*str;
 
 	str = va_arg(p, char *);
 	str = ft_ltox((long long)str);
-	return (result_p(t, str));
+	result = result_p(t, str);
+	free(str);
+	return (result);
 }
