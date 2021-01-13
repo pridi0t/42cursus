@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 14:19:10 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 16:37:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 20:04:12 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int			print_p(t_format *t, va_list p)
 
 	str = va_arg(p, char *);
 	str = ft_ltox((long long)str);
+	if (str[0] == '0' && t->dot == 1 && t->precision == 0)
+		str[0] = 0;
 	result = result_p(t, str);
 	free(str);
 	return (result);

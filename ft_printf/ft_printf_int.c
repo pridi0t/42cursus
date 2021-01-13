@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 12:31:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 18:54:56 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 20:10:36 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	d_wsp(t_format *t, char *str)
 		t->flag = 0;
 	if (t->flag == '-')
 		write(1, str, ft_strlen(str));
-	if (t->flag == '0')
+	if (t->flag == '0' && !(t->dot == 1 && t->precision == 0))
 	{
 		if (str[0] == '-')
 		{

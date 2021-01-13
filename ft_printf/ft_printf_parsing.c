@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/23 11:03:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 16:32:00 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 20:21:47 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void	cor_width(t_format *t)
 
 void	t_set1(t_format *t, char *str, int *i, va_list p)
 {
-	if (str[*i] == '-' || str[*i] == '0')
+	while (str[*i] == '-' || str[*i] == '0')
 	{
+		if (t->flag == '-' && str[*i] == '0')
+		{
+			(*i)++;
+			continue ;
+		}
 		t->flag = str[*i];
 		(*i)++;
-		if (t->flag == '0' && str[*i] == '-')
-		{
-			t->flag = str[*i];
-			(*i)++;
-		}
 	}
 	if (str[*i] == '*')
 	{
@@ -62,11 +62,12 @@ int		t_set2(t_format *t, char *str, int *i, va_list p)
 	}
 	else if (ft_isdigit(str[*i]) != 0 || str[*i] == '-')
 		t->precision = catoi(str, i);
-	if (t->flag == '0' && t->dot == 1 && t->precision == 0)
-		t->flag = 0;
 	if (isspecifier(str[*i]) != 1)
 		return (-1);
 	t->specifier = str[*i];
+	if (t->flag == '0' && t->dot == 1 && \
+			t->precision == 0 && t->specifier != '%')
+		t->flag = 0;
 	return (0);
 }
 
