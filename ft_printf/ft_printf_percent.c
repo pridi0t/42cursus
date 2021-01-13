@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 12:58:32 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/12 13:50:49 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/13 19:21:34 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int	print_percent(t_format *t)
 
 	i = -1;
 	result = 0;
-	if (t->precision != 0)
-		return (-1);
 	if (t->width >= 2)
 	{
 		while (++i < t->width)
