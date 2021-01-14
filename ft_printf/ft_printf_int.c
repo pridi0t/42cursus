@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 12:31:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/01/13 20:10:36 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/01/14 12:36:28 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ int	d_wps(t_format *t, char *str)
 
 	result = 0;
 	if (str[0] == '-')
-	{
 		t->width--;
-	}
 	result += rc(t->width - t->precision, ' ');
 	if (str[0] == '-')
 	{
