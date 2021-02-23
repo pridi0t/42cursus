@@ -1,0 +1,31 @@
+FROM debian:buster
+
+COPY srcs /tmp
+
+RUN apt update
+RUN apt -y install nginx
+RUN rm /etc/nginx/sites-enabled/default
+RUN apt -y install php-fpm php-mysql
+RUN apt -y install wget lsb-release gnupg
+RUN wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+RUN dpkg -i mysql-apt-config_0.8.15-1_all.deb < /tmp/mysql_input.txt
+RUN apt update
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt -y install mysql-server
+RUN /etc/init.d/mysql start && mysql < /tmp/mysql_query.sql
+RUN wget https://wordpress.org/latest.tar.gz
+RUN tar -zxvf latest.tar.gz
+RUN mv wordpress /var/www/html/
+RUN chown www-data.www-data /var/www/html/wordpress/* -R
+RUN cd /var/www/html/wordpress
+RUN rm /var/www/html/wordpress/wp-config-sample.php
+RUN cp /tmp/wp-config.php /var/www/html/wordpress/
+RUN wget https://files.phpmyadmin.net/phpMyAdmin/4.8.4/phpMyAdmin-4.8.4-all-languages.tar.gz
+RUN tar -zxvf  phpMyAdmin-4.8.4-all-languages.tar.gz
+RUN mv phpMyAdmin-4.8.4-all-languages /var/www/html/phpmyadmin
+RUN chown www-data.www-data /var/www/html/phpmyadmin/* -R
+RUN cp -r /tmp/ssl /etc/nginx/
+
+ENTRYPOINT ["/bin/bash", "/tmp/entry.sh"]
