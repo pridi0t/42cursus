@@ -12,7 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define MAX_STACK_SIZE 100
+#define MAX_STACK_SIZE 1000
 
 typedef struct{
 	int r;

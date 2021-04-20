@@ -15,15 +15,11 @@
 #include "get_next_line.h"
 #include "stack.h"
 #include "libft.h"
-#define MAP_SIZE 50
 
 typedef struct {
-	char *no;
-	char *so;
-	char *we;
-	char *ea;
-	char *s;
-} t_tex;
+	int width;
+	int height;
+} t_r;
 
 typedef struct {
 	int r;
@@ -32,12 +28,23 @@ typedef struct {
 } t_rgb;
 
 typedef struct {
-	int width;
-	int height;
-} t_r;
+	t_r		r;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	char	*s;
+	t_rgb	f;
+	t_rgb	c;
+} t_info;
 
-typedef		struct{
-	t_tex	*tex;
-	t_rgb	*rgb;
-	t_r		*r;
-} info;
+typedef struct{
+	int r_cnt;
+	int no_len;
+	int so_len;
+	int we_len;
+	int ea_len;
+	int s_len;
+	int f_cnt;
+	int c_cnt;
+} t_valid;
