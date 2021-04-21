@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 10:52:28 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/16 10:52:56 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/21 22:15:52 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
-#include "stack.h"
-#include "libft.h"
+#ifndef CUB3D_H
+# define CUB3D_H
+# include <stdio.h>
+# include <fcntl.h>
+# include "get_next_line.h"
+# include "stack.h"
+# include "libft.h"
 
 typedef struct {
 	int width;
@@ -37,14 +39,4 @@ typedef struct {
 	t_rgb	f;
 	t_rgb	c;
 } t_info;
-
-typedef struct{
-	int r_cnt;
-	int no_len;
-	int so_len;
-	int we_len;
-	int ea_len;
-	int s_len;
-	int f_cnt;
-	int c_cnt;
-} t_valid;
+#endif

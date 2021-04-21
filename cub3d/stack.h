@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 06:48:13 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/16 09:41:27 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/21 22:16:17 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#define MAX_STACK_SIZE 1000
+#ifndef STACK_H
+# define STACK_H
+# include <stdio.h>
+# include <stdlib.h>
+# define MAX_STACK_SIZE 1000
 
 typedef struct{
 	int r;
@@ -29,3 +31,4 @@ int		is_empty(t_stacktype *s);
 int		is_full(t_stacktype *s);
 void	push(t_stacktype *s, element item);
 element	pop(t_stacktype *s);
+#endif
