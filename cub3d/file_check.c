@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 22:04:55 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/23 06:57:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/23 07:20:23 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,27 @@ void	input_r(t_r *r, char *line)
 		info_err(7, "R", line);
 }
 
-void	input_rgb(t_rgb *rgb, char *str, char *rgb_name, char *line)
+void	input_rgb(t_rgb *rgb, char *line, char *rgb_name)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	if (rgb->r != -1 && rgb->g != -1 && rgb->b != -1)
 		info_err(1, rgb_name, line);
 	if (!(ft_strlen(line) > 2 && line[1] == ' '))
 		info_err(7, rgb_name, line);
-	while (str[i] == ' ')
+	while (line[i] == ' ')
 		i++;
-	rgb->r = simple_atoi(str, &i);
-	if (str[i++] != ',')
+	rgb->r = simple_atoi(line, &i);
+	if (line[i++] != ',')
 		info_err(2, rgb_name, line);
-	rgb->g = simple_atoi(str, &i);
-	if (str[i++] != ',')
+	rgb->g = simple_atoi(line, &i);
+	if (line[i++] != ',')
 		info_err(2, rgb_name, line);
-	rgb->b = simple_atoi(str, &i);
-	while (str[i] == ' ')
+	rgb->b = simple_atoi(line, &i);
+	while (line[i] == ' ')
 		i++;
-	if (str[i] != 0)
+	if (line[i] != 0)
 		info_err(3, rgb_name, line);
 	if ((rgb->r < 0 || rgb->r > 255) || \
 			(rgb->g < 0 || rgb->g > 255) || (rgb->b < 0 || rgb->b > 255))
@@ -101,7 +101,7 @@ void	input_info(t_info *info, char *line)
 	if (*line == 'S')
 		input_tex(&(info->s), line, "S");
 	if (*line == 'F')
-		input_rgb(&(info->f), ft_strtrim(&line[1], " "), "F", line);
+		input_rgb(&(info->f), line, "F");
 	if (*line == 'C')
-		input_rgb(&(info->c), ft_strtrim(&line[1], " "), "C", line);
+		input_rgb(&(info->c), line, "C");
 }
