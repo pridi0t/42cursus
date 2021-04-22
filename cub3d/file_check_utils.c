@@ -6,21 +6,34 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 22:06:42 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/21 22:09:00 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/23 06:52:11 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int simple_atoi(char *line, int *i)
+#include "cub3d.h"
+
+int		simple_atoi(char *line, int *i)
 {
 	int result;
+	int tmp;
+	int sign;
 
 	result = 0;
+	sign = 1;
+	tmp = *i;
+	if (line[*i] == '-')
+	{
+		sign *= -1;
+		(*i)++;
+	}
 	while (ft_isdigit(line[*i]) == 1)
 	{
 		result = (result * 10) + (line[*i] - '0');
-		(*i)++;		
+		(*i)++;
 	}
-	return (result);
+	if (tmp == *i || (line[tmp] == '-' && result == 0))
+		return (-1);
+	return (result * sign);
 }
 
 void	init_info(t_info *info)
@@ -40,19 +53,22 @@ void	init_info(t_info *info)
 	(info->c).b = -1;
 }
 
-int print_error(int errno, char *s)
+void	info_err(int errno, char *name, char *line)
 {
 	if (errno == 1)
-		printf("Error\n%s Duplicate value\n", s);
+		perror("Error\nDuplicate value");
 	else if (errno == 2)
-		printf("Error\n%s Separator error(or %s value may be negative)\n", s, s);
+		perror("Error\nSeparator error(or value < 0)");
 	else if (errno == 3)
-		printf("Error\n%s Line never ends\n", s);
-	else if (errno == 4)
-		printf("Error\n%s RGB value must be between 0 and 255\n", s);
+		perror("Error\nLine never ends.. parsing error");
 	else if (errno == 5)
-		printf("Error\n%s file is not .xpm\n", s);
+		perror("Error\nfile is not .xpm\n");
 	else if (errno == 6)
-		printf("Error\n%s file open failed\n", s);
-	return errno;
+		perror("Error\nfile open failed\n");
+	else if (errno == 7)
+		perror("Error\nempty or invalid value\n");
+	printf("%s", name);
+	if (line != 0)
+		free(line);
+	exit(1);
 }

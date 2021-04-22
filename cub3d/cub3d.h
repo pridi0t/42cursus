@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 10:52:28 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/21 22:15:52 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/23 03:52:08 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@
 # include "libft.h"
 
 typedef struct {
-	int width;
-	int height;
-} t_r;
+	int		width;
+	int		height;
+}			t_r;
 
 typedef struct {
-	int r;
-	int g;
-	int b;
-} t_rgb;
+	int		r;
+	int		g;
+	int		b;
+}			t_rgb;
 
 typedef struct {
 	t_r		r;
@@ -38,5 +38,10 @@ typedef struct {
 	char	*s;
 	t_rgb	f;
 	t_rgb	c;
-} t_info;
+}			t_info;
+
+void	init_info(t_info *info);
+void	input_info(t_info *info, char *line);
+int		simple_atoi(char *line, int *i);
+void	info_err(int errno, char *tex_name, char *line);
 #endif

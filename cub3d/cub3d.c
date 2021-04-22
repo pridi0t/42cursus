@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 10:53:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/21 22:11:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/23 03:16:19 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(void)
 	int		fd;
 	int		result;
 	char	*line;
-	t_info 	info;
+	t_info	info;
 
 	//ft_memset(&map, '0', sizeof(map));
 	init_info(&info);
@@ -58,11 +58,8 @@ int	main(void)
 	{
 		result = get_next_line(fd, &line);
 		if (line != 0)
-			if (input_info(&info, line) != 0)
-			{
-				free(line);
-				break;
-			}
+			input_info(&info, line);
+
 		//printf("%s\n", line);
 		//convert_arr(map, line);
 		free(line);
