@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 06:48:13 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/21 22:16:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/23 10:11:05 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include <stdlib.h>
 # define MAX_STACK_SIZE 1000
 
-typedef struct{
-	int r;
-	int c;
-}		element;
+typedef struct {
+	int		r;
+	int		c;
+} 			element;
 
 typedef	struct {
 	element	data[MAX_STACK_SIZE];

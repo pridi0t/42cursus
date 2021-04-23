@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 22:04:55 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/23 07:20:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/23 10:47:22 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,24 +84,30 @@ void	input_tex(char **tmp, char *line, char *tex_name)
 		info_err(6, tex_name, line);
 }
 
-void	input_info(t_info *info, char *line)
+void	input_info(t_info *info, char *line, t_mapinfo *minfo)
 {
 	char *str;
 
 	if (*line == 'R')
 		input_r(&(info->r), line);
-	if (ft_strncmp(line, "NO", 2) == 0)
+	else if (ft_strncmp(line, "NO", 2) == 0)
 		input_tex(&(info->no), line, "NO");
-	if (ft_strncmp(line, "SO", 2) == 0)
+	else if (ft_strncmp(line, "SO", 2) == 0)
 		input_tex(&(info->so), line, "SO");
-	if (ft_strncmp(line, "WE", 2) == 0)
+	else if (ft_strncmp(line, "WE", 2) == 0)
 		input_tex(&(info->we), line, "WE");
-	if (ft_strncmp(line, "EA", 2) == 0)
+	else if (ft_strncmp(line, "EA", 2) == 0)
 		input_tex(&(info->ea), line, "EA");
-	if (*line == 'S')
+	else if (*line == 'S')
 		input_tex(&(info->s), line, "S");
-	if (*line == 'F')
+	else if (*line == 'F')
 		input_rgb(&(info->f), line, "F");
-	if (*line == 'C')
+	else if (*line == 'C')
 		input_rgb(&(info->c), line, "C");
+	else
+	{
+		if (minfo->maxlen < ft_strlen(line))
+			minfo->maxlen = ft_strlen(line);
+		(minfo->linenum)++;
+	}
 }

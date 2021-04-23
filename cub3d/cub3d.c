@@ -6,65 +6,54 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 10:53:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/23 03:16:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/23 11:25:42 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-void	convert_arr(char map[][MAP_SIZE], char *line)
+void init_minfo(t_mapinfo *minfo)
 {
-	static int	i = 0;
-	int			j;
-
-	j = 0;
-	while (line[j] != 0 && j < MAP_SIZE)
-	{
-		if (line[j] == ' ')
-			map[i][j] = '0';
-		else
-			map[i][j] = line[j];
-		j++;
-	}
-	i++;
+	minfo->linenum = 0;
+	minfo->maxlen = 0;
+	(minfo->src).r = 0;
+	(minfo->src).c = 0;
 }
 
-void	map_print(char map[][MAP_SIZE])
+void file_err(int errno)
 {
-	int i, j;
-
-	for (i = 0; i < MAP_SIZE; i++)
-	{
-		for (j = 0 ; j < MAP_SIZE ; j++)
-			printf("%c", map[i][j]);
-		printf("\n");
-	}
+	if (errno == 1)
+		perror("Error\nFile open error");
+	else if (errno == 2)
+		perror("Error\nFile close error");
+	exit(1);
 }
-*/
 
 int	main(void)
 {
-	int		fd;
-	int		result;
-	char	*line;
-	t_info	info;
+	int			cnt;
+	int			fd;
+	int			result;
+	char		*line;
+	t_info		info;
+	t_mapinfo	minfo;
 
 	//ft_memset(&map, '0', sizeof(map));
 	init_info(&info);
+	init_minfo(&minfo);
 	result = 1;
 	fd = open("1.cub", O_RDONLY);
 	while (result > 0)
 	{
 		result = get_next_line(fd, &line);
-		if (line != 0)
-			input_info(&info, line);
-
+		if (ft_strlen(line) != 0)
+			input_info(&info, line, &minfo);
 		//printf("%s\n", line);
 		//convert_arr(map, line);
 		free(line);
 	}
-	//map_print(map);
+	if (close(fd) != 0)
+		file_err(2);
 
 	printf("R : %d %d\n", info.r.width, info.r.height);
 	printf("NO : %s\n", info.no);
@@ -74,6 +63,22 @@ int	main(void)
 	printf("S : %s\n", info.s);
 	printf("F : %d %d %d\n", info.f.r, info.f.g, info.f.b);
 	printf("C : %d %d %d\n", info.c.r, info.c.g, info.c.b);
+	printf("linenum : %d\n", minfo.linenum);
+	printf("maxlen : %d\n", minfo.maxlen);
 
+	// 2차원 배열 동적할당
+
+	result = 1;
+	cnt = 0;
+	fd = open("1.cub", O_RDONLY);
+	while (result > 0)
+	{
+		result = get_next_line(fd, &line);
+		if (cnt > linenum)
+		{
+
+		}
+		free(line);
+	}
 	return (0);
 }
