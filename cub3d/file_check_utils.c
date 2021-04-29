@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 22:06:42 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/23 10:57:00 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/29 23:38:19 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ int		simple_atoi(char *line, int *i)
 	return (result * sign);
 }
 
+void	ft_cstrncpy(char *dst, char *src, int n)
+{
+	int i;
+
+	i = 0;
+	while (i < n)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
+
 void	init_info(t_info *info)
 {
 	(info->r).width = -1;
@@ -51,6 +63,10 @@ void	init_info(t_info *info)
 	(info->c).r = -1;
 	(info->c).g = -1;
 	(info->c).b = -1;
+	info->rlen = 0;
+	info->clen = 0;
+	info->iflen = 0;
+	info->map = 0;
 }
 
 void	info_err(int errno, char *name, char *line)

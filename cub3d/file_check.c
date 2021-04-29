@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 22:04:55 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/23 10:47:22 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/30 00:04:32 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,8 @@ void	input_tex(char **tmp, char *line, char *tex_name)
 		info_err(6, tex_name, line);
 }
 
-void	input_info(t_info *info, char *line, t_mapinfo *minfo)
+void	input_info(t_info *info, char *line, int *flag)
 {
-	char *str;
-
 	if (*line == 'R')
 		input_r(&(info->r), line);
 	else if (ft_strncmp(line, "NO", 2) == 0)
@@ -104,10 +102,12 @@ void	input_info(t_info *info, char *line, t_mapinfo *minfo)
 		input_rgb(&(info->f), line, "F");
 	else if (*line == 'C')
 		input_rgb(&(info->c), line, "C");
-	else
+	else if (*line == ' ' || *line == '0' || *line == '1' || *line == '2')
 	{
-		if (minfo->maxlen < ft_strlen(line))
-			minfo->maxlen = ft_strlen(line);
-		(minfo->linenum)++;
+		if (*flag == 0)
+			*flag = 1;
+		if (info->clen < ft_strlen(line))
+			info->clen = ft_strlen(line);
+		(info->rlen)++;
 	}
 }
