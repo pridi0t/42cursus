@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 06:48:13 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/23 10:11:05 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/30 04:28:05 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 typedef struct {
 	int		r;
 	int		c;
-} 			element;
+} 			t_loc;
 
 typedef	struct {
-	element	data[MAX_STACK_SIZE];
+	t_loc	data[MAX_STACK_SIZE];
 	int		top;
 }		t_stacktype;
 
 void	init_stack(t_stacktype *s);
 int		is_empty(t_stacktype *s);
 int		is_full(t_stacktype *s);
-void	push(t_stacktype *s, element item);
-element	pop(t_stacktype *s);
+void	push(t_stacktype *s, t_loc item);
+t_loc	pop(t_stacktype *s);
 #endif

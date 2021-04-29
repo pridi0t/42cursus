@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 10:52:28 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/30 00:33:49 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/30 05:23:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ typedef struct {
 }			t_rgb;
 
 typedef struct {
+	int		r;
+	int		c;
+	int		cnt;
+	char	respawn;
+}			t_sloc;
+
+typedef struct {
 	t_r		r;
 	char	*no;
 	char	*so;
@@ -43,6 +50,7 @@ typedef struct {
 	int		clen;
 	int		iflen;
 	char	**map;
+	t_sloc	sloc;
 }			t_info;
 
 typedef	struct {
@@ -51,8 +59,6 @@ typedef	struct {
 	char	*line;
 }			t_gnl;
 
-
-
 // file_check.c
 void	input_info(t_info *info, char *line, int *flag);
 // file_check_utils.c
@@ -60,8 +66,16 @@ int		simple_atoi(char *line, int *i);
 void	ft_cstrncpy(char *dst, char *src, int n);
 void	init_info(t_info *info);
 void	info_err(int errno, char *tex_name, char *line);
+// map_utils.c
+void	file_err(int errno);
+void	arr_free(t_info *info, int errno);
+void	push_loc(t_stacktype *s, t_info *info, int r, int c);
 // map_convert.c
 void	call_gnl(t_gnl *gnl, t_info *info);
 void	convert_map(t_gnl *gnl, t_info *info);
-void	alc_arr(t_info *info);
+void	alc_2arr(t_info *info);
+// map_check.c
+void	check_map(t_info *info);
+void	check_loc(t_info *info, t_loc *l);
+int		mdfs(t_stacktype *s, t_info *info, t_loc *l);
 #endif

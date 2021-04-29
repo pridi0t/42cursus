@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 22:06:42 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/29 23:38:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/30 01:49:15 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ void	init_info(t_info *info)
 	info->clen = 0;
 	info->iflen = 0;
 	info->map = 0;
+	(info->sloc).r = -1;
+	(info->sloc).c = -1;
+	(info->sloc).cnt = 0;
+	(info->sloc).respawn = 0;
 }
 
 void	info_err(int errno, char *name, char *line)

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 06:07:55 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/23 10:16:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/04/30 02:02:12 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		is_full(t_stacktype *s)
 	return (s->top == (MAX_STACK_SIZE - 1));
 }
 
-void	push(t_stacktype *s, element item)
+void	push(t_stacktype *s, t_loc item)
 {
 	if (is_full(s))
 	{
@@ -37,7 +37,7 @@ void	push(t_stacktype *s, element item)
 	s->data[++(s->top)] = item;
 }
 
-element	pop(t_stacktype *s)
+t_loc	pop(t_stacktype *s)
 {
 	if (is_empty(s))
 	{
