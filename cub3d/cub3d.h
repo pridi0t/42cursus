@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 10:52:28 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/30 05:23:46 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/07 08:00:39 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include "get_next_line.h"
 # include "stack.h"
 # include "libft.h"
+#define tex_height 1024
+#define tex_width 1024
+#define K_A 0
+#define K_S 1
+#define K_D 2
+#define K_W 13
+#define K_ESC 53
+#define X_EVENT_KEY_PRESS 2
 
 typedef struct {
 	int		width;
@@ -37,6 +45,17 @@ typedef struct {
 	char	respawn;
 }			t_sloc;
 
+typedef struct s_img
+{
+	void	*img;
+	int		*data;
+	int		size_l;
+	int		bpp;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}			t_img;
+
 typedef struct {
 	t_r		r;
 	char	*no;
@@ -51,6 +70,19 @@ typedef struct {
 	int		iflen;
 	char	**map;
 	t_sloc	sloc;
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	int		**buf;
+	int		**texture;
+	double	moveSpeed;
+	double	rotSpeed;
 }			t_info;
 
 typedef	struct {
