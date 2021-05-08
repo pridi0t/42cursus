@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/30 04:18:43 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/07 05:57:10 by hyojang          ###   ########.fr       */
+/*   Created: 2021/05/08 11:02:33 by hyojang           #+#    #+#             */
+/*   Updated: 2021/05/08 11:02:41 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	check_map(t_info *info)
 			if (!(info->map[i][j] >= '0' && info->map[i][j] <= '2') &&\
 					info->map[i][j] != ' ')
 				arr_free(info, 4);
+			else if (info->map[i][j] == '2')
+				info->scnt++;
 			j++;
 		}
 		i++;

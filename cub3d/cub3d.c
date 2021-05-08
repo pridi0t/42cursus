@@ -5,158 +5,107 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/16 10:53:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/07 06:35:45 by hyojang          ###   ########.fr       */
+/*   Created: 2021/05/08 11:01:38 by hyojang           #+#    #+#             */
+/*   Updated: 2021/05/08 15:56:11 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "stack.h"
 #include <mlx.h>
-#include <math.h>
-#include <unistd.h>
 
 void	init_rinfo(t_info *info)
 {
 	int i;
 
-	info->posX = (double)(info->sloc).r;
-	info->posY = (double)(info->sloc).c;
-	info->dirX = -1;
-	info->dirY = 0;
-	info->planeX = 0;
-	info->planeY = 0.66;
+	info->pos_x = (double)(info->sloc).r + 0.5;
+	info->pos_y = (double)(info->sloc).c + 0.5;
+	info->dir_x = -1;
+	info->dir_y = 0;
+	info->plane_x = 0;
+	info->plane_y = 0.66;
 	info->mlx = mlx_init();
 	info->win = mlx_new_window(info->mlx, (info->r).width, (info->r).height, "mlx");
 	//(info->img).img = mlx_new_image(info->mlx, (info->r).width, (info->r).height);
 	info->buf = ft_calloc((info->r).height, sizeof(int *));
 	info->texture = ft_calloc(5, sizeof(int *));
 	//(info->img).data = (int *)mlx_get_data_addr((info->img).img, &(info->img).bpp, &(info->img).size_l, &(info->img).endian);
-	info->moveSpeed = 0.2;
-	info->rotSpeed = 0.1;
-
+	info->move_speed = 0.4;
+	info->rot_speed = 0.3;
 	for (i = 0 ; i < (info->r).height ; i++)
 		info->buf[i] = ft_calloc((info->r).width, sizeof(int));
 	for (i = 0 ; i < 5 ; i++)
-		info->texture[i] = ft_calloc(tex_height * tex_width, sizeof(int));
+		info->texture[i] = ft_calloc(TEX_HEIGHT * TEX_WIDTH, sizeof(int));
 }
 
 void	calc_ray(t_info *info)
 {
-	int x;
+	int x, y;
+	int color; // Uint32로 해야된다는데 머지
+	t_winfo winfo;
+	t_sinfo sinfo;
+
+	cf_ray(info);
+	/*
+	// 천장, 바닥 캐스팅
+	for (y = 0 ; y < (info->r).height ; y++)
+	{
+		init_cfinfo(info, &cfinfo, y);
+		for (int x = 0 ; x < (info->r).width ; ++x)
+		{
+			color = info->texture[floorTexture][TEX_WIDTH * ty + tx];
+			color = (color >> 1) & 8355711;
+			(info->buf)[y][x] = color; 
+			color = info->texture[ceilingTexture][TEX_WIDTH * ty + tx];
+			color = (color >> 1) & 8355711;
+			(info->buf)[(info->r).height - y - 1][x] = color;
+		}
+	}
+	*/
 	
+	// 벽 레이캐스팅
 	for (x = 0 ; x < (info->r).width ; x++)
 	{
-		double cameraX = 2 * x / (double)(info->r).width - 1;
-		double rayDirX = info->dirX + info->planeX * cameraX;
-		double rayDirY = info->dirY + info->planeY * cameraX;
-		
-		// 1. DDA 알고리즘에 필요한 변수 계산
-		int mapX = (int)info->posX;
-		int mapY = (int)info->posY;
-
-		double sideDistX;
-		double sideDistY;
-
-		double deltaDistX = fabs(1 / rayDirX);
-		double deltaDistY = fabs(1/ rayDirY);
-		double perp_Wall_Dist;
-
-		int stepX;
-		int stepY;
-		
-		int hit = 0;
-		int side;
-
-		if (rayDirX < 0)
+		init_winfo(info, &winfo, x);
+		calc_dda(info, &winfo);
+		calc_tex(info, &winfo);
+		for	(y = winfo.draw_start; y < winfo.draw_end; y++)
 		{
-			stepX = -1;
-			sideDistX = (info->posX - mapX) * deltaDistX;
-		}
-		else
-		{
-			stepX = 1;
-			sideDistX = (mapX + 1.0 - info->posX) * deltaDistX;
-		}
-		if (rayDirY < 0)
-		{
-			stepY = -1;
-			sideDistY = (info->posY - mapY) * deltaDistY;
-		}
-		else
-		{
-			stepY = 1;
-			sideDistY = (mapY + 1.0 - info->posY) * deltaDistY;
-		}
-		// 2. 알고리즘 계산
-		while (hit == 0)
-		{
-			if(sideDistX < sideDistY)
-			{
-				sideDistX += deltaDistX;
-				mapX += stepX;
-				side = 0;
-			}
-			else
-			{
-				sideDistY += deltaDistY;
-				mapY += stepY;
-				side = 1;
-			}
-			if ((info->map[mapX][mapY] - '0') > 0) hit = 1;
-		}
-		// 벽까지의 거리 계산, 어안렌즈 보정
-		if (side == 0)
-			perp_Wall_Dist = (mapX - info->posX + (1 - stepX) / 2) / rayDirX;
-		else
-			perp_Wall_Dist = (mapY - info->posY + (1 - stepY) / 2) / rayDirY;
-
-		// 화면에 그릴 벽의 길이 계산
-		int lineHeight = (int) ((info->r).height / perp_Wall_Dist);
-
-		int drawStart = -lineHeight / 2 + (info->r).height / 2;
-		if (drawStart < 0) 
-			drawStart = 0;
-		int drawEnd = lineHeight / 2 + (info->r).height / 2;
-		if (drawEnd >= (info->r).height) 
-			drawEnd = (info->r).height - 1;
-
-		// 텍스쳐 선택, 충돌 지점과 텍스쳐의 x좌표값 계산
-		int texNum = (info->map[mapX][mapY] - '0');
-
-		double wallX;
-		if (side == 0) 
-			wallX = info->posY + perp_Wall_Dist * rayDirY;
-		else 
-			wallX = info->posX + perp_Wall_Dist * rayDirX;
-		wallX -= floor(wallX);
-
-		int texX = (int)(wallX * (double)tex_width);
-		if (side == 0 && rayDirX > 0) 
-			texX = tex_width - texX - 1;
-		if (side == 1 && rayDirY < 0) 
-			texX = tex_width - texX - 1;
-
-		// 텍스쳐의 y 좌표값
-		double step = 1.0 * tex_height / lineHeight;
-
-		double texPos = (drawStart - (info->r).height / 2 + lineHeight / 2) * step;
-		int y;
-		for	(y = 0; y < info->r.height; y++)
-		{
-			if (y < drawStart)
-				info->buf[y][x] = 0xffffff;
-			else if (y < drawEnd)
-			{
-				int texY = (int)texPos & (tex_height - 1);
-				texPos += step;
-				int color = info->texture[texNum][tex_height * texY + texX];;
-				if (side == 1) 
+				(winfo.tex).y = (int)winfo.texpos & (TEX_HEIGHT - 1);
+				winfo.texpos += winfo.dstep;
+				color = info->texture[winfo.texnum][TEX_HEIGHT * (winfo.tex).y + (winfo.tex).x];
+				if (winfo.side == 1)
 					color = (color >> 1) & 8355711;
 				info->buf[y][x] = color;
-			}
-			else
-				info->buf[y][x] = 0x000000;
+		}
+		// ------ sprite의 ZBuffer 셋팅
+		info->zbuf[x] = winfo.perp_wall_dist;
+	}
+
+	// sprite 캐스팅 ------------------
+	int i;
+	for (i = 0 ; i < info->scnt ; i++)
+	{
+		info->sp_order[i] = i;
+		info->sp_dist[i] = (info->pos_x - info->sp[i].x) * (info->pos_x - info->sp[i].x) + (info->pos_y - info->sp[i].y) * (info->pos_y - info->sp[i].y);
+	}
+	bsort_sp(info);
+	for (i = 0; i < info->scnt ; i++)
+	{
+		init_sinfo(info, &sinfo, i);
+		int s;
+		for (s = (sinfo.draw_start).x ; s < (sinfo.draw_end).x ; s++)
+		{
+			int texX = (int)(256 * (s - (-sinfo.sprite_width / 2 + sinfo.sprite_screenx)) * TEX_WIDTH / sinfo.sprite_width) / 256;
+			if ((sinfo.transform).y > 0 && s > 0 && s < (info->r).width && (sinfo.transform).y < info->zbuf[s])
+				for (y = (sinfo.draw_start).y ; y < (sinfo.draw_end).y ; y++)
+				{
+					int d = y * 256 - (info->r).height * 128 + sinfo.sprite_height * 128;
+					int texY = ((d * TEX_HEIGHT) / sinfo.sprite_height) / 256;
+					color = info->texture[info->sp[info->sp_order[i]].texture][TEX_WIDTH * texY + texX];
+					if ((color & 0x00FFFFFF) != 0)
+						info->buf[y][s] = color;
+				}
 		}
 	}
 }
@@ -184,38 +133,38 @@ int		key_press(int key, t_info *info)
 {
 	double oldDirX = 0;
 	double oldPlaneX = 0;
-	
+
 	if (key == K_W)
 	{
-		if (!(info->map[(int)(info->posX + info->dirX * info->moveSpeed)][(int)info->posY] - '0'))
-			info->posX += info->dirX * info->moveSpeed;
-		if (!(info->map[(int)info->posX][(int)(info->posY + info->dirY * info->moveSpeed)] - '0'))
-			info->posY += info->dirY * info->moveSpeed;
+		if ((info->map[(int)(info->pos_x + info->dir_x * info->move_speed)][(int)info->pos_y] - '0') == 0)
+			info->pos_x += info->dir_x * info->move_speed;
+		if ((info->map[(int)info->pos_x][(int)(info->pos_y + info->dir_y * info->move_speed)] - '0') == 0)
+			info->pos_y += info->dir_y * info->move_speed;
 	}
 	if (key == K_S)
 	{
-		if (!(info->map[(int)(info->posX - info->dirX * info->moveSpeed)][(int)info->posY] - '0'))
-			info->posX -= info->dirX * info->moveSpeed;
-		if (!(info->map[(int)info->posX][(int)(info->posY - info->dirY * info->moveSpeed)] - '0'))
-			info->posY -= info->dirY * info->moveSpeed;
+		if ((info->map[(int)(info->pos_x - info->dir_x * info->move_speed)][(int)info->pos_y] - '0') == 0)
+			info->pos_x -= info->dir_x * info->move_speed;
+		if ((info->map[(int)info->pos_x][(int)(info->pos_y - info->dir_y * info->move_speed)] - '0') == 0)
+			info->pos_y -= info->dir_y * info->move_speed;
 	}
 	if (key == K_D)
 	{
-		oldDirX = info->dirX;
-		info->dirX = info->dirX * cos(-info->rotSpeed) - info->dirY * sin(-info->rotSpeed);
-		info->dirY = oldDirX * sin(-info->rotSpeed) + info->dirY * cos(-info->rotSpeed);
-		oldPlaneX = info->planeX;
-		info->planeX = info->planeX * cos(-info->rotSpeed) - info->planeY * sin(-info->rotSpeed);
-		info->planeY = oldPlaneX * sin(-info->rotSpeed) + info->planeY * cos(-info->rotSpeed);
+		oldDirX = info->dir_x;
+		info->dir_x = info->dir_x * cos(-info->rot_speed) - info->dir_y * sin(-info->rot_speed);
+		info->dir_y = oldDirX * sin(-info->rot_speed) + info->dir_y * cos(-info->rot_speed);
+		oldPlaneX = info->plane_x;
+		info->plane_x = info->plane_x * cos(-info->rot_speed) - info->plane_y * sin(-info->rot_speed);
+		info->plane_y = oldPlaneX * sin(-info->rot_speed) + info->plane_y * cos(-info->rot_speed);
 	}
 	if (key == K_A)
 	{
-		oldDirX = info->dirX;
-		info->dirX = info->dirX * cos(info->rotSpeed) - info->dirY * sin(info->rotSpeed);
-		info->dirY = oldDirX *sin(info->rotSpeed) + info->dirY * cos(info->rotSpeed);
-		oldPlaneX = info->planeX;
-		info->planeX = info->planeX * cos(info->rotSpeed) - info->planeY * sin(info->rotSpeed);
-		info->planeY = oldPlaneX * sin(info->rotSpeed) + info->planeY * cos(info->rotSpeed);
+		oldDirX = info->dir_x;
+		info->dir_x = info->dir_x * cos(info->rot_speed) - info->dir_y * sin(info->rot_speed);
+		info->dir_y = oldDirX *sin(info->rot_speed) + info->dir_y * cos(info->rot_speed);
+		oldPlaneX = info->plane_x;
+		info->plane_x = info->plane_x * cos(info->rot_speed) - info->plane_y * sin(info->rot_speed);
+		info->plane_y = oldPlaneX * sin(info->rot_speed) + info->plane_y * cos(info->rot_speed);
 	}
 	if (key == K_ESC)
 		exit(0);
@@ -266,8 +215,31 @@ int		main(void)
 		arr_free(&info, 4);
 	convert_map(&gnl, &info);
 	info.map[info.sloc.r][info.sloc.c] = '0';
-	for (int i = 0; i < info.rlen; i++)
-		printf("%s\n",info.map[i]);
+
+	// --- 맵에서 sprite 개수 세고 동적할당해서 넣어주는 부분 ----------------------------
+	int i, j, k = 0;
+	info.sp = malloc(info.scnt * sizeof(t_sprite));
+	
+	// sprite 연산에 필요한 배열들 초기화(malloc방어 해야되나?)
+	info.zbuf = malloc(info.r.width * sizeof(double));
+	info.sp_order = malloc(info.scnt * sizeof(int));
+	info.sp_dist = malloc(info.scnt * sizeof(double));
+
+	for (i = 0 ; i < info.rlen ; i++)
+	{
+		for (j = 0 ; j < info.clen ; j++)
+		{
+			if (info.map[i][j] == '2')
+			{
+				(info.sp[k]).x = i + 0.5;  // 가운데정렬
+				(info.sp[k]).y = j + 0.5;
+				(info.sp[k]).texture = 4;	// sprite[]랑 대응된대
+				info.map[i][j] = '0';
+				k++;
+			}
+		}
+	}
+	// ------------------------------------------------------------------------
 	
 	// ------------------ 레이캐스팅 시작
 	init_rinfo(&info);
@@ -281,6 +253,5 @@ int		main(void)
 	mlx_hook(info.win, X_EVENT_KEY_PRESS, 0, &key_press, &info);
 	
 	mlx_loop(info.mlx);
-	
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_check_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/21 22:06:42 by hyojang           #+#    #+#             */
-/*   Updated: 2021/04/30 01:49:15 by hyojang          ###   ########.fr       */
+/*   Created: 2021/05/08 11:02:15 by hyojang           #+#    #+#             */
+/*   Updated: 2021/05/08 11:02:19 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	init_info(t_info *info)
 	(info->sloc).c = -1;
 	(info->sloc).cnt = 0;
 	(info->sloc).respawn = 0;
+	info->scnt = 0;
 }
 
 void	info_err(int errno, char *name, char *line)
