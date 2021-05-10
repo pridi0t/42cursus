@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:04:43 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 17:36:48 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/11 03:52:44 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define K_A 0
 # define K_S 1
 # define K_D 2
+# define K_LEFT 123
+# define K_RIGHT 124
 # define X_EVENT_KEY_PRESS 2
 
 typedef struct
@@ -82,14 +84,12 @@ typedef struct
 	int			clen;
 	int			iflen;
 	char		**map;
-	// sprite
 	t_sloc		sloc;
 	int			scnt;
 	double		*zbuf;
 	int			*sp_order;
 	double		*sp_dist;
 	t_sprite	*sp;
-	// ray casting
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -103,6 +103,9 @@ typedef struct
 	int			**texture;
 	double		move_speed;
 	double		rot_speed;
+	int			m_width;
+	int			m_height;
+	int			save;
 }	t_info;
 
 typedef struct
@@ -173,38 +176,29 @@ typedef	struct
 	char		*line;
 }				t_gnl;
 
-// file_check1.c
 void			input_info(t_info *info, char *line, int *flag);
-// file_check2.c
 void			input_sprite_num(t_info *info);
-// file_check_utils.c
 int				simple_atoi(char *line, int *i);
 void			ft_cstrncpy(char *dst, char *src, int n);
 void			init_info(t_info *info);
 void			info_err(int errno, char *tex_name, char *line);
-// map_utils.c
 void			file_err(int errno);
 void			arr_free(t_info *info, int errno);
 void			push_loc(t_stacktype *s, t_info *info, int r, int c);
-// map_convert.c
-void			call_gnl(t_gnl *gnl, t_info *info);
-void			convert_map(t_gnl *gnl, t_info *info);
+void			call_gnl(t_gnl *gnl, t_info *info, char *file_name);
+void			convert_map(t_gnl *gnl, t_info *info, char *file_name);
 void			alc_2arr(t_info *info);
-// map_check.c
 void			check_map(t_info *info);
 void			check_loc(t_info *info, t_loc *l);
 int				mdfs(t_stacktype *s, t_info *info, t_loc *l);
-// ray.c
 void			raycasting(t_info *info);
-// cf_tex_ray.c
 void			cf_ray(t_info *info);
-// wall_tex_ray.c
 void			wall_ray(t_info *info);
-// sprite_tex_ray.c
 void			sprite_ray(t_info *info);
-// tex_ray_utils.c
 void			load_image(t_info *info, int *texture, char *path, t_img *img);
 void			load_texture(t_info *info);
-// key.c
 int				key_press(int key, t_info *info);
+int				button_press(int button);
+int				mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
+void			save_bmp(t_info *info);
 #endif

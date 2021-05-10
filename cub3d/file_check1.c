@@ -6,13 +6,13 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:03 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 14:37:29 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/10 23:07:27 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	input_r(t_r *r, char *line)
+void	input_r(t_r *r, char *line, t_info *info)
 {
 	int i;
 
@@ -27,6 +27,11 @@ void	input_r(t_r *r, char *line)
 	while (line[i] == ' ')
 		i++;
 	r->height = simple_atoi(line, &i);
+	mlx_get_screen_size(info->mlx, &info->m_width, &info->m_height);
+	if (r->width > info->m_width)
+		r->width = info->m_width;
+	if (r->height > info->m_height)
+		r->height = info->m_height;
 	while (line[i] == ' ')
 		i++;
 	if (line[i] != 0)
@@ -87,7 +92,7 @@ void	input_tex(char **tmp, char *line, char *tex_name)
 void	input_info(t_info *info, char *line, int *flag)
 {
 	if (*line == 'R')
-		input_r(&(info->r), line);
+		input_r(&(info->r), line, info);
 	else if (ft_strncmp(line, "NO", 2) == 0)
 		input_tex(&(info->no), line, "NO");
 	else if (ft_strncmp(line, "SO", 2) == 0)

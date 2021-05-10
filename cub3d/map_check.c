@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+        */
+/*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:33 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/08 11:02:41 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/11 01:24:09 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,7 @@ int		mdfs(t_stacktype *s, t_info *info, t_loc *l)
 		push_loc(s, info, l->r, l->c - 1);
 		push_loc(s, info, l->r, l->c + 1);
 		if (is_empty(s))
-		{
-			printf("map check success\n");
 			return (0);
-		}
 		*l = pop(s);
 	}
 	printf("map check fail\n");

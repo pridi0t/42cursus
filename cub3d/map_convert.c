@@ -6,19 +6,19 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:53 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 15:45:43 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/10 23:30:48 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	call_gnl(t_gnl *gnl, t_info *info)
+void	call_gnl(t_gnl *gnl, t_info *info, char *file_name)
 {
 	int flag;
 
 	flag = 0;
 	gnl->result = 1;
-	gnl->fd = open("1.cub", O_RDONLY);
+	gnl->fd = open(file_name, O_RDONLY);
 	if (gnl->fd != 3)
 		file_err(1);
 	while (gnl->result > 0)
@@ -36,7 +36,7 @@ void	call_gnl(t_gnl *gnl, t_info *info)
 		file_err(2);
 }
 
-void	convert_map(t_gnl *gnl, t_info *info)
+void	convert_map(t_gnl *gnl, t_info *info, char *file_name)
 {
 	int i;
 	int linenum;
@@ -44,7 +44,7 @@ void	convert_map(t_gnl *gnl, t_info *info)
 	i = 0;
 	linenum = 0;
 	gnl->result = 1;
-	gnl->fd = open("1.cub", O_RDONLY);
+	gnl->fd = open(file_name, O_RDONLY);
 	if (gnl->fd != 3)
 		file_err(1);
 	while (gnl->result > 0)
@@ -67,7 +67,7 @@ void	alc_2arr(t_info *info)
 	int i;
 
 	i = 0;
-	info->map = calloc(info->rlen, sizeof(char *));
+	info->map = ft_calloc(info->rlen, sizeof(char *));
 	if (info->map == 0)
 		file_err(3);
 	i = 0;
