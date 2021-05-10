@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 13:44:36 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 19:58:56 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/11 04:52:24 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,9 @@ int		key_press(int key, t_info *info)
 	if (key == K_ESC)
 		exit(0);
 	return (0);
+}
+
+int		x_button(void)
+{
+	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 13:55:55 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/11 04:21:48 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/11 04:52:03 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void	raycasting(t_info *info)
 			&(info->img).bpp, &(info->img).size_l, &(info->img).endian);
 	mlx_loop_hook(info->mlx, &main_loop, info);
 	mlx_hook(info->win, X_EVENT_KEY_PRESS, 0, &key_press, info);
+	mlx_hook(info->win, DESTROY_NOTIFY, 0, &x_button, 0);
 	mlx_loop(info->mlx);
 }
