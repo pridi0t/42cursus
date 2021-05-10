@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_check.c                                       :+:      :+:    :+:   */
+/*   file_check1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+        */
+/*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:03 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/08 11:02:08 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/10 14:37:29 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	input_tex(char **tmp, char *line, char *tex_name)
 	tex = 0;
 	if (*line == 'S' && ft_strncmp(line, "SO", 2) != 0)
 		minlen = 2;
-	if (!(ft_strlen(line) > minlen && line[minlen - 1] == ' '))
+	if (!((int)ft_strlen(line) > minlen && line[minlen - 1] == ' '))
 		info_err(7, tex_name, line);
 	tex = ft_strtrim(&line[minlen], " ");
 	*tmp = tex;
@@ -106,7 +106,7 @@ void	input_info(t_info *info, char *line, int *flag)
 	{
 		if (*flag == 0)
 			*flag = 1;
-		if (info->clen < ft_strlen(line))
+		if (info->clen < (int)ft_strlen(line))
 			info->clen = ft_strlen(line);
 		(info->rlen)++;
 	}
