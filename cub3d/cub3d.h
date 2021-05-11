@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:04:43 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 05:07:03 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 07:33:06 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,21 +122,6 @@ typedef struct
 	double		x;
 	double		y;
 }				t_dpair;
-
-typedef struct
-{
-	t_dpair		raydir0;
-	t_dpair		raydir1;
-	int			p;
-	double		posz;
-	double		row_distance;
-	t_dpair		floorstep;
-	t_dpair		floor;
-	t_ipair		cell;
-	t_ipair		t;
-	int			floortexture;
-	int			ceilingtexture;
-}	t_cfinfo;
 
 typedef struct
 {
