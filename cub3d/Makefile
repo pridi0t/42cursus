@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/05/10 22:56:22 by hyojang          ###   ########.fr        #
+#    Updated: 2021/05/12 04:27:14 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,13 @@ NAME = cub3D
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+IFLAG = -I
+LIBFT_F = ./libft
 
 MLX = -lmlxc -lm -framework OpenGL -framework AppKit
 
 LIBS = -lft
-LIB_DIR = -L .
+LIB_DIR = -L./libft -L.
 
 RM = rm -f
 
@@ -33,8 +35,8 @@ FILES = cub3d				\
 		map_convert			\
 		map_utils			\
 		ray					\
-		cf_tex_ray			\
-		wall_tex_ray		\
+		wall_tex_ray1		\
+		wall_tex_ray2		\
 		sprite_tex_ray		\
 		tex_ray_utils		\
 		key
@@ -46,18 +48,21 @@ OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 
 .c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) $(IFLAG)$(LIBFT_F) -c -o $@ $<
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB_DIR) $(LIBS) -o $(NAME) $(MLX) $(MLXFLAGS)
+	make -C $(LIBFT_F)
+	$(CC) $(CFLAGS) $(IFLAG)$(LIBFT_F) $(OBJS) $(LIB_DIR) $(LIBS) -o $(NAME) $(MLX) $(MLXFLAGS)
 
 all: $(NAME)
 
 clean:
 	$(RM) $(OBJS)
+	make -C $(LIBFT_F) clean
 
 fclean: clean
 	$(RM) $(NAME)
+	make -C $(LIBFT_F) fclean
 
 re: clean all
 

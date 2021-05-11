@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:04:43 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/11 04:52:35 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 03:27:10 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ typedef struct
 	char		*s;
 	t_rgb		f;
 	t_rgb		c;
+	int			fcolor;
+	int			ccolor;
 	int			rlen;
 	int			clen;
 	int			iflen;
@@ -182,6 +184,7 @@ void			input_sprite_num(t_info *info);
 int				simple_atoi(char *line, int *i);
 void			ft_cstrncpy(char *dst, char *src, int n);
 void			init_info(t_info *info);
+void			info_check(t_info *info);
 void			info_err(int errno, char *tex_name, char *line);
 void			file_err(int errno);
 void			arr_free(t_info *info, int errno);
@@ -193,8 +196,9 @@ void			check_map(t_info *info);
 void			check_loc(t_info *info, t_loc *l);
 int				mdfs(t_stacktype *s, t_info *info, t_loc *l);
 void			raycasting(t_info *info);
-void			cf_ray(t_info *info);
 void			wall_ray(t_info *info);
+void			draw(t_info *info, int x, t_winfo *w);
+int				select_tex(t_winfo *w);
 void			sprite_ray(t_info *info);
 void			load_image(t_info *info, int *texture, char *path, t_img *img);
 void			load_texture(t_info *info);

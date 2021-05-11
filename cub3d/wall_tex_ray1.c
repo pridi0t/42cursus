@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wall_tex_ray.c                                     :+:      :+:    :+:   */
+/*   wall_tex_ray1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:05:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 17:26:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 03:16:47 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	calc_dda(t_info *info, t_winfo *w)
 
 void	calc_tex(t_info *info, t_winfo *w)
 {
-	w->texnum = info->map[(w->map).x][(w->map).y] - '0';
+	w->texnum = select_tex(w);
 	w->wallx = info->pos_y + w->perp_wall_dist * (w->raydir).y;
 	if (w->side == 1)
 		w->wallx = info->pos_x + w->perp_wall_dist * (w->raydir).x;
@@ -96,28 +96,14 @@ void	calc_tex(t_info *info, t_winfo *w)
 void	wall_ray(t_info *info)
 {
 	t_winfo	w;
-	int		color;
 	int		x;
-	int		y;
 
-	x = 0;
-	while (x < (info->r).width)
+	x = -1;
+	while (++x < (info->r).width)
 	{
 		init_winfo(info, &w, x);
 		calc_dda(info, &w);
 		calc_tex(info, &w);
-		y = w.draw_start;
-		while (y < w.draw_end)
-		{
-			(w.tex).y = (int)w.texpos & (TEX_HEIGHT - 1);
-			w.texpos += w.dstep;
-			color = info->texture[w.texnum][TEX_HEIGHT * (w.tex).y + (w.tex).x];
-			if (w.side == 1)
-				color = (color >> 1) & 8355711;
-			info->buf[y][x] = color;
-			y++;
-		}
-		info->zbuf[x] = w.perp_wall_dist;
-		x++;
+		draw(info, x, &w);
 	}
 }

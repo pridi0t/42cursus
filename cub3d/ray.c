@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 13:55:55 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/11 04:52:03 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 02:42:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int		main_loop(t_info *info)
 	int x;
 	int y;
 
-	cf_ray(info);
 	wall_ray(info);
 	sprite_ray(info);
 	y = -1;

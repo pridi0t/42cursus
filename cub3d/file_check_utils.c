@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/08 11:02:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 02:45:43 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,24 @@ void	info_err(int errno, char *name, char *line)
 	if (line != 0)
 		free(line);
 	exit(1);
+}
+
+void	info_check(t_info *info)
+{
+	if (info->no == 0 || info->so == 0 || info->we == 0 || \
+			info->ea == 0 || info->s == 0)
+	{
+		perror("Error\ntexture error");
+		exit(1);
+	}
+	if ((info->f).r == -1 || (info->f).g == -1 || (info->f).b == -1)
+	{
+		perror("Error\nF error");
+		exit(1);
+	}
+	if ((info->c).r == -1 || (info->c).g == -1 || (info->c).b == -1)
+	{
+		perror("Error\nC error");
+		exit(1);
+	}
 }

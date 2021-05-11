@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:01:38 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/11 04:14:12 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 02:13:22 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	check_cub(int argc, char *argv[], t_info *info)
 	info->save = 0;
 	if (argc == 1)
 		main_err(1);
+	if (argc > 3)
+		main_err(2);
 	if (ft_strlen(argv[1]) < 4)
 		main_err(2);
 	else if (ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub", 4) != 0)
@@ -90,6 +92,7 @@ int		main(int argc, char *argv[])
 	init_stack(&s);
 	ft_memset(&gnl, 0, sizeof(gnl));
 	call_gnl(&gnl, &info, argv[1]);
+	info_check(&info);
 	alc_2arr(&info);
 	convert_map(&gnl, &info, argv[1]);
 	check_loc(&info, &l);
