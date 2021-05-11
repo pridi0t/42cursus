@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:05:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 03:27:43 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 04:33:04 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ void	draw(t_info *info, int x, t_winfo *w)
 			w->texpos += w->dstep;
 			color = info->texture[w->texnum][TEX_HEIGHT * \
 					(w->tex).y + (w->tex).x];
-			if (w->side == 1)
-				color = (color >> 1) & 8355711;
 			info->buf[y][x] = color;
 		}
 		else
