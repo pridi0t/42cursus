@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:01:38 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 02:13:22 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 05:17:57 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		main(int argc, char *argv[])
 	init_stack(&s);
 	ft_memset(&gnl, 0, sizeof(gnl));
 	call_gnl(&gnl, &info, argv[1]);
-	info_check(&info);
+	tex_check(&info);
 	alc_2arr(&info);
 	convert_map(&gnl, &info, argv[1]);
 	check_loc(&info, &l);

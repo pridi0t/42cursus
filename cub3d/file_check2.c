@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 14:16:36 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 14:55:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 05:18:12 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,25 @@ void	input_sprite_num(t_info *info)
 				k++;
 			}
 		}
+	}
+}
+
+void	tex_check(t_info *info)
+{
+	if (info->no == 0 || info->so == 0 || info->we == 0 || \
+			info->ea == 0 || info->s == 0)
+	{
+		perror("Error\ntexture error");
+		exit(1);
+	}
+	if ((info->f).r == -1 || (info->f).g == -1 || (info->f).b == -1)
+	{
+		perror("Error\nF error");
+		exit(1);
+	}
+	if ((info->c).r == -1 || (info->c).g == -1 || (info->c).b == -1)
+	{
+		perror("Error\nC error");
+		exit(1);
 	}
 }

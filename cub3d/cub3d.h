@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:04:43 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 03:27:10 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 05:07:03 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ void			input_sprite_num(t_info *info);
 int				simple_atoi(char *line, int *i);
 void			ft_cstrncpy(char *dst, char *src, int n);
 void			init_info(t_info *info);
-void			info_check(t_info *info);
+void			tex_check(t_info *info);
 void			info_err(int errno, char *tex_name, char *line);
 void			file_err(int errno);
 void			arr_free(t_info *info, int errno);

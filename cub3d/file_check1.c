@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:03 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 23:07:27 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 05:16:28 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ void	input_tex(char **tmp, char *line, char *tex_name)
 	if (!((int)ft_strlen(line) > minlen && line[minlen - 1] == ' '))
 		info_err(7, tex_name, line);
 	tex = ft_strtrim(&line[minlen], " ");
+	if (*tmp != 0)
+		info_err(1, tex_name, line);
 	*tmp = tex;
 	if (ft_strncmp(&tex[ft_strlen(tex) - 4], ".xpm", 4) != 0)
 		info_err(5, tex_name, line);
