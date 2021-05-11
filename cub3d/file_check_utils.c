@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 05:04:53 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 05:20:54 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,3 @@ void	info_err(int errno, char *name, char *line)
 		free(line);
 	exit(1);
 }
-
