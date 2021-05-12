@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:06:37 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 09:21:10 by jitlee           ###   ########.fr       */
+/*   Updated: 2021/05/12 11:35:36 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	repeat_stripe(t_info *info, t_sinfo *s, int i, int sp)
 	{
 		(s->tex).x = (int)(256 * (sp - (-s->sprite_width / 2 + \
 				s->sprite_screenx)) * TEX_WIDTH / s->sprite_width) / 256;
-		if ((s->transform).y > 0 && sp > 0 && sp < (info->r).width &&\
+		if ((s->transform).y > 0.125 && sp > 0 && sp < (info->r).width &&\
 				(s->transform).y < info->zbuf[sp])
 		{
 			y = (s->draw_start).y - 1;
