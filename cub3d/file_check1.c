@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:02:03 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 05:16:28 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 10:29:12 by jitlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,11 @@ void	input_info(t_info *info, char *line, int *flag)
 		input_rgb(&(info->c), line, "C");
 	else if (*line == ' ' || *line == '0' || *line == '1' || *line == '2')
 	{
-		if (*flag == 0)
-			*flag = 1;
+		*flag = 1;
 		if (info->clen < (int)ft_strlen(line))
 			info->clen = ft_strlen(line);
 		(info->rlen)++;
 	}
+	else
+		*flag = 2;
 }

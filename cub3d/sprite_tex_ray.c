@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:06:37 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/10 17:20:52 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 09:21:10 by jitlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	init_sinfo(t_info *info, t_sinfo *s, int i)
 			(s->sprite).x + info->plane_x * (s->sprite).y);
 	s->sprite_screenx = (int)((info->r).width / 2) * \
 						(1 + (s->transform).x / (s->transform).y);
-	s->sprite_height = abs((int)((info->r).height / (s->transform).y));
+	s->sprite_height = (int)fabs(((info->r).height / (s->transform).y));
 	(s->draw_start).y = -s->sprite_height / 2 + (info->r).height / 2;
 	if ((s->draw_start).y < 0)
 		(s->draw_start).y = 0;
 	(s->draw_end).y = s->sprite_height / 2 + (info->r).height / 2;
 	if ((s->draw_end).y >= (info->r).height)
 		(s->draw_end).y = (info->r).height - 1;
-	s->sprite_width = abs((int)((info->r).height / (s->transform).y));
+	s->sprite_width = (int)fabs(((info->r).height / (s->transform).y));
 	(s->draw_start).x = -s->sprite_width / 2 + s->sprite_screenx;
 	if ((s->draw_start).x < 0)
 		(s->draw_start).x = 0;

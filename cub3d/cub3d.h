@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 11:04:43 by hyojang           #+#    #+#             */
-/*   Updated: 2021/05/12 07:33:06 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/05/12 10:21:04 by jitlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,6 @@ typedef struct
 typedef	struct
 {
 	int			fd;
-	int			result;
 	char		*line;
 }				t_gnl;
 
