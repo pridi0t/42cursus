@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyojang <hyojang@student.42.kr>            +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/05/20 18:55:44 by hyojang          ###   ########.fr        #
+#    Updated: 2021/05/29 20:18:22 by marvin           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ LIB_DIR = -L./libft -L.
 
 RM = rm -f
 
-FILES = 
+FILES = doubly_linked_list	\
+		operations			\
+		push_swap
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
