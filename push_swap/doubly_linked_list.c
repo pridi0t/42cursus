@@ -46,15 +46,29 @@ void delete_first(DLList **head)
     }
 }
 
-void print(DLList *head)
+void print(DLList *a, DLList *b, sinfo *ai, sinfo *bi)
 {
-    DLList *p = head;
+    DLList *p = a;
     
+    printf("ai | unsort : %d, sort : %d, cur : %d\n", ai->unsortele, ai->sortele, ai->curele);
+    printf("bi | unsort : %d, sort : %d, cur : %d\n", bi->unsortele, bi->sortele, bi->curele);
     if (p == 0)
         return ;
     printf("<-| %d |->", p->data);
     p = p->rlink;
-    while (p != head)
+    while (p != a)
+    {
+        printf("<-| %d |->", p->data);
+        p = p->rlink;
+    }
+    printf("\n");
+
+    p = b;
+    if (p == 0)
+        return ;
+    printf("<-| %d |->", p->data);
+    p = p->rlink;
+    while (p != b)
     {
         printf("<-| %d |->", p->data);
         p = p->rlink;
