@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void s(DLList **head, char c)
+void s(DLList **head)
 {
     DLList *tmp;
 
@@ -16,10 +16,9 @@ void s(DLList **head, char c)
         (*head)->rlink = (*head)->rlink->rlink;
     insert_first(head, tmp->data);
     free(tmp);
-    printf("s%c\n", c);
 }
 
-void p(DLList **dst, DLList **src, char c, sinfo *ai, sinfo *bi)
+void p(DLList **src, DLList **dst)
 {
     DLList *tmp;
 
@@ -28,33 +27,32 @@ void p(DLList **dst, DLList **src, char c, sinfo *ai, sinfo *bi)
     tmp = *src;
     insert_first(dst, tmp->data);
     delete_first(src);
-    if (c == 'a')
-    {
-        ai->curele++;
-        ai->unsortele++;
-        bi->curele--;
-    }
-    else
-    {
-        ai->curele--;
-        ai->unsortele--;
-        bi->curele++;
-    }
-    printf("p%c\n", c);
 }
 
-void r(DLList **head, char c)
+void r(DLList **head)
 {
     if (*head == NULL || *head == (*head)->rlink)
         return ;
     *head = (*head)->rlink;
-    printf("r%c\n", c);
 }
 
-void rr(DLList **head, char c)
+void rr(DLList **head)
 {
     if (*head == NULL || *head == (*head)->rlink)
         return ;
     *head = (*head)->llink;
-    printf("rr%c", c);
+}
+
+void rr2(DLList **a, DLList **b)
+{
+    r(a);
+    r(b);
+    write(1, "ra", 2);
+    write(1, "rb", 2);
+}
+
+void rrr2(DLList **a, DLList **b)
+{
+    rr(a);
+    rr(b);
 }

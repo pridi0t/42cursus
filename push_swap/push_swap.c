@@ -1,13 +1,6 @@
 #include "push_swap.h"
 #include "./libft/libft.h"
 
-void init_sinfo(sinfo *sinfo, int element)
-{
-    sinfo->curele = element;
-    sinfo->sortele = 0;
-    sinfo->unsortele = sinfo->curele;
-}
-
 void insert_a(int argc, char *argv[], DLList **head)
 {
     int i;
@@ -20,235 +13,225 @@ void insert_a(int argc, char *argv[], DLList **head)
     }
 }
 
-void find_value(int *max, int *min, DLList *head, int cnt)
+void print_arr(int *arr, int size)
 {
-    DLList *dp;
-    int num;
+    int i = 0;
 
-    dp = head;
-    num = 0;
-    if (head == NULL || dp == dp->rlink)
-        return ;
-    *max = head->data;
-    *min = head->data;
-    dp = dp->rlink;
-    while (dp != head, num < cnt)
+    while (i < size)
     {
-        if (*max < dp->data)
-            *max = dp->data;
-        if (*min > dp->data)
-            *min = dp->data;
-        dp = dp->rlink;
-        num++;
+        printf("%d ", arr[i]);
+        i++;
     }
+    printf("\n");
 }
 
-int check_sort(DLList *a, int elenum, int mod)
+void find_pivot(DLList *head, int *p1, int *p2, int cnt)
 {
-    DLList *dp;
+    DLList *p;
+    int *arr;
     int i;
 
-    dp = a;
-    i = 1;
-    if (mod == 1)
+    arr = (int *)malloc(sizeof(int) * cnt);
+    i = 0;
+    p = head;
+    while (i < cnt)
     {
-        while (dp->data < dp->rlink->data && dp->rlink != a)
-        {
-            dp = dp->rlink;
-            i++;
-        }
-        if (i == elenum)
-            return 1;
-        return 0;
-    }
-    while (dp->data > dp->rlink->data && dp->rlink != a)
-    {
-        dp = dp->rlink;
+        arr[i] = p->data;
+        p = p->rlink;
         i++;
     }
-    if (i == elenum)
-        return 1;
-    return 0;
+    quick_sort(arr, 0, cnt - 1);
+    *p1 = arr[cnt / 3];
+    *p2 = arr[(cnt * 2) / 3];
+    free(arr);
 }
 
-void sorted_insert_a(DLList **a, sinfo *ai)
+void a_to_b(DLList **a, DLList **b, int cnt)
 {
-    int cnt;
+    //printf("a_to_b(%d)\n", cnt);
+    int i;
+    int p1, p2;
+    int ra_cnt, rb_cnt, pb_cnt;
+    int tmp;
 
-    cnt = 0;
-    if (check_sort(*a, ai->unsortele, 1))
+    i = 0;
+    ra_cnt = 0;
+    rb_cnt = 0;
+    pb_cnt = 0;
+    if (cnt == 1)
+        return ;
+    else if (cnt == 2)
     {
-        if (ai->sortele > 0)
+        if ((*a)->data > (*a)->rlink->data)
         {
-            while (cnt < ai->unsortele)
+            s(a);
+            write(1, "sa\n", 3);
+        }
+        return ;
+    }
+    find_pivot(*a, &p1, &p2, cnt);
+    while (i < cnt)
+    {
+        if ((*a)->data >= p2)
+        {
+            r(a);
+            write(1, "ra\n", 3);
+            ra_cnt++;
+        }
+        else
+        {
+            p(a, b);
+            write(1, "pb\n", 3);
+            pb_cnt++;
+            if ((*b)->data >= p1)
             {
-                r(a, 'a');
-                cnt++;
+                r(b);
+                write(1, "rb\n", 3);
+                rb_cnt++;
             }
         }
-        ai->sortele += ai->unsortele;
-        ai->unsortele = 0;
-    }
-}
-
-void sorted_insert_b(DLList **a, DLList **b, sinfo *ai, sinfo *bi)
-{
-    int cnt;
-    int swapnum;
-
-    cnt = 0;
-    swapnum = bi->curele;
-    if (check_sort(*b, bi->curele, 2) && ai->unsortele == 0)
-    {
-        while (cnt < swapnum)
-        {
-            p(a, b, 'a', ai, bi);
-            cnt++;
-        }
-        cnt = 0;
-        while (cnt < swapnum)
-        {
-            r(a, 'a');
-            cnt++;
-        }
-        ai->sortele += swapnum;
-        ai->curele += swapnum;
-        bi->curele -= swapnum;
-    }
-}
-
-void divide_a(DLList **a, DLList **b, sinfo *ai, sinfo *bi)
-{
-    DLList *sp;
-    int i, j;
-    int pivot;
-    int max, min;
-
-    sp = *a;
-    i = -1;
-    find_value(&max, &min, *a, ai->unsortele);
-    while (++i < (ai->unsortele / 2))
-        sp = sp->rlink;
-    if (sp->data == max || sp->data == min)
-        sp = sp->rlink;
-    if (sp->data == max || sp->data == min)
-        sp = sp->rlink;
-    pivot = sp->data;
-    i = 0;
-    j = ai->unsortele;
-    sp = *a;
-    printf("pivot : %d\n", pivot);
-    while (i < j)
-    {
-        if (sp->data > pivot)
-            p(b, a, 'b', ai, bi);
-        else
-            r(a, 'a');
-        print(*a, *b, ai, bi);
-        sp = sp->rlink;
         i++;
     }
-    sorted_insert_a(a, ai);
+    if (ra_cnt > rb_cnt)
+        tmp = rb_cnt;
+    else
+        tmp = ra_cnt;
+    i = 0;
+    while (i < tmp)
+    {
+        rrr2(a, b);
+        write(1, "rrr\n", 4);
+        i++;
+    }
+    if (ra_cnt - tmp > 0)
+    {
+        i = 0;
+        while (i < ra_cnt - tmp)
+        {
+            rr(a);
+            write(1, "rra\n", 4);
+            i++;
+        }
+    }
+    else if (rb_cnt - tmp > 0)
+    {
+        i = 0;
+        while (i < rb_cnt - tmp)
+        {
+            rr(b);
+            write(1, "rrb\n", 4);
+            i++;
+        }
+    }
+    a_to_b(a, b, ra_cnt);
+    b_to_a(a, b, rb_cnt);
+    b_to_a(a, b, pb_cnt - rb_cnt);
 }
 
-void divide_b(DLList **a, DLList **b, sinfo *ai, sinfo *bi)
+void b_to_a(DLList **a, DLList **b, int cnt)
 {
-    DLList *sp;
-    int i, j;
-    int pivot;
-    int max, min;
+    //printf("b_to_a(%d)\n", cnt);
+    int p1, p2;
+    int i;
+    int ra_cnt, rb_cnt, pa_cnt;
+    int tmp;
 
-    sp = *b;
-    i = -1;
-    find_value(&max, &min, *b, bi->curele);
-    while (++i < (bi->curele / 2))
-        sp = sp->rlink;
-    if (sp->data == max || sp->data == min)
-        sp = sp->rlink;
-    if (sp->data == max || sp->data == min)
-        sp = sp->rlink;
-    pivot = sp->data;
-    i = 0;
-    j = bi->curele;
-    sp = *b;
-    printf("pivot : %d\n", pivot);
-    while (i < j)
+    ra_cnt = 0;
+    rb_cnt = 0;
+    pa_cnt = 0;
+    if (cnt == 1)
     {
-        if (sp->data <= pivot)
-            p(a, b, 'a', ai, bi);
-        else
-            r(b, 'b');
-        print(*a, *b, ai, bi);
-        sp = sp->rlink;
-        i++;
-        print(*a, *b, ai, bi);
+        p(b, a);
+        write(1, "pa\n", 3);
+        return ;
     }
+    else if (cnt == 2)
+    {
+        if ((*b)->data < (*b)->rlink->data)
+        {
+            s(b);
+            write(1, "sb\n", 3);
+        }
+        p(b, a);
+        write(1, "pa\n", 3);
+        p(b, a);
+        write(1, "pa\n", 3);
+        return ;
+    }
+    find_pivot(*b, &p1, &p2, cnt);
+    i = 0;
+    while (i < cnt)
+    {
+        if ((*b)->data < p1)
+        {
+            r(b);
+            write(1, "rb\n", 3);
+            rb_cnt++;
+        }
+        else
+        {
+            p(b, a);
+            write(1, "pa\n", 3);
+            pa_cnt++;
+            if ((*a)->data < p2)
+            {
+                r(a);
+                write(1, "ra\n", 3);
+                ra_cnt++;
+            }
+        }
+        i++;
+    }
+    a_to_b(a, b, pa_cnt - ra_cnt);
+    if (ra_cnt > rb_cnt)
+        tmp = rb_cnt;
+    else
+        tmp = ra_cnt;
+    i = 0;
+    while (i < tmp)
+    {
+        rrr2(a, b);
+        write(1, "rrr\n", 4);
+        i++;
+    }
+    if (ra_cnt - tmp > 0)
+    {
+        i = 0;
+        while (i < ra_cnt)
+        {
+            rr(a);
+            write(1, "rra\n", 4);
+            i++;
+        }
+    }
+    else if (rb_cnt - tmp > 0)
+    {
+        i = 0;
+        while (i < rb_cnt)
+        {
+            rr(b);
+            write(1, "rrb\n", 4);
+            i++;
+        }
+    }
+    a_to_b(a, b, ra_cnt);
+    b_to_a(a, b, rb_cnt);
 }
 
 int main(int argc, char *argv[])
 {
     DLList *a, *b;
-    sinfo ai, bi;
-    int max, min;
-    int cnt = 0;
-    
-    int debug = 0;
+    int p1, p2;
 
     init(&a);
     init(&b);
     if (argc == 1)
         return 0;
-    init_sinfo(&ai, argc - 1);
-    init_sinfo(&bi, 0);
     insert_a(argc, argv, &a);
 
-    printf("================= before =================\n");
-    print(a, b, &ai, &bi);
-    
-    while (ai.sortele < argc - 1) // b스택 조건을 모르게따
-    {
-        if (ai.unsortele == 1)
-        {
-            if (ai.curele > 1)
-                r(&a, 'a');
-            ai.unsortele--;
-            ai.sortele++;
-        }
-        else if (ai.unsortele == 2)
-        {
-            sorted_insert_a(&a, &ai);
-            if (a->data > a->rlink->data)
-                s(&a, 'a');      // ra해도됨
-            if (ai.unsortele != 0)
-            {
-                print(a, b, &ai, &bi);
-                r(&a, 'a');
-                r(&a, 'a');
-            }
-            ai.unsortele -= 2;
-            ai.sortele += 2;
-        }
-        while (ai.unsortele > 2)
-        {
-            divide_a(&a, &b, &ai, &bi);
-        }
-        sorted_insert_a(&a, &ai);
-        if (bi.curele == 1)
-        {
-            p(&a, &b, 'a', &ai, &bi);
-            r(&a, 'a');
-        }
-        else if (bi.curele == 2 && ai.unsortele == 0)
-        {
-            if (b->data < b->rlink->data)
-                r(&b, 'b');
-            sorted_insert_b(&a, &b, &ai, &bi);
-        }
-        divide_b(&a, &b, &ai, &bi);
-    }
-
-    printf("================= after =================\n");
-    print(a, b, &ai, &bi);
-
+    find_pivot(a, &p1, &p2, argc - 1);
+    //print(a, b);
+    a_to_b(&a, &b, argc - 1);
+    //print(a, b);
     return 0;
 }

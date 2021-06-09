@@ -1,11 +1,6 @@
 #include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h>
-
-typedef struct{
-    int curele;
-    int sortele;
-    int unsortele;
-} sinfo;
 
 typedef struct DLList{
     int data;
@@ -17,9 +12,16 @@ typedef struct DLList{
 void    init(DLList **head);
 void    insert_first(DLList **head, int data);
 void    delete_first(DLList **head);
-void print(DLList *a, DLList *b, sinfo *ai, sinfo *bi);
+void print(DLList *a, DLList *b);
+// Quick_Sort
+void    quick_sort(int *arr, int start, int end);
 // operations
-void    s(DLList **head, char c);
-void    p(DLList **dst, DLList **src, char c, sinfo *ai, sinfo *bi);
-void    r(DLList **head, char c);
-void    rr(DLList **head, char c);
+void    s(DLList **head);
+void    p(DLList **src, DLList **dst);
+void    r(DLList **head);
+void    rr(DLList **head);
+void    rr2(DLList **a, DLList **b);
+void    rrr2(DLList **a, DLList **b);
+// main
+void    a_to_b(DLList **a, DLList **b, int cnt);
+void    b_to_a(DLList **a, DLList **b, int cnt);
