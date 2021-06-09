@@ -13,6 +13,8 @@ void insert_a(int argc, char *argv[], DLList **head)
     }
 }
 
+
+
 void print_arr(int *arr, int size)
 {
     int i = 0;
@@ -48,7 +50,7 @@ void find_pivot(DLList *head, int *p1, int *p2, int cnt)
 
 void a_to_b(DLList **a, DLList **b, int cnt)
 {
-    //printf("a_to_b(%d)\n", cnt);
+    printf("a_to_b(%d)\n", cnt);
     int i;
     int p1, p2;
     int ra_cnt, rb_cnt, pb_cnt;
@@ -58,7 +60,7 @@ void a_to_b(DLList **a, DLList **b, int cnt)
     ra_cnt = 0;
     rb_cnt = 0;
     pb_cnt = 0;
-    if (cnt == 1)
+    if (cnt <= 1)
         return ;
     else if (cnt == 2)
     {
@@ -130,7 +132,7 @@ void a_to_b(DLList **a, DLList **b, int cnt)
 
 void b_to_a(DLList **a, DLList **b, int cnt)
 {
-    //printf("b_to_a(%d)\n", cnt);
+    printf("b_to_a(%d)\n", cnt);
     int p1, p2;
     int i;
     int ra_cnt, rb_cnt, pa_cnt;
@@ -139,7 +141,9 @@ void b_to_a(DLList **a, DLList **b, int cnt)
     ra_cnt = 0;
     rb_cnt = 0;
     pa_cnt = 0;
-    if (cnt == 1)
+    if (cnt <= 0)
+        return ;
+    else if (cnt == 1)
     {
         p(b, a);
         write(1, "pa\n", 3);
@@ -197,7 +201,7 @@ void b_to_a(DLList **a, DLList **b, int cnt)
     if (ra_cnt - tmp > 0)
     {
         i = 0;
-        while (i < ra_cnt)
+        while (i < ra_cnt - tmp)
         {
             rr(a);
             write(1, "rra\n", 4);
@@ -207,7 +211,7 @@ void b_to_a(DLList **a, DLList **b, int cnt)
     else if (rb_cnt - tmp > 0)
     {
         i = 0;
-        while (i < rb_cnt)
+        while (i < rb_cnt - tmp)
         {
             rr(b);
             write(1, "rrb\n", 4);
