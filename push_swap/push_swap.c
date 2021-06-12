@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 21:23:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/12 22:10:08 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,6 @@ void	insert_a(int argc, char *argv[], DLList **head)
 		i--;
 	}
 }
-
-/*
-void print_arr(int *arr, int cnt)
-{
-	int i = 0;
-	while (++i < cnt)
-		printf("arr[%d] : %d\n", i, arr[i]);
-}
-*/
 
 int		check_int(char *str)
 {
@@ -106,10 +97,12 @@ int		check_input(int argc, char *argv[])
 
 int		main(int argc, char *argv[])
 {
-	DLList *a, *b;
-	char **str;
-	int	cnt;
-	int p1, p2;
+	DLList	*a;
+	DLList	*b;
+	char	**str;
+	int		cnt;
+	int		p1;
+	int		p2;
 
 	init(&a);
 	init(&b);
@@ -146,14 +139,10 @@ int		main(int argc, char *argv[])
 	}
 	else if (cnt == 5)
 	{
-		//print(a, b);
 		sort5_a(&a, &b, 5);
-		//print(a, b);
 		return (0);
 	}
 	find_pivot(a, &p1, &p2, cnt);
-	//print(a, b);
 	a_to_b(&a, &b, cnt);
-	//print(a, b);
 	return(0);
 }

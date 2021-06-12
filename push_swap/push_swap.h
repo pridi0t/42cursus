@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 07:34:30 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 20:51:04 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/12 22:00:45 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 #include <limits.h>
 #include "libft.h"
 #include <stdio.h>
+
+#define SS 0
+#define SA 1
+#define SB 2
+#define PA 3
+#define PB 4
+#define RR 5
+#define RA 6
+#define RB 7
+#define RRR 8
+#define RRA 9
+#define RRB 10
 
 typedef struct DLList{
 	int data;

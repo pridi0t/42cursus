@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 08:59:24 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 21:22:49 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/12 22:30:06 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	find_pivot(DLList *head, int *p1, int *p2, int cnt)
 	free(arr);
 }
 
-void    rotation_value(DLList **a, DLList **b, int ra_cnt, int rb_cnt)
+void    rotation_value(DLList **a, DLList **b, int ra_cnt, int rb_cnt, DLList **command)
 {
     int i;
     int tmp;
@@ -45,7 +45,7 @@ void    rotation_value(DLList **a, DLList **b, int ra_cnt, int rb_cnt)
 	while (++i < tmp)
 	{
 		rrr2(a, b);
-		write(1, "rrr\n", 4);
+		insert_first(head, RRR);
 	}
 	if (ra_cnt - tmp > 0)
 	{
@@ -53,18 +53,15 @@ void    rotation_value(DLList **a, DLList **b, int ra_cnt, int rb_cnt)
 		while (++i < ra_cnt - tmp)
 		{
 			rr(a);
-			write(1, "rra\n", 4);
+			insert_first(head, RRA);
 		}
         return ;
 	}
-	else if (rb_cnt - tmp > 0)
+	i = -1;
+	while (++i < rb_cnt - tmp)
 	{
-		i = -1;
-		while (++i < rb_cnt - tmp)
-		{
-			rr(b);
-			write(1, "rrb\n", 4);
-		}
+		rr(b);
+		insert_first(head, RRB);
 	}
 }
 
