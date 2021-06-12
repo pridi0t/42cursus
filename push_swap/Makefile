@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/05/29 20:18:22 by marvin           ###   ########seoul.kr   #
+#    Updated: 2021/06/12 15:38:58 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,11 @@ LIB_DIR = -L./libft -L.
 RM = rm -f
 
 FILES = doubly_linked_list	\
+		quick_sort			\
 		operations			\
-		push_swap
+		move				\
+		sort3				\
+		push_swap			\
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
@@ -37,7 +40,7 @@ OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT_F)
-	$(CC) $(CFLAGS) $(IFLAG)$(LIBFT_F) $(OBJS) $(LIB_DIR) $(LIBS) -o
+	$(CC) $(CFLAGS) $(IFLAG)$(LIBFT_F) $(OBJS) $(LIB_DIR) $(LIBS) -o $(NAME)
 
 all: $(NAME)
 
