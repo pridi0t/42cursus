@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/06/12 15:38:58 by hyojang          ###   ########.fr        #
+#    Updated: 2021/06/15 00:11:41 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ RM = rm -f
 
 FILES = doubly_linked_list	\
 		quick_sort			\
-		operations			\
+		operations1			\
+		operations2			\
 		move				\
 		sort3				\
 		push_swap			\

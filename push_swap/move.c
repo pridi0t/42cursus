@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 08:59:24 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 22:30:06 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 07:45:24 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,30 @@ void	find_pivot(DLList *head, int *p1, int *p2, int cnt)
 	free(arr);
 }
 
-void    rotation_value(DLList **a, DLList **b, int ra_cnt, int rb_cnt, DLList **command)
+void    rotation_value(DLList **a, DLList **b, int ra_cnt, int rb_cnt, DLList **com)
 {
     int i;
     int tmp;
 
+	//printf("ra : %d, rb : %d\n", ra_cnt, rb_cnt);
     tmp = ra_cnt;
     if (ra_cnt > rb_cnt)
 		tmp = rb_cnt;
 	i = -1;
 	while (++i < tmp)
-	{
-		rrr2(a, b);
-		insert_first(head, RRR);
-	}
+		rrr2(a, b, com);
 	if (ra_cnt - tmp > 0)
 	{
 		i = -1;
 		while (++i < ra_cnt - tmp)
-		{
-			rr(a);
-			insert_first(head, RRA);
-		}
+			rr(a, 'a', com);
         return ;
 	}
-	i = -1;
-	while (++i < rb_cnt - tmp)
+	else
 	{
-		rr(b);
-		insert_first(head, RRB);
+		i = -1;
+		while (++i < rb_cnt - tmp)
+			rr(b, 'b', com);
 	}
 }
 
@@ -82,14 +77,13 @@ int		check_sort_a(DLList *s, int cnt)
 	return (0);
 }
 
-void	a_to_b(DLList **a, DLList **b, int cnt)
+void	a_to_b(DLList **a, DLList **b, int cnt, DLList **com)
 {
 	//printf("a_to_b(%d)\n", cnt);
 	int i;
 	int p1, p2;
 	int ra_cnt, rb_cnt, pb_cnt;
 
-	i = 0;
 	ra_cnt = 0;
 	rb_cnt = 0;
 	pb_cnt = 0;
@@ -98,44 +92,42 @@ void	a_to_b(DLList **a, DLList **b, int cnt)
 	else if (cnt == 2)
 	{
 		if ((*a)->data > (*a)->rlink->data)
-		{
-			s(a);
-			write(1, "sa\n", 3);
-		}
+			s(a, 'a', com);
 		return ;
 	}
 	else if (check_sort_a(*a, cnt))
 		return ;
 	find_pivot(*a, &p1, &p2, cnt);
+	i = 0;
 	while (i < cnt)
 	{
 		if ((*a)->data >= p2)
 		{
-			r(a);
-			write(1, "ra\n", 3);
+			r(a, 'a', com);
 			ra_cnt++;
 		}
 		else
 		{
-			p(a, b);
-			write(1, "pb\n", 3);
+			p(a, b, 'b', com);
 			pb_cnt++;
 			if ((*b)->data >= p1)
 			{
-				r(b);
-				write(1, "rb\n", 3);
+				r(b, 'b', com);
 				rb_cnt++;
 			}
 		}
+		//printf("\n");
+		//print(*a, *b);
+		//printf("\n");
 		i++;
 	}
-	rotation_value(a, b, ra_cnt, rb_cnt);
-	a_to_b(a, b, ra_cnt);
-	b_to_a(a, b, rb_cnt);
-	b_to_a(a, b, pb_cnt - rb_cnt);
+	rotation_value(a, b, ra_cnt, rb_cnt, com);
+	a_to_b(a, b, ra_cnt, com);
+	b_to_a(a, b, rb_cnt, com);
+	b_to_a(a, b, pb_cnt - rb_cnt, com);
 }
 
-void	b_to_a(DLList **a, DLList **b, int cnt)
+void	b_to_a(DLList **a, DLList **b, int cnt, DLList **com)
 {
 	//printf("b_to_a(%d)\n", cnt);
 	int p1, p2;
@@ -149,21 +141,15 @@ void	b_to_a(DLList **a, DLList **b, int cnt)
 		return ;
 	else if (cnt == 1)
 	{
-		p(b, a);
-		write(1, "pa\n", 3);
+		p(b, a, 'a', com);
 		return ;
 	}
 	else if (cnt == 2)
 	{
 		if ((*b)->data < (*b)->rlink->data)
-		{
-			s(b);
-			write(1, "sb\n", 3);
-		}
-		p(b, a);
-		write(1, "pa\n", 3);
-		p(b, a);
-		write(1, "pa\n", 3);
+			s(b, 'b', com);
+		p(b, a, 'a', com);
+		p(b, a, 'a', com);
 		return ;
 	}
 	find_pivot(*b, &p1, &p2, cnt);
@@ -172,26 +158,23 @@ void	b_to_a(DLList **a, DLList **b, int cnt)
 	{
 		if ((*b)->data < p1)
 		{
-			r(b);
-			write(1, "rb\n", 3);
+			r(b, 'b', com);
 			rb_cnt++;
 		}
 		else
 		{
-			p(b, a);
-			write(1, "pa\n", 3);
+			p(b, a, 'a', com);
 			pa_cnt++;
 			if ((*a)->data < p2)
 			{
-				r(a);
-				write(1, "ra\n", 3);
+				r(a, 'a', com);
 				ra_cnt++;
 			}
 		}
 		i++;
 	}
-	a_to_b(a, b, pa_cnt - ra_cnt);
-	rotation_value(a, b, ra_cnt, rb_cnt);
-	a_to_b(a, b, ra_cnt);
-	b_to_a(a, b, rb_cnt);
+	a_to_b(a, b, pa_cnt - ra_cnt, com);
+	rotation_value(a, b, ra_cnt, rb_cnt, com);
+	a_to_b(a, b, ra_cnt, com);
+	b_to_a(a, b, rb_cnt, com);
 }

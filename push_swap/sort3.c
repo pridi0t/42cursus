@@ -6,13 +6,13 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:23:57 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 21:23:31 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 05:36:05 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    sort3_a(DLList **a)
+void    sort3_a(DLList **a, DLList **com)
 {
     //printf("strt3_a\n");
     int n1;
@@ -24,30 +24,20 @@ void    sort3_a(DLList **a)
     n1 = (*a)->data;
     n2 = (*a)->rlink->data;
     n3 = (*a)->rlink->rlink->data;
+    
     if (n1 > n2 && n1 > n3)
     {
-        r(a);
-        write(1, "ra\n", 3);
+        r(a, 'a', com);
         if (n2 > n3)
-        {
-            s(a);
-            write(1, "sa\n", 3);
-        }
+            s(a, 'a', com);
     }
-    else if (n2 > n1 && n2 > n3)
-    {
-        rr(a);
-        write(1, "rra\n", 4);
-        if (n1 < n2)
-        {
-            s(a);
-            write(1, "sa\n", 3);
-        }
-    }
+    else if (n3 > n1 && n3 > n2)
+        s(a, 'a', com);
     else
     {
-        s(a);
-        write(1, "sa\n", 3);
+        rr(a, 'a', com);
+        if (n1 < n2 && n1 < n3)
+            s(a, 'a', com);
     }
 }
 
@@ -70,7 +60,7 @@ void    find_pivot1(DLList *head, int *pivot, int cnt)
     free(arr);
 }
 
-void sort5_a(DLList **a, DLList **b, int cnt)
+void    sort5_a(DLList **a, DLList **b, int cnt, DLList **com)
 {
     //printf("sort5_a\n");
     int i;
@@ -82,24 +72,13 @@ void sort5_a(DLList **a, DLList **b, int cnt)
     while (++i < cnt)
     {
         if ((*a)->data >= pivot)
-        {
-            r(a);
-            write(1, "ra\n", 3);
-        }
+            r(a, 'a', com);
         else
-        {
-            p(a, b);
-            write(1, "pb\n", 3);
-        }
+            p(a, b, 'b', com);
     }
-    sort3_a(a);
+    sort3_a(a, com);
     if ((*b)->data < (*b)->rlink->data)
-    {
-        s(b);
-        write(1, "sb\n", 3);
-    }
-    p(b, a);
-    write(1, "pa\n", 3);
-    p(b, a);
-    write(1, "pa\n", 3);
+        s(b, 'b', com);
+    p(b, a, 'a', com);
+    p(b, a, 'a', com);
 }

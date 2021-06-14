@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 07:34:30 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 22:00:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 04:06:20 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,26 @@ typedef struct DLList{
 // linked_list
 void    init(DLList **head);
 void    insert_first(DLList **head, int data);
-void    delete_first(DLList **head);
+void	insert_last(DLList **head, int data);
+void	delete_first(DLList **head);
 void print(DLList *a, DLList *b);
 // Quick_Sort
 void    quick_sort(int *arr, int start, int end);
-// operations
-void    s(DLList **head);
-void    p(DLList **src, DLList **dst);
-void    r(DLList **head);
-void    rr(DLList **head);
-void    rr2(DLList **a, DLList **b);
-void    rrr2(DLList **a, DLList **b);
+// operations1
+void	s(DLList **head, char c, DLList **com);
+void	p(DLList **src, DLList **dst, char dc, DLList **com);
+void	r(DLList **head, char c, DLList **com);
+void	rr(DLList **head, char c, DLList **com);
+void	rr2(DLList **a, DLList **b, DLList **com);
+void	rrr2(DLList **a, DLList **b, DLList **com);
+// operations2
+void optimization_command(DLList **com);
+void	print_command(DLList **com);
 // move
 void	find_pivot(DLList *head, int *p1, int *p2, int cnt);
 int		check_sort_a(DLList *s, int cnt);
-void    a_to_b(DLList **a, DLList **b, int cnt);
-void    b_to_a(DLList **a, DLList **b, int cnt);
+void	a_to_b(DLList **a, DLList **b, int cnt, DLList **com);
+void	b_to_a(DLList **a, DLList **b, int cnt, DLList **com);
 // sort3
-void    sort3_a(DLList **a);
-void	sort5_a(DLList **a, DLList **b, int cnt);
+void    sort3_a(DLList **a, DLList **com);
+void	sort5_a(DLList **a, DLList **b, int cnt, DLList **com);

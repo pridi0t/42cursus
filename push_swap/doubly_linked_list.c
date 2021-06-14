@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 07:34:10 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 20:51:05 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 06:25:57 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,27 @@ void	insert_first(DLList **head, int data)
 		new->rlink = *head;
 		(*head)->llink = new;
 		*head = new;
+	}
+}
+
+void	insert_last(DLList **head, int data)
+{
+	DLList *new;
+
+	new = (DLList *)malloc(sizeof(DLList));
+	new->data = data;
+	if (*head == NULL)
+	{
+		*head = new;
+		new->llink = new;
+		new->rlink = new;
+	}
+	else
+	{
+		(*head)->llink->rlink = new;
+		new->llink = (*head)->llink;
+		new->rlink = *head;
+		(*head)->llink = new;
 	}
 }
 

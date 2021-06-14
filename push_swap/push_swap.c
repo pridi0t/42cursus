@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/12 22:10:08 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 07:50:32 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ int		check_input(int argc, char *argv[])
 			}
 		}
 	}
-	i = 1;
-	while (i < (argc - 1) && (arr[i] < arr[i + 1]))
+	i = 0;
+	while ((i < argc) && (arr[i] < arr[i + 1]))
 		i++;
-	if (i == argc - 1)
+	if (i == argc)
 		exit(1);
 	free(arr);
 	return (0);
@@ -99,15 +99,16 @@ int		main(int argc, char *argv[])
 {
 	DLList	*a;
 	DLList	*b;
+	DLList	*com;
 	char	**str;
 	int		cnt;
-	int		p1;
-	int		p2;
 
 	init(&a);
 	init(&b);
+	init(&com);
+	str = 0;
 	if (argc == 1)
-		return (0);
+			return (1);
 	else if (argc == 2)
 	{
 		str = ft_split(argv[1], ' ');
@@ -121,7 +122,7 @@ int		main(int argc, char *argv[])
 				write(2, "Error\n", 6);
 				exit(1);
 			}
-			return(0);
+			return(1);
 		}
 	}
 	else
@@ -134,15 +135,24 @@ int		main(int argc, char *argv[])
 	insert_a(cnt, str, &a);
 	if (cnt == 3)
 	{
-		sort3_a(&a);
+		sort3_a(&a, &com);
+		//optimization_command(&com);
+		print_command(&com);
+		//print(a, 0);
 		return (0);
 	}
 	else if (cnt == 5)
 	{
-		sort5_a(&a, &b, 5);
+		sort5_a(&a, &b, 5, &com);
+		//optimization_command(&com);
+		print_command(&com);
 		return (0);
 	}
-	find_pivot(a, &p1, &p2, cnt);
-	a_to_b(&a, &b, cnt);
+	//print(a, 0);
+	a_to_b(&a, &b, cnt, &com);
+	optimization_command(&com);
+	//print(com, 0);
+	print_command(&com);
+	//print(a, 0);
 	return(0);
 }
