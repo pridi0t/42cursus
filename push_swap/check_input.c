@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 11:11:27 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/15 12:13:11 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 14:01:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ int		check_int(char *str)
 	long long	num;
 
 	if (except_int(str, &i, &strlen) == 1)
+	{
+		write(2, "Error\n", 6);
 		exit(1);
+	}
 	num = 0;
 	i = -1;
 	if (str[0] == '-')
