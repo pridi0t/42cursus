@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:23:57 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/15 12:39:04 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 13:17:41 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	sort3_a(t_dllist **a, t_dllist **com)
 void	find_pivot1(t_dllist *head, int *pivot, int cnt)
 {
 	t_dllist	*p;
-	int		*arr;
-	int		i;
+	int			*arr;
+	int			i;
 
 	arr = (int *)malloc(sizeof(int) * cnt);
 	i = -1;

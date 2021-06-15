@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 08:59:24 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/15 12:30:15 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 12:46:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		check_sort_a(t_dllist *s, int cnt)
 {
-	int i;
-	t_dllist *p;
+	int			i;
+	t_dllist	*p;
 
 	p = s;
 	i = 0;
@@ -29,7 +29,7 @@ int		check_sort_a(t_dllist *s, int cnt)
 	return (0);
 }
 
-void	divide_a(t_dllist **a, t_dllist **b, info *info, t_dllist **com)
+void	divide_a(t_dllist **a, t_dllist **b, t_info *info, t_dllist **com)
 {
 	int i;
 
@@ -57,7 +57,7 @@ void	divide_a(t_dllist **a, t_dllist **b, info *info, t_dllist **com)
 
 void	a_to_b(t_dllist **a, t_dllist **b, int cnt, t_dllist **com)
 {
-	info info;
+	t_info info;
 
 	info.ra_cnt = 0;
 	info.rb_cnt = 0;

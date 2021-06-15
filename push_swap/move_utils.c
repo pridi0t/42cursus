@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 09:25:05 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/15 12:37:46 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 13:00:13 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	find_pivot(t_dllist *head, int *p1, int *p2, int cnt)
 {
-	t_ddlist	*p;
+	t_dllist	*p;
 	int			*arr;
-    int			i;
+	int			i;
 
 	arr = (int *)malloc(sizeof(int) * cnt);
 	i = 0;
@@ -33,13 +33,13 @@ void	find_pivot(t_dllist *head, int *p1, int *p2, int cnt)
 	free(arr);
 }
 
-void    rotation_value(t_dllist **a, t_dllist **b, info *info, t_dllist **com)
+void	rotation_value(t_dllist **a, t_dllist **b, t_info *info, t_dllist **com)
 {
-    int i;
-    int tmp;
+	int i;
+	int tmp;
 
-    tmp = info->ra_cnt;
-    if (info->ra_cnt > info->rb_cnt)
+	tmp = info->ra_cnt;
+	if (info->ra_cnt > info->rb_cnt)
 		tmp = info->rb_cnt;
 	i = -1;
 	while (++i < tmp)
@@ -49,7 +49,7 @@ void    rotation_value(t_dllist **a, t_dllist **b, info *info, t_dllist **com)
 		i = -1;
 		while (++i < info->ra_cnt - tmp)
 			rr(a, 'a', com);
-        return ;
+		return ;
 	}
 	else
 	{

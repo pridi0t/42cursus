@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 07:34:10 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/15 12:37:22 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 13:19:19 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	insert_first(t_dllist **head, int data)
 
 void	insert_last(t_dllist **head, int data)
 {
-	t_dlllist *new;
+	t_dllist *new;
 
 	new = (t_dllist *)malloc(sizeof(t_dllist));
 	new->data = data;
@@ -80,4 +80,3 @@ void	delete_first(t_dllist **head)
 		free(tmp);
 	}
 }
-
