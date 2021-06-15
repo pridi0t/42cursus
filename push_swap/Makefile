@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/06/15 00:11:41 by hyojang          ###   ########.fr        #
+#    Updated: 2021/06/15 11:28:34 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,13 @@ FILES = doubly_linked_list	\
 		quick_sort			\
 		operations1			\
 		operations2			\
-		move				\
+		move_a				\
+		move_b				\
+		move_utils			\
 		sort3				\
-		push_swap			\
+		main_exception		\
+		check_input			\
+		push_swap
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

@@ -6,22 +6,22 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 07:34:10 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/15 06:25:57 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 12:37:22 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init(DLList **head)
+void	init(t_dllist **head)
 {
 	*head = NULL;
 }
 
-void	insert_first(DLList **head, int data)
+void	insert_first(t_dllist **head, int data)
 {
-	DLList *new;
+	t_dllist *new;
 
-	new = (DLList *)malloc(sizeof(DLList));
+	new = (t_dllist *)malloc(sizeof(t_dllist));
 	new->data = data;
 	if (*head == NULL)
 	{
@@ -39,11 +39,11 @@ void	insert_first(DLList **head, int data)
 	}
 }
 
-void	insert_last(DLList **head, int data)
+void	insert_last(t_dllist **head, int data)
 {
-	DLList *new;
+	t_dlllist *new;
 
-	new = (DLList *)malloc(sizeof(DLList));
+	new = (t_dllist *)malloc(sizeof(t_dllist));
 	new->data = data;
 	if (*head == NULL)
 	{
@@ -60,9 +60,9 @@ void	insert_last(DLList **head, int data)
 	}
 }
 
-void	delete_first(DLList **head)
+void	delete_first(t_dllist **head)
 {
-	DLList *tmp;
+	t_dllist *tmp;
 
 	if (*head == NULL)
 		return ;
@@ -81,30 +81,3 @@ void	delete_first(DLList **head)
 	}
 }
 
-void	print(DLList *a, DLList *b)
-{
-	DLList *p;
-
-	p = a;
-	if (p == 0)
-		return ;
-	printf("<-| %d |->", p->data);
-	p = p->rlink;
-	while (p != a)
-	{
-		printf("<-| %d |->", p->data);
-		p = p->rlink;
-	}
-	printf("\n");
-	p = b;
-	if (p == 0)
-		return ;
-	printf("<-| %d |->", p->data);
-	p = p->rlink;
-	while (p != b)
-	{
-		printf("<-| %d |->", p->data);
-		p = p->rlink;
-	}
-	printf("\n");
-}

@@ -6,15 +6,15 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 07:34:18 by hyojang           #+#    #+#             */
-/*   Updated: 2021/06/15 07:54:24 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/06/15 12:31:33 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	s(DLList **head, char c, DLList **com)
+void	s(t_dllist **head, char c, t_dllist **com)
 {
-	DLList *tmp;
+	t_dllist *tmp;
 
 	if (*head == NULL || *head == (*head)->rlink)
 		return ;
@@ -34,9 +34,9 @@ void	s(DLList **head, char c, DLList **com)
 		insert_last(com, SB);
 }
 
-void	p(DLList **src, DLList **dst, char dc, DLList **com)
+void	p(t_dllist **src, t_dllist **dst, char dc, t_dllist **com)
 {
-	DLList *tmp;
+	t_dllist *tmp;
 
 	if (*src == NULL)
 		return ;
@@ -49,7 +49,7 @@ void	p(DLList **src, DLList **dst, char dc, DLList **com)
 		insert_last(com, PB);
 }
 
-void	r(DLList **head, char c, DLList **com)
+void	r(t_dllist **head, char c, t_dllist **com)
 {
 	if (*head == NULL)
 		return ;
@@ -60,7 +60,7 @@ void	r(DLList **head, char c, DLList **com)
 		insert_last(com, RB);
 }
 
-void	rr(DLList **head, char c, DLList **com)
+void	rr(t_dllist **head, char c, t_dllist **com)
 {
 	if (*head == NULL)
 		return ;
@@ -71,7 +71,7 @@ void	rr(DLList **head, char c, DLList **com)
 		insert_last(com, RRB);
 }
 
-void	rrr2(DLList **a, DLList **b, DLList **com)
+void	rrr2(t_dllist **a, t_dllist **b, t_dllist **com)
 {
 	if (*a != NULL)
 		*a = (*a)->llink;
