@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-	siginfo_t set;
+	//siginfo_t set;
 	char *str;
 	
 	/*
@@ -14,9 +14,9 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 	*/
-	set.si_pid = getpid();
-	str = ft_itoa(set.si_pid);
-	set.si_addr = argv[2];
+	//set.si_pid = getpid();
+	//str = ft_itoa(set.si_pid);
+	str = ft_itoa(getpid());
 	write(1, "PID : ", 6);
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 2);

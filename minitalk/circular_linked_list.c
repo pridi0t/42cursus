@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "server.h"
 
-void add_last(t_cllist **l, int pid)
+void add_last(int pid)
 {
 	t_cllist *p;
 	t_cllist *tmp;
@@ -9,25 +9,27 @@ void add_last(t_cllist **l, int pid)
 	p = (t_cllist *)malloc(sizeof(t_cllist));
 	p->pid = pid;
 	p->str = NULL;
-	if (*l == NULL)
+	if (g_l == NULL)
 	{
-		*l = p;
+		g_l = p;
 		p->link = p;
 		return ;
 	}
-	tmp = p;
-	while (tmp->link != *l)
+	tmp = g_l;
+	while (tmp->link != g_l)
 		tmp = tmp->link;
 	tmp->link = p;
-	p->link = *l;
+	p->link = g_l;
 }
 
-int search(t_cllist **l, int pid)
+int search(int pid)
 {
 	t_cllist *p;
 
-	p = *l;
-	while (p->link != *l)
+	if (g_l == NULL)
+		return (0);
+	p = g_l->link;
+	while (p != g_l)
 	{
 		if (p->pid == pid)
 			return (1);
@@ -36,18 +38,25 @@ int search(t_cllist **l, int pid)
 	return (0);
 }
 
-void delete_node(t_cllist **l, int pid)
+void delete_node(int pid)
 {
 	t_cllist *pre;
 	t_cllist *cur;
 
-	if (*l == (*l)->link && (*l)->pid == pid)
+	if (g_l == g_l->link && g_l->pid == pid)
 	{
-		*l = NULL;
+		g_l = NULL;
 		return ;
 	}
-	pre = *l;
-	cur = (*l)->link;
+	else if (g_l->pid == pid)
+	{
+		cur = g_l->link;
+		free(g_l);
+		g_l = cur;
+		return ;
+	}
+	pre = g_l;
+	cur = g_l->link;
 	while (cur->pid != pid)
 	{
 		pre = cur;
@@ -57,17 +66,25 @@ void delete_node(t_cllist **l, int pid)
 	free(cur);
 }
 
-void print_list(t_cllist *l)
+void print_list(void)
 {
 	t_cllist *p;
+	char	*tmp;
 
-	if (l == NULL)
-		return ;
-	printf("%d : %s\n", l->pid, l->str);
-	p = l->link;
-	while (p->link != l)
+	if (g_l == NULL)
 	{
-		printf("%d : %s\n", l->pid, l->str);
+		printf("NULL\n");
+		return ;
+	}
+	tmp = ft_itoa(g_l->pid);
+	write(1, tmp, ft_strlen(tmp));
+	write(1, " ", 1);
+	p = g_l->link;
+	while (p != g_l)
+	{
+		tmp = ft_itoa(p->pid);
+		write(1, tmp, ft_strlen(tmp));
+		write(1, " ", 1);
 		p = p->link;
 	}
 }

@@ -1,17 +1,30 @@
 #include "server.h"
+#include <stdio.h>
 
-void handler(int signum, siginfo_t *info, void *addr)
+t_cllist *g_l;
+
+void proc(int signum, siginfo_t *info, void *oact)
 {
+	//printf("signo :%d\n", signum);
 	char *pid = ft_itoa(info->si_pid);
-	char *str = (char *)info->si_addr;
+	//t_cllist *l = NULL;
 
-	if (signum == SIGUSR1)
+	if (signum == SIGUSR1 || signum == SIGUSR2)
 	{
 		write(1, "client PID : ", 13);
 		write(1, pid, ft_strlen(pid));
-		write(1, "\nmessage : ", 12);
-		write(1, "\n", 2);
+		write(1, "\n", 2);	
+		if (search(info->si_pid) == 0)
+		{
+			add_last(info->si_pid);
+			print_list();
+			//printf("after : ");
+			//(void)signum;
+			return ;
+		}
+		printf("exist pid\n");
 	}
+	//(void)signum;
 }
 
 int main(void)
@@ -19,29 +32,16 @@ int main(void)
 	struct sigaction act;
 	char *pid = ft_itoa(getpid());
 	
-	/*
 	write(1, "server PID : ", 13);
 	write(1, pid, ft_strlen(pid));
 	write(1, "\n", 2);
-	act.sa_sigaction = handler;
+	act.sa_sigaction = proc;
+	act.sa_flags = SA_SIGINFO;
 	while (1)
 	{
 		sigaction(SIGUSR1, &act, 0);
-		usleep(100);
+		sigaction(SIGUSR2, &act, 0);
+		pause();
 	}
-	*/
-	t_cllist *l;
-	add_last(&l, 1);
-	add_last(&l, 2);
-	add_last(&l, 3);
-	add_last(&l, 4);
-	add_last(&l, 5);
-	t_cllist *p = l;
-	while (p->link != l)
-	{
-		ft_strlcpy(p->str, "aa", 2);
-		p = p->link;
-	}
-	print_list(l);
 	return 0;
 }

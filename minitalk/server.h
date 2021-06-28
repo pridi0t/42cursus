@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <signal.h>
+#include <stdlib.h>
 #include "libft.h"
 
 typedef struct s_cllist {
@@ -8,8 +9,11 @@ typedef struct s_cllist {
 	struct s_cllist *link;
 } t_cllist;
 
+extern t_cllist *g_l;
+
 // circular linked list
-void add_last(t_cllist **l, int pid);
-int search(t_cllist **l, int pid);
-void delete_node(t_cllist **l, int pid);
-void print_list(t_cllist *l);
+void add_last(int pid);
+int search(int pid);
+void delete_node(int pid);
+void print_list(void);
+
