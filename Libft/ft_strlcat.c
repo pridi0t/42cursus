@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 18:23:37 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/11 20:08:43 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/04 23:21:35 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	len_check(const char *str)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (*(str + i) != 0)
@@ -24,9 +24,9 @@ size_t	len_check(const char *str)
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t srclen;
-	size_t dstlen;
-	size_t i;
+	size_t	srclen;
+	size_t	dstlen;
+	size_t	i;
 
 	srclen = len_check(src);
 	dstlen = len_check(dst);

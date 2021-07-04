@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 20:26:55 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/21 20:50:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/04 23:20:33 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	num_print(int n, int fd)
 {
-	char *num;
+	char	*num;
 
 	num = "0123456789";
 	if (n >= 10)

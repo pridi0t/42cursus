@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 20:56:29 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/22 20:37:33 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/04 23:38:25 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	**ncheck(char **mem)
 
 char	**mfree(char **mem)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (mem[i] != 0)
@@ -90,10 +90,10 @@ char	**ft_split(char const *s, char c)
 	cnt = -1;
 	while (*(s + i) != 0)
 	{
-		if (*(s + i) != c && *(s + i) != 0)
+		if (*(s + i) != c && *(s + i) != 0 && ++cnt >= 0)
 		{
-			cnt++;
-			if ((mem[cnt] = strin(mem[cnt], ((char *)s + i), c, &i)) == 0)
+			mem[cnt] = strin(mem[cnt], ((char *)s + i), c, &i);
+			if (mem[cnt] == 0)
 				return (mfree(mem));
 		}
 		while (*(s + i) == c && *(s + i) != 0)

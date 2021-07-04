@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/16 19:01:15 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/16 20:31:10 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/04 23:22:29 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < n && (*(s1 + i) != 0 || *(s2 + i) != 0))

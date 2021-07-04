@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 17:12:23 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/21 17:18:24 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/04 23:20:10 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	size_t len;
+	size_t	len;
 
 	len = ft_strlen(s);
 	write(fd, s, len);
