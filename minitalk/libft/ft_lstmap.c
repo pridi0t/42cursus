@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/26 16:34:26 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/26 19:59:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/04 23:17:03 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *newt;
-	t_list *tmp;
+	t_list	*newt;
+	t_list	*tmp;
 
 	newt = 0;
 	if (lst == 0 || f == 0)

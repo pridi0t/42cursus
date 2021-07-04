@@ -7,13 +7,11 @@ int main(int argc, char *argv[])
 	//siginfo_t set;
 	char *str;
 	
-	/*
 	if (argc != 3)
 	{
 		write(2, "invalid argument\n", 18);
 		return (0);
 	}
-	*/
 	//set.si_pid = getpid();
 	//str = ft_itoa(set.si_pid);
 	str = ft_itoa(getpid());

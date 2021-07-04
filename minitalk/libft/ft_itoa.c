@@ -6,13 +6,13 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 17:35:03 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/21 15:14:52 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/04 23:14:43 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		numlen_check(long num)
+int	numlen_check(long num)
 {
 	int	len;
 

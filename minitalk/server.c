@@ -9,6 +9,7 @@ void proc(int signum, siginfo_t *info, void *oact)
 	char *pid = ft_itoa(info->si_pid);
 	//t_cllist *l = NULL;
 
+	oact = NULL;
 	if (signum == SIGUSR1 || signum == SIGUSR2)
 	{
 		write(1, "client PID : ", 13);
