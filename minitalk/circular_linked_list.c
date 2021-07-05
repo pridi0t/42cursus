@@ -8,7 +8,10 @@ void add_last(int pid)
 
 	p = (t_cllist *)malloc(sizeof(t_cllist));
 	p->pid = pid;
-	p->str = NULL;
+	ft_memset(p->bin, -1, sizeof(p->bin));
+	p->str_size = 100;
+	p->str = (char *)malloc(p->str_size);
+	ft_memset(p->str, 0, sizeof(p->str_size));
 	if (g_l == NULL)
 	{
 		g_l = p;
@@ -22,20 +25,22 @@ void add_last(int pid)
 	p->link = g_l;
 }
 
-int search(int pid)
+t_cllist *search(int pid)
 {
 	t_cllist *p;
 
 	if (g_l == NULL)
-		return (0);
+		return (NULL);
+	if (g_l->pid == pid)
+		return (g_l);
 	p = g_l->link;
 	while (p != g_l)
 	{
 		if (p->pid == pid)
-			return (1);
+			return (p);
 		p = p->link;
 	}
-	return (0);
+	return (NULL);
 }
 
 void delete_node(int pid)
@@ -69,22 +74,35 @@ void delete_node(int pid)
 void print_list(void)
 {
 	t_cllist *p;
-	char	*tmp;
+	//char	*tmp;
+	int i;
 
 	if (g_l == NULL)
 	{
 		printf("NULL\n");
 		return ;
 	}
-	tmp = ft_itoa(g_l->pid);
-	write(1, tmp, ft_strlen(tmp));
-	write(1, " ", 1);
+	//tmp = ft_itoa(g_l->pid);
+	printf("==================\n");
+	printf("pid : %d\n", g_l->pid);
+	printf("bin : ");
+	i = -1;
+	while (g_l->bin[++i] != -1)
+		printf("%d", g_l->bin[i]);
+	printf("\nstr : %s", g_l->str);
+	printf("\n==================\n");
 	p = g_l->link;
 	while (p != g_l)
 	{
-		tmp = ft_itoa(p->pid);
-		write(1, tmp, ft_strlen(tmp));
-		write(1, " ", 1);
+		//tmp = ft_itoa(p->pid);
+		printf("==================\n");
+		printf("pid : %d\n", p->pid);
+		printf("bin : ");
+		i = -1;
+		while (p->bin[++i] != -1)
+			printf("%d", p->bin[i]);
+		printf("\nstr : %s", p->str);
+		printf("\n==================\n");
 		p = p->link;
 	}
 }

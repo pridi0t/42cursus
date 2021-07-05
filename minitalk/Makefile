@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/07/05 01:54:49 by hyojang          ###   ########.fr        #
+#    Updated: 2021/07/05 11:26:49 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = server
 NAME2 = client
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 IFLAG = -I
 LIBFT_F = ./libft
 
