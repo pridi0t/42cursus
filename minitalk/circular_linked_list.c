@@ -1,17 +1,24 @@
 #include <stdio.h>
 #include "server.h"
 
+void init(t_cllist *l, int pid)
+{
+	l->pid = pid;
+	ft_memset(l->bin, -1, sizeof(int) * 8);
+	l->b_idx = -1;
+	l->str = NULL;
+	ft_memset(l->sb, -1, sizeof(int) * 32);
+	l->sb_idx = -1;
+	l->strlen = -1;
+}
+
 void add_last(int pid)
 {
 	t_cllist *p;
 	t_cllist *tmp;
 
 	p = (t_cllist *)malloc(sizeof(t_cllist));
-	p->pid = pid;
-	ft_memset(p->bin, -1, sizeof(p->bin));
-	p->str_size = 100;
-	p->str = (char *)malloc(p->str_size);
-	ft_memset(p->str, 0, sizeof(p->str_size));
+	init(p, pid);
 	if (g_l == NULL)
 	{
 		g_l = p;

@@ -6,9 +6,12 @@
 typedef struct s_cllist {
 	int pid;
 	int bin[8];
-	int binlen;
+	int b_idx;
 	char *str;
-	int str_size;
+	int str_idx;
+	int sb[32];
+	int sb_idx;
+	int strlen;
 	struct s_cllist *link;
 } t_cllist;
 

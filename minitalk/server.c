@@ -3,15 +3,15 @@
 
 t_cllist *g_l;
 
-char bin_to_dec(int bin[])
+char bin_to_dec(int bin[], int blen)
 {
 	int i;
 	int base;
 	int result;
 
-	i = 7;
+	i = blen - 1;
 	base = 1;
-	result = bin[7];
+	result = bin[blen - 1];
 	while (--i >= 0)
 	{
 		base *= 2;
@@ -20,40 +20,27 @@ char bin_to_dec(int bin[])
 	return (result);
 }
 
-char *append_char(char *str, int *size, char c)
+void append_char(t_cllist *l, char c)
 {
-	int strlen;
-	char *new;
-
-	if (str == NULL)
+	if (l->str == NULL)
 	{
-		str[0] = c;
-		return str;
+		l->str = (char *)malloc(l->strlen);
+		ft_memset(l->str, 0, l->strlen);
+		l->str[0] = c;
+		l->str_idx = 1;
+		return ;
 	}
-	strlen = 0;
-	while (str[strlen] != 0)
-		strlen++;
-	if (strlen < *size)
-	{
-		str[strlen] = c;
-		return str;
-	}
-	*size *= 2;
-	new = (char *)malloc(*size);
-	ft_memset(new, 0, *size);
-	ft_memcpy(new, str, (*size / 2));
-	free(str);
-	return new;
+	l->str[l->str_idx++] = c;
 }
 
 void proc(int signum, siginfo_t *info, void *oact)
 {
-	printf("signo :%d\n", signum);
+	//printf("signo :%d\n", signum);
 	//char *pid = ft_itoa(info->si_pid);
 	t_cllist *l;
 	int sign;
 
-	oact = NULL;
+	oact += 0;
 	sign = 0;
 	if (signum == SIGUSR1)
 		sign = 1;
@@ -66,22 +53,32 @@ void proc(int signum, siginfo_t *info, void *oact)
 		if (l == NULL)
 		{
 			add_last(info->si_pid);
-			print_list();
+			//print_list();
 			l = search(info->si_pid);
 			l->bin[0] = sign;
-			l->binlen = 1;
+			l->b_idx = 1;
 			//printf("after : ");
 			//(void)signum;
 			return ;
 		}
-		else if (l->binlen == 8)
+		if (l->strlen == -1 && l->sb_idx != 32)
+			l->sb[l->sb_idx++] = sign;
+		else if (l->strlen == -1 && l->sb_idx == 32)
+			l->strlen = bin_to_dec(l->sb, 32);
+		else
+			l->bin[l->b_idx++] = sign;
+		if (l->b_idx == 7)
 		{
-			l->str = append_char(l->str, &(l->str_size), bin_to_dec(l->bin));
-			printf("l->str : %s\n", l->str);
-			ft_memset(l->bin, 0, 8);
-			l->binlen = 0;
+			append_char(l, bin_to_dec(l->bin, 8));
+			//printf("l->str : %s\n", l->str);
+			ft_memset(l->bin, 0, sizeof(int) * 8);
+			l->b_idx = 0;
 		}
-		l->bin[l->binlen++] = sign;
+		if ((int)ft_strlen(l->str) == l->strlen)
+		{
+			printf("%s", l->str);
+			return;
+		}
 	}
 }
 

@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
 	siginfo_t set;
 	char *str;
 	int bin[8];
+	int slen[32];
 	int i;
 	int j;
 	
@@ -38,6 +39,25 @@ int main(int argc, char *argv[])
 	write(1, "\n", 2);
 
 	i = -1;
+
+	// send strlen
+	ft_memset(slen, 0, sizeof(slen));
+	dec_to_bin(slen, ft_strlen(argv[2]));
+	while (++i < (int)(sizeof(slen) / sizeof(int)))
+	{
+		if (slen[i] == 1)
+		{
+			kill(ft_atoi(argv[1]), SIGUSR1);
+			usleep(100);
+		}
+		else
+		{
+			kill(ft_atoi(argv[1]), SIGUSR2);
+			usleep(100);
+		}
+	}
+
+	// send str
 	while (++i < (int)ft_strlen(argv[2]))
 	{
 		ft_memset(bin, 0, sizeof(bin));
