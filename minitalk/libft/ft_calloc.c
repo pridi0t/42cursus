@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 18:59:44 by hyojang           #+#    #+#             */
-/*   Updated: 2020/10/17 21:44:34 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/23 07:38:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	char	*mem;
-	size_t	i;
 
-	i = 0;
 	mem = (char *)malloc(count * size);
 	if (mem == 0)
 		return (0);

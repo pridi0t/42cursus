@@ -1,7 +1,7 @@
 #include "server.h"
 #include <stdio.h>
 
-t_cllist *g_l;
+t_cllist g_l;
 
 char bin_to_dec(int bin[], int blen)
 {
@@ -20,27 +20,22 @@ char bin_to_dec(int bin[], int blen)
 	return (result);
 }
 
-void append_char(t_cllist *l, char c)
+void append_char(t_cllist *l, int c)
 {
 	if (l->str == NULL)
 	{
 		l->str = (char *)malloc(l->strlen);
 		ft_memset(l->str, 0, l->strlen);
-		l->str[0] = c;
-		l->str_idx = 1;
-		return ;
 	}
-	l->str[l->str_idx++] = c;
+	l->str[l->str_idx++] = (char)c;
 }
 
-void proc(int signum, siginfo_t *info, void *oact)
+void proc(int signum)
 {
 	//printf("signo :%d\n", signum);
 	//char *pid = ft_itoa(info->si_pid);
-	t_cllist *l;
 	int sign;
 
-	oact += 0;
 	sign = 0;
 	if (signum == SIGUSR1)
 		sign = 1;
@@ -49,51 +44,61 @@ void proc(int signum, siginfo_t *info, void *oact)
 		///write(1, "\nclient PID : ", 15);
 		//write(1, pid, ft_strlen(pid));
 		//write(1, "\n", 2);
-		l = search(info->si_pid);
-		if (l == NULL)
+		
+		if (g_l.sb_idx < 32)
 		{
-			add_last(info->si_pid);
-			//print_list();
-			l = search(info->si_pid);
-			l->bin[0] = sign;
-			l->b_idx = 1;
-			//printf("after : ");
-			//(void)signum;
-			return ;
+			//write(1, "1", 1);
+			g_l.sb[g_l.sb_idx++] = sign;
 		}
-		if (l->strlen == -1 && l->sb_idx != 32)
-			l->sb[l->sb_idx++] = sign;
-		else if (l->strlen == -1 && l->sb_idx == 32)
-			l->strlen = bin_to_dec(l->sb, 32);
-		else
-			l->bin[l->b_idx++] = sign;
-		if (l->b_idx == 7)
+		else if (g_l.strlen == 0 && g_l.sb_idx == 32)
 		{
-			append_char(l, bin_to_dec(l->bin, 8));
-			//printf("l->str : %s\n", l->str);
-			ft_memset(l->bin, 0, sizeof(int) * 8);
-			l->b_idx = 0;
+			//write(1, "2", 1);
+			/*
+			for (int i = 0 ; i < 32 ; i++)
+				write(1, ft_itoa(g_l.sb[i]), ft_strlen(ft_itoa(g_l.sb[i])));
+			*/
+			g_l.strlen = bin_to_dec(g_l.sb, 32);
+			//write(1, ft_itoa(g_l.strlen), ft_strlen(ft_itoa(g_l.strlen)));
 		}
-		if ((int)ft_strlen(l->str) == l->strlen)
+		else if (g_l.b_idx < 8)
 		{
-			printf("%s", l->str);
-			return;
+			//write(1, "3", 1);
+			g_l.bin[g_l.b_idx++] = sign;
+		}
+		if (g_l.b_idx == 8)
+		{
+			//write(1, "4", 1);
+			/*for (int i = 0 ; i < 8 ; i++)
+			{
+				write(1, ft_itoa(g_l.bin[i]), ft_strlen(ft_itoa(g_l.bin[i])));
+			}
+			*/
+			write(1, "\n", 1);
+			append_char(&g_l, bin_to_dec(g_l.bin, 8));
+			ft_memset(&g_l.bin, 0, sizeof(int) * 8);
+			g_l.b_idx = 0;
+		}
+		if (g_l.str != 0 && (int)ft_strlen(g_l.str) == g_l.strlen)
+		{
+			write(1, "5", 1);
+			write(1, g_l.str, ft_strlen(g_l.str));
 		}
 	}
 }
 
 int main(void)
 {
-	struct sigaction act;
 	char *pid = ft_itoa(getpid());
-	
+
+	//init
+	ft_memset(&g_l, 0, sizeof(t_cllist));
+	//g_l.str = NULL;
+
 	write(1, "server PID : ", 13);
 	write(1, pid, ft_strlen(pid));
 	write(1, "\n", 2);
-	act.sa_sigaction = proc;
-	act.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &act, 0);
-	sigaction(SIGUSR2, &act, 0);
+	signal(SIGUSR1, &proc);
+	signal(SIGUSR2, &proc);
 	while(1)
 	{
 		pause();

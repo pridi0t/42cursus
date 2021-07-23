@@ -38,12 +38,11 @@ int main(int argc, char *argv[])
 	write(1, str, ft_strlen(str));
 	write(1, "\n", 2);
 
-	i = -1;
-
 	// send strlen
 	ft_memset(slen, 0, sizeof(slen));
 	dec_to_bin(slen, ft_strlen(argv[2]));
-	while (++i < (int)(sizeof(slen) / sizeof(int)))
+	i = (int)(sizeof(slen) / sizeof(int));
+	while (--i >= 0)
 	{
 		if (slen[i] == 1)
 		{
@@ -58,7 +57,8 @@ int main(int argc, char *argv[])
 	}
 
 	// send str
-	while (++i < (int)ft_strlen(argv[2]))
+	i = (int)ft_strlen(argv[2]);
+	while (--i >= 0)
 	{
 		ft_memset(bin, 0, sizeof(bin));
 		dec_to_bin(bin, argv[2][i]);
@@ -78,6 +78,6 @@ int main(int argc, char *argv[])
 		}
 		printf("\n");
 	}
-	kill(ft_atoi(argv[1]), SIGUSR1);
+	//kill(ft_atoi(argv[1]), SIGUSR1);
 	return 0;
 }

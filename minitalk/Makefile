@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/07/05 11:26:49 by hyojang          ###   ########.fr        #
+#    Updated: 2021/07/23 07:24:26 by marvin           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = server
 NAME2 = client
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 IFLAG = -I
 LIBFT_F = ./libft
 
@@ -23,7 +23,7 @@ LIB_DIR = -L./libft
 
 RM = rm -f
 
-FILES = circular_linked_list	\
+#FILES = 
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
