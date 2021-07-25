@@ -2,8 +2,6 @@
 #include "libft.h"
 #include <signal.h>
 
-#include <stdio.h>
-
 void dec_to_bin(int *bin, char c)
 {
 	int i;
@@ -26,6 +24,7 @@ int main(int argc, char *argv[])
 	int slen[32];
 	int i;
 	int j;
+	int	len;
 	
 	if (argc != 3)
 	{
@@ -57,8 +56,9 @@ int main(int argc, char *argv[])
 	}
 
 	// send str
-	i = (int)ft_strlen(argv[2]);
-	while (--i >= 0)
+	len = (int)ft_strlen(argv[2]); 
+	i = -1;
+	while (++i < len)
 	{
 		ft_memset(bin, 0, sizeof(bin));
 		dec_to_bin(bin, argv[2][i]);
@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
 				usleep(100);
 			}	
 		}
-		printf("\n");
 	}
 	//kill(ft_atoi(argv[1]), SIGUSR1);
 	return 0;
