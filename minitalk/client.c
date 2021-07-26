@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 23:48:42 by hyojang           #+#    #+#             */
-/*   Updated: 2021/07/25 23:48:44 by hyojang          ###   ########.fr       */
+/*   Created: 2021/06/25 13:28:41 by hyojang           #+#    #+#             */
+/*   Updated: 2021/07/26 11:44:07 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ void	send_str(int pid, int len, char *argv)
 			if (bin[j] == 1)
 			{
 				kill(pid, SIGUSR1);
-				usleep(100);
+				usleep(50);
 			}
 			else
 			{
 				kill(pid, SIGUSR2);
-				usleep(100);
+				usleep(50);
 			}	
 		}
 	}
@@ -90,6 +90,7 @@ int	main(int argc, char *argv[])
 	write(1, "PID : ", 6);
 	write(1, pid, ft_strlen(pid));
 	write(1, "\n", 2);
+	free(pid);
 	send_strlen(ft_atoi(argv[1]), argv[2]);
 	send_str(ft_atoi(argv[1]), (int)ft_strlen(argv[2]), argv[2]);
 	return (0);

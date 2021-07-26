@@ -6,12 +6,11 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 15:03:31 by hyojang           #+#    #+#             */
-/*   Updated: 2021/07/04 23:14:05 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/26 11:47:57 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 int	check(char c)
 {

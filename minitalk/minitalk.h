@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/25 23:19:04 by hyojang           #+#    #+#             */
-/*   Updated: 2021/07/25 23:43:25 by hyojang          ###   ########.fr       */
+/*   Created: 2021/07/15 20:19:04 by hyojang           #+#    #+#             */
+/*   Updated: 2021/07/26 11:29:24 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include "libft.h"
 
-typedef struct s_cllist {
+typedef struct s_info {
 	int		bin[8];
 	int		b_idx;
 	char	*str;
@@ -25,7 +25,7 @@ typedef struct s_cllist {
 	int		sb[32];
 	int		sb_idx;
 	int		strlen;
-}		t_cllist;
+}		t_info;
 
-extern t_cllist	g_l;
+extern t_info	g_l;
 #endif
