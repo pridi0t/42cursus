@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:08:22 by hyojang           #+#    #+#             */
-/*   Updated: 2021/07/26 11:32:12 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/07/26 12:55:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	main(void)
 	write(1, "server PID : ", 13);
 	write(1, pid, ft_strlen(pid));
 	write(1, "\n", 2);
+	free(pid);
 	signal(SIGUSR1, &proc);
 	signal(SIGUSR2, &proc);
 	while (1)
