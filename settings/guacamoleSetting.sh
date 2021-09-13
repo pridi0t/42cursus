@@ -12,3 +12,18 @@ echo "set nofixendofline" >> ~/.vimrc
 export MAIL="hyojang@student.42seoul.kr"
 alias cc="gcc -Werror -Wall -Wextra"
 alias norm="norminette"
+
+# Stdheader
+mkdir -p ~/.vim/plugin
+cp stdheader.vim ~/.vim/plugin/
+if [ ! -z "$USER" ]
+then
+    echo "USER=`/usr/bin/whoami`" >> ~/.zshrc
+    echo "export USER" >> ~/.zshrc
+fi
+
+if [ ! -z "$GROUP" ]
+then
+    echo "GROUP=`/usr/bin/id -gn $user`" >> ~/.zshrc
+    echo "export GROUP" >> ~/.zshrc
+fi
