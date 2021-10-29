@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 03:56:56 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/30 08:40:27 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,17 @@ void	print_minfo(t_minfo *minfo)
 	printf("\n===== pinfo(philo status) =====\n");
 	i = -1;
 	while (++i < minfo->philo)
-		printf("id : %d,\tstatus : %d\n", minfo->pinfo[i].id, minfo->pinfo[i].status);
+	{
+		printf("[%d]status : ", i);
+		if (minfo->pinfo[i].status == EAT)
+			printf("EAT\n");
+		else if (minfo->pinfo[i].status == SLEEP)
+			printf("SLEEP\n");
+		else if (minfo->pinfo[i].status == THINK)
+			printf("SHINK\n");
+		else
+			printf("error\n");
+	}
 	printf("===============================\n");
 	printf("\n===== fork status =====\n");
 	i = -1;
