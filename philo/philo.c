@@ -6,63 +6,72 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/28 07:06:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/30 01:29:24 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-typedef struct s_pstat {
-	int	id;
-	int	status;
-} t_stat;
-
-typedef struct s_pstat {
-	int eat;
-	int sleep;
-	int think;
-	int cnt;
-	int status;
-} t_pstat;
-
 void	cycle(void *arg)
 {
-	t_pstat stat;
+	//t_pstat stat;
 
-	ft_memcpy(stat, arg, sizeof(stat));
+	//ft_memcpy(stat, arg, sizeof(stat));
+}
 
+void	init_minfo(int argc, char *argv[], t_minfo *minfo)
+{
+	minfo->philo = ft_atoi(argv[1]);
+	//minfo->nfork = philo;
+	minfo->pinfo = (t_stat *)malloc(sizeof(t_pstat) * minfo->philo);
+	minfo->finfo = (int *)malloc(sizeof(int) * minfo->philo);
+	memset(minfo->pinfo, 0, sizeof(int) * minfo->philo);
+	memset(minfo->finfo, 0, sizeof(int) * minfo->philo);	// not 0?
+
+	minfo->eat = ft_atoi(argv[3]);
+	minfo->sleep = ft_atoi(argv[4]);
+	minfo->die = ft_atoi(argv[2]);
+	minfo->think = minfo->die - minfo->eat - minfo->sleep;
+	if (minfo->think < 0)
+		minfo->think = 0;
+	minfo->must_eat = 0;
+	if (argc == 6)
+		minfo->must_eat = ft_atoi(argv[5]);
+	minfo->dflag = 0;
+}
+
+void	print_minfo(t_minfo *minfo)
+{
+	int i;
+
+	printf("---------- info ----------\n");
+	printf("philo :\t\t%d\n", minfo->philo);
+	printf("eat time :\t%d\n", minfo->eat);
+	printf("sleep time :\t%d\n", minfo->sleep);
+	printf("think time :\t%d\n", minfo->think);
+	printf("dead_cnt :\t%d\n", minfo->die);
+	printf("must_eat:\t%d\n", minfo->must_eat);
+	printf("[dflag :\t%d]\n", minfo->dflag);
+	printf("--------------------------\n");
+	printf("\n===== pinfo(philo status) =====\n");
+	i = -1;
+	while (++i < minfo->philo)
+		printf("id : %d,\tstatus : %d\n", minfo->pinfo[i].id, minfo->pinfo[i].status);
+	printf("===============================\n");
+	printf("\n===== fork status =====\n");
+	i = -1;
+	while (++i < minfo->philo)
+		printf("%d ", minfo->finfo[i]);
+	printf("\n=======================\n");
 }
 
 int	main(int argc, char *argv[])
 {
-	t_stat	*pinfo;
-	int		*finfo;
-	int		philo;
-	int		nfork;
-	int		dead_num = 0;
+	t_minfo minfo;
 
-	t_pstat = pstat;
-	int	die;
-	int	must_eat; 
+	// have to add input exception
+	init_minfo(argc, argv, &minfo);
+	print_minfo(&minfo);
 	
-	philo = ft_atoi(argv[1]);
-	nfork = philo;
-	pinfo = (int *)malloc(sizeof(t_stat) * philo);
-	finfo = (int *)malloc(sizeof(int) * nfork);
-	memset(pinfo, 0, sizeof(int) * philo);
-	memset(finfo, 0, sizeof(int) * nfork);	// not 0?
-
-	die = ft_atoi(argv[2]);
-	pstat.eat = ft_atoi(argv[3]);
-	pstat.sleep = ft_atoi(argv[4]);
-	pstat.think = die - eat - sleep;
-	if (pstat.think < 0)
-		pstat.think = 0;
-	must_eat = 0;
-	if (argc == 6)
-		must_eat = ft_atoi(argv[5]);
-
-	pthread_create()
-
 	return (0);
 }
