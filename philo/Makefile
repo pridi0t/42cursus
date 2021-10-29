@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 19:59:26 by hyojang           #+#    #+#              #
-#    Updated: 2021/10/29 23:54:22 by hyojang          ###   ########.fr        #
+#    Updated: 2021/10/30 03:56:19 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ RM = rm -f
 
 FILES = philo		\
 		ft_atoi		\
-		ft_memcpy
+		ft_memcpy	\
+		philo_utils
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

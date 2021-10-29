@@ -6,18 +6,11 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 01:29:24 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/30 04:51:49 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	cycle(void *arg)
-{
-	//t_pstat stat;
-
-	//ft_memcpy(stat, arg, sizeof(stat));
-}
 
 void	init_minfo(int argc, char *argv[], t_minfo *minfo)
 {
@@ -40,38 +33,67 @@ void	init_minfo(int argc, char *argv[], t_minfo *minfo)
 	minfo->dflag = 0;
 }
 
-void	print_minfo(t_minfo *minfo)
+// main thread
+void	*monitor(void *arg)
 {
-	int i;
+	struct timeval	start;
+	struct timeval	cur;
+	int				gap;
+	t_minfo			*minfo;
 
-	printf("---------- info ----------\n");
-	printf("philo :\t\t%d\n", minfo->philo);
-	printf("eat time :\t%d\n", minfo->eat);
-	printf("sleep time :\t%d\n", minfo->sleep);
-	printf("think time :\t%d\n", minfo->think);
-	printf("dead_cnt :\t%d\n", minfo->die);
-	printf("must_eat:\t%d\n", minfo->must_eat);
-	printf("[dflag :\t%d]\n", minfo->dflag);
-	printf("--------------------------\n");
-	printf("\n===== pinfo(philo status) =====\n");
-	i = -1;
-	while (++i < minfo->philo)
-		printf("id : %d,\tstatus : %d\n", minfo->pinfo[i].id, minfo->pinfo[i].status);
-	printf("===============================\n");
-	printf("\n===== fork status =====\n");
-	i = -1;
-	while (++i < minfo->philo)
-		printf("%d ", minfo->finfo[i]);
-	printf("\n=======================\n");
+	minfo = (t_minfo *)arg;
+	print_minfo(minfo);
+	if (gettimeofday(&start, NULL) != 0)
+	{
+		write(2, "time error\n", 11);
+		exit(1);
+	}
+	while (1)
+	{
+		if (gettimeofday(&cur, NULL) != 0)
+		{
+			write(2, "time error\n", 11);
+			exit(1);
+		}
+		gap = (cur.tv_sec * 1000 + cur.tv_usec / 1000) - (start.tv_sec * 1000 + start.tv_usec / 1000);
+		if (gap >= 50)
+			return (NULL);
+		printf("%dms\n", gap);
+		usleep(1000);
+	}
+}
+
+// philo thread
+void	*philo_cycle(void *arg)
+{
+	t_pstat pstat;
+	t_minfo	*minfo;
+
+	minfo = (t_minfo *)arg;
+	pstat.dead_cnt = minfo->die;
+	pstat.status = -1;
+	pstat.eat_cnt = 0;
+
+	
 }
 
 int	main(int argc, char *argv[])
 {
-	t_minfo minfo;
+	int			i;
+	t_minfo		minfo;
+	pthread_t	m;
 
 	// have to add input exception
 	init_minfo(argc, argv, &minfo);
-	print_minfo(&minfo);
+	//print_minfo(&minfo);
+
+	pthread_create(&m, NULL, &monitor, (void *)&minfo);
+	i = -1;
+	while (++i < minfo.philo)
+	{
+		pthread_create(minfo.pinfo[i].id, NULL, );
+	}
+	pthread_join(m, NULL);
 	
 	return (0);
 }
