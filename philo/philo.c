@@ -6,55 +6,63 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 10:19:43 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/30 18:50:34 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_minfo(int argc, char *argv[], t_minfo *minfo)
+int	init_minfo(int argc, char *argv[], t_minfo *minfo)
 {
+	struct timeval	start;
 	int				i;
 
 	minfo->philo = ft_atoi(argv[1]);
-	minfo->pinfo = (t_stat *)malloc(sizeof(t_pstat) * minfo->philo);
+	minfo->pidinfo = (pthread_t *)malloc(sizeof(pthread_t) * minfo->philo);
 	minfo->finfo = (int *)malloc(sizeof(int) * minfo->philo);
-	memset(minfo->pinfo, 0, sizeof(int) * minfo->philo);
+	memset(minfo->pidinfo, 0, sizeof(int) * minfo->philo);
 	memset(minfo->finfo, 0, sizeof(int) * minfo->philo);	// not 0?
 	pthread_mutex_init(&minfo->flag_mutex, NULL);
+	pthread_mutex_init(&minfo->print_mutex, NULL);
 	minfo->mfork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * minfo->philo);
 	i = -1;
 	while (++i < minfo->philo)
 		pthread_mutex_init(&minfo->mfork[i], NULL);
-	minfo->eat = ft_atoi(argv[3]);
-	minfo->sleep = ft_atoi(argv[4]);
-	minfo->die = ft_atoi(argv[2]);
-	minfo->think = minfo->die - minfo->eat - minfo->sleep;
-	if (minfo->think < 0)
-		minfo->think = 0;
 	minfo->must_eat = -1;
-	if (argc == 6)
-		minfo->must_eat = ft_atoi(argv[5]);
-	minfo->dflag = 0;
-	pthread_mutex_init(&minfo->flag_mutex, NULL);
-	pthread_mutex_init(&minfo->print_mutex, NULL);
+	minfo->end = D_END;
+	if (gettimeofday(&time, NULL) != 0)
+		return (1);
+	minfo->mtstart = cvt_time();
+	minfo->err = 0;
+	return (0);
 }
 
-t_pstat	*init_pstat(t_pstat *pstat, t_minfo *minfo)
+void	init_pstat(int argc, char *argv[], t_minfo *minfo, t_pstat **pstat)
 {
 	int		i;
 
-	pstat = (t_pstat *)malloc(sizeof(t_pstat) * minfo->philo);
+	*pstat = (t_pstat *)malloc(sizeof(t_pstat) * minfo->philo);
 	i = -1;
 	while (++i < minfo->philo)
 	{
-		pstat[i].minfo = minfo;
-		pstat[i].philo_num = (i + 1);
-		pstat[i].dead_cnt = minfo->die;
-		pstat[i].status = -1;
-		pstat[i].eat_cnt = 0;
+		*pstat[i]->minfo = minfo;
+		*pstat[i]->philo_num = (i + 1);
+		*pstat[i]->dead_cnt = ft_atoi(argv[2]);
+		*pstat[i]->eat = ft_atoi(argv[3]);
+		*pstat[i]->sleep = ft_atoi(argv[4]);
+		minfo->think = 1;
+		if ((*pstat[i].dead_cnt - minfo->eat - minfo->sleep - 1) < 0);
+			minfo->think = 0;
+		minfo->must_eat = -1;
+		minfo->endflag = D_END;
+		if (argc == 6)
+		{
+			minfo->must_eat = ft_atoi(argv[5]);
+			minfo->endflag = M_END;
+		}
+		*pstat[i].status = -1;
+		*pstat[i].eat_cnt = 0;
 	}
-	return (pstat);
 }
 
 // main thread
@@ -63,10 +71,8 @@ void	*monitor(void *arg)
 	struct timeval	time;
 	t_minfo			*minfo;
 	
-	int std = 0;
-
 	minfo = (t_minfo *)arg;
-	print_minfo(minfo);
+	// print_minfo(minfo);
 	if (gettimeofday(&time, NULL) != 0)
 	{
 		write(2, "gettimeofday error\n", 20);

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 10:17:11 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/30 18:50:33 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,24 @@ int		cvt_time(struct timeval input)
 int		get_msgap(struct timeval time1, struct timeval time2)
 {
 	return (cvt_time(time1) - cvt_time(time2));
+}
+
+void	print_err(int errnum)
+{
+	if (errnum == 1)
+		write(2, "gettime error\n", 14);
+}
+
+void	free_data(t_minfo **minfo, t_pstat **pstat)
+{
+	int i;
+
+	free(*minfo->pidinfo);
+	free(*minfo->finfo);
+	i = -1;
+	while (++i < *minfo->philo)
+		pthread_mutex_destroy(*minfo->mfork[i]);
+	*psta
 }
 
 void	print_minfo(t_minfo *minfo)
