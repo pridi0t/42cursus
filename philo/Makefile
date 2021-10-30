@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 19:59:26 by hyojang           #+#    #+#              #
-#    Updated: 2021/10/30 03:56:19 by hyojang          ###   ########.fr        #
+#    Updated: 2021/10/31 03:05:35 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ RM = rm -f
 FILES = philo		\
 		ft_atoi		\
 		ft_memcpy	\
+		philo_init	\
 		philo_utils
 
 SRCS_DIR = ./

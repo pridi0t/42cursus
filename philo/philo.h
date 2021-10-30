@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 01:16:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 00:47:36 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 04:04:58 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 typedef struct s_pidinfo{
 	pthread_t	pid;
 	int			eat_cnt;
+	int			status;
 } t_pidinfo;
 
 typedef struct s_minfo{
@@ -39,26 +40,34 @@ typedef struct s_minfo{
 	int				end;
 	pthread_mutex_t	flag_mutex;
 	pthread_mutex_t	print_mutex;
-	int				start;
+	long long		start;
 	int				err;
 } t_minfo;	
 
 typedef struct s_pstat{
-	t_minfo	*minfo;
-	int		eat;
-	int		sleep;
-	int		think;
-	int		philo_num;
-	int		dead_cnt;
-	int		status;
-	int		start;
+	t_minfo		*minfo;
+	int			eat;
+	int			sleep;
+	int			think;
+	int			philo_num;
+	int			dead_cnt;
+	//int		status;
+	long long	start;
 }	t_pstat;
 
-int		ft_atoi(const char *str);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-int		get_time(void);
-void	print_err(t_minfo *minfo, int errnum);
-void	free_data(t_minfo *minfo, t_pstat **pstat);
-void	print_minfo(t_minfo *minfo);
-void	print_pstat(t_pstat *pstat);
+// ft_fuc
+int			ft_atoi(const char *str);
+void		*ft_memcpy(void *dst, const void *src, size_t n);
+// init
+int			init_minfo(char *argv[], t_minfo *minfo);
+t_pstat		*init_pstat(int argc, char *argv[], t_minfo *minfo, t_pstat *pstat);
+// utils
+long long	get_time(void);
+void		ms_sleep(int ms);
+void		print_err(t_minfo *minfo, int errnum);
+int			print_status(t_minfo *minfo, int philo_num, int stat);
+//
+void		free_data(t_minfo *minfo, t_pstat **pstat);
+void		print_minfo(t_minfo *minfo);
+void		print_pstat(t_pstat *pstat);
 #endif
