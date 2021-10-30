@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 01:16:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 04:04:58 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 04:49:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@
 # define D_END 10
 # define E_END 20
 # define DEAD 0
-# define EAT 1
-# define SLEEP 2
-# define THINK 3
+# define G_FORK 1
+# define EAT 2
+# define SLEEP 3
+# define THINK 4
 typedef struct s_pidinfo{
 	pthread_t	pid;
 	int			eat_cnt;
@@ -38,6 +39,7 @@ typedef struct s_minfo{
 	int				must_eat;
 	int				dead;
 	int				end;
+	pthread_mutex_t	acc_mutex;
 	pthread_mutex_t	flag_mutex;
 	pthread_mutex_t	print_mutex;
 	long long		start;

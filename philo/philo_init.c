@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 03:01:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 03:30:56 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 04:35:22 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	init_minfo(char *argv[], t_minfo *minfo)
 	minfo->finfo = (int *)malloc(sizeof(int) * minfo->philo);
 	memset(minfo->pidinfo, 0, sizeof(int) * minfo->philo);
 	memset(minfo->finfo, 0, sizeof(int) * minfo->philo);	// not 0?
+	pthread_mutex_init(&minfo->acc_mutex, NULL);
 	pthread_mutex_init(&minfo->flag_mutex, NULL);
 	pthread_mutex_init(&minfo->print_mutex, NULL);
 	minfo->mfork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * minfo->philo);

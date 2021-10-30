@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 04:11:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 04:57:36 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,39 @@ void	*monitor(void *arg)
 	}
 }
 
+int	eat(t_minfo *minfo, t_pstat *pstat)
+{
+	//edit db, set mutex
+	pthread_mutex_lock(&minfo->acc_mutex);
+	
+	pthread_mutex_lock(&minfo->mfork[pstat->philo_num]);
+	pthread_mutex_lock(&minfo->mfork[(pstat->philo_num + 1) % pstat->philo_num]);
+	
+	minfo->finfo[pstat->philo_num] = 1;
+	minfo->finfo[(pstat->philo_num + 1) % pstat->philo_num] = 1;
+	print_status(pstat->minfo, pstat->philo_num, G_FORK);
+	
+	pthread_mutex_unlock(&minfo->acc_mutex);
+	
+	// eat
+	print_status(pstat->minfo, pstat->philo_num, EAT);
+	if (pstat->dead_cnt <= pstat->eat)
+		return (0);
+	ms_sleep(pstat->eat);
+	
+	// unset mutex
+	pthread_mutex_lock(&minfo->acc_mutex);
+
+	pthread_mutex_unlock(&minfo->mfork[pstat->philo_num]);
+	pthread_mutex_unlock(&minfo->mfork[(pstat->philo_num + 1) % pstat->philo_num]);
+	
+	minfo->finfo[pstat->philo_num] = 0;
+	minfo->finfo[(pstat->philo_num + 1) % pstat->philo_num] = 0;
+	
+	pthread_mutex_lock(&minfo->acc_mutex);
+	return (1);
+}
+
 // philo thread
 void	*philo_cycle(void *arg)
 {
@@ -55,10 +88,7 @@ void	*philo_cycle(void *arg)
 	while (get_time() - pstat->start < pstat->dead_cnt)
 	{
 		// EAT
-		print_status(pstat->minfo, pstat->philo_num, EAT);
-		if (pstat->dead_cnt > pstat->eat)
-			ms_sleep(pstat->eat);
-		else
+		if (eat(pstat->minfo, pstat) == 0)
 			break;
 		// SLEEP
 		print_status(pstat->minfo, pstat->philo_num, SLEEP);

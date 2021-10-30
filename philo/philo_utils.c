@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 04:06:54 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 04:52:34 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,16 @@ void	print_err(t_minfo *minfo, int errnum)
 
 int	print_status(t_minfo *minfo, int philo_num, int stat)
 {
+	long long gap;
+
+	gap = get_time() - minfo->start;
 	pthread_mutex_lock(&minfo->print_mutex);
-	printf("%lldms\t", get_time() - minfo->start);
+	printf("%lldms\t", gap);
+	if (stat == G_FORK)
+	{
+		printf("%d has taken a fork\n", philo_num);
+		printf("%lldms\t%d has taken a fork\n", gap, philo_num);
+	}
 	if (stat == EAT)
 	{
 		printf("%d is eating\n", philo_num);
