@@ -6,71 +6,60 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 18:50:33 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 02:07:20 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		cvt_time(struct timeval input)
+int		get_time(void)
 {
-	int time;
+	struct timeval time;
 
-	time = (input.tv_sec * 1000) + (input.tv_usec / 1000);
-	return (time);
+	if (gettimeofday(&time, NULL) != 0)
+		return (-1);
+	return((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-int		get_msgap(struct timeval time1, struct timeval time2)
-{
-	return (cvt_time(time1) - cvt_time(time2));
-}
-
-void	print_err(int errnum)
+void	print_err(t_minfo *minfo, int errnum)
 {
 	if (errnum == 1)
-		write(2, "gettime error\n", 14);
+		write(2, "---> gettimeofday error\n", 24);
+	if (errnum == 2)
+		write(2, "---> status error\n", 18);
+	minfo->err = errnum;
 }
 
-void	free_data(t_minfo **minfo, t_pstat **pstat)
+/*
+void	free_data(t_minfo *minfo, t_pstat **pstat)
 {
 	int i;
 
 	free(*minfo->pidinfo);
+	*minfo->pidinfo = NULL;
 	free(*minfo->finfo);
+	*minfo->finfo = NULL;
 	i = -1;
 	while (++i < *minfo->philo)
 		pthread_mutex_destroy(*minfo->mfork[i]);
-	*psta
+	pthread_mutex_destroy(&minfo.flag_mutex);
+	pthread_mutex_destroy(&minfo.print_mutex);
+	*pstat = NULL;
 }
-
+*/
 void	print_minfo(t_minfo *minfo)
 {
 	int i;
 
 	printf("---------- info ----------\n");
-	printf("philo :\t\t%d\n", minfo->philo);
-	printf("eat time :\t%d\n", minfo->eat);
-	printf("sleep time :\t%d\n", minfo->sleep);
-	printf("think time :\t%d\n", minfo->think);
-	printf("dead_cnt :\t%d\n", minfo->die);
+	printf("philo\t:\t%d\n", minfo->philo);
+	printf("finfo\t:\t%d\n", *(minfo->finfo));
 	printf("must_eat:\t%d\n", minfo->must_eat);
-	printf("[dflag :\t%d]\n", minfo->dflag);
+	printf("dead\t:\t%d\n", minfo->dead);
+	printf("start\t:\t%d\n", minfo->start);
+	printf("err\t:\t%d\n", minfo->err);
+	printf("[end\t:\t%d]\n", minfo->end);
 	printf("--------------------------\n");
-	printf("\n===== pinfo(philo status) =====\n");
-	i = -1;
-	while (++i < minfo->philo)
-	{
-		printf("[%d]status : ", i);
-		if (minfo->pinfo[i].status == EAT)
-			printf("EAT\n");
-		else if (minfo->pinfo[i].status == SLEEP)
-			printf("SLEEP\n");
-		else if (minfo->pinfo[i].status == THINK)
-			printf("SHINK\n");
-		else
-			printf("error\n");
-	}
-	printf("===============================\n");
 	printf("\n===== fork status =====\n");
 	i = -1;
 	while (++i < minfo->philo)
@@ -78,4 +67,16 @@ void	print_minfo(t_minfo *minfo)
 	printf("\n=======================\n");
 }
 
-
+void	print_pstat(t_pstat *pstat)
+{
+	printf("-----------\n");
+	printf("minfo:%p\n", pstat->minfo);
+	printf("philo_num:\t%d\n", pstat->philo_num);
+	printf("eat\t:\t%d\n", pstat->eat);
+	printf("sleep\t:\t%d\n", pstat->sleep);
+	printf("think\t:\t%d\n", pstat->think);
+	printf("dead_cnt:\t%d\n", pstat->dead_cnt);
+	printf("status\t:\t%d\n", pstat->status);
+	printf("start:\t%d\n", pstat->start);
+	printf("-----------\n");
+}

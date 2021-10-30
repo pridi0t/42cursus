@@ -6,19 +6,18 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 18:50:34 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 02:33:05 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_minfo(int argc, char *argv[], t_minfo *minfo)
+int	init_minfo(char *argv[], t_minfo *minfo)
 {
-	struct timeval	start;
-	int				i;
+	int	i;
 
 	minfo->philo = ft_atoi(argv[1]);
-	minfo->pidinfo = (pthread_t *)malloc(sizeof(pthread_t) * minfo->philo);
+	minfo->pidinfo = (t_pidinfo *)malloc(sizeof(t_pidinfo) * minfo->philo);
 	minfo->finfo = (int *)malloc(sizeof(int) * minfo->philo);
 	memset(minfo->pidinfo, 0, sizeof(int) * minfo->philo);
 	memset(minfo->finfo, 0, sizeof(int) * minfo->philo);	// not 0?
@@ -29,84 +28,79 @@ int	init_minfo(int argc, char *argv[], t_minfo *minfo)
 	while (++i < minfo->philo)
 		pthread_mutex_init(&minfo->mfork[i], NULL);
 	minfo->must_eat = -1;
+	minfo->dead = 0;
 	minfo->end = D_END;
-	if (gettimeofday(&time, NULL) != 0)
+	minfo->start = 0;
+	if (minfo->start == -1)
 		return (1);
-	minfo->mtstart = cvt_time();
 	minfo->err = 0;
 	return (0);
 }
 
-void	init_pstat(int argc, char *argv[], t_minfo *minfo, t_pstat **pstat)
+t_pstat	*init_pstat(int argc, char *argv[], t_minfo *minfo, t_pstat *pstat)
 {
 	int		i;
 
-	*pstat = (t_pstat *)malloc(sizeof(t_pstat) * minfo->philo);
+	pstat = (t_pstat *)malloc(sizeof(t_pstat) * minfo->philo + 1);
+	if (argc == 6)
+	{
+		minfo->must_eat = ft_atoi(argv[5]);
+		minfo->end = E_END;
+	}
 	i = -1;
 	while (++i < minfo->philo)
 	{
-		*pstat[i]->minfo = minfo;
-		*pstat[i]->philo_num = (i + 1);
-		*pstat[i]->dead_cnt = ft_atoi(argv[2]);
-		*pstat[i]->eat = ft_atoi(argv[3]);
-		*pstat[i]->sleep = ft_atoi(argv[4]);
-		minfo->think = 1;
-		if ((*pstat[i].dead_cnt - minfo->eat - minfo->sleep - 1) < 0);
-			minfo->think = 0;
-		minfo->must_eat = -1;
-		minfo->endflag = D_END;
-		if (argc == 6)
-		{
-			minfo->must_eat = ft_atoi(argv[5]);
-			minfo->endflag = M_END;
-		}
-		*pstat[i].status = -1;
-		*pstat[i].eat_cnt = 0;
+		pstat[i].minfo = minfo;
+		pstat[i].philo_num = (i + 1);
+		pstat[i].dead_cnt = ft_atoi(argv[2]);
+		pstat[i].eat = ft_atoi(argv[3]);
+		pstat[i].sleep = ft_atoi(argv[4]);
+		pstat[i].status = -1;
+		pstat[i].start = 0;
+		pstat[i].think = pstat[i].dead_cnt - pstat[i].eat - pstat[i].sleep;
+		if (pstat[i].think <= 0)
+			pstat[i].think = 0;
 	}
+	return (pstat);
 }
 
 // main thread
 void	*monitor(void *arg)
 {
-	struct timeval	time;
-	t_minfo			*minfo;
-	
+	t_minfo	*minfo;
+	int		i;
+
 	minfo = (t_minfo *)arg;
 	// print_minfo(minfo);
-	if (gettimeofday(&time, NULL) != 0)
+	minfo->start = get_time();
+	if (minfo->start == -1)
 	{
-		write(2, "gettimeofday error\n", 20);
-		exit(1);
+		minfo->err = 1;
+		return (NULL);
 	}
-	minfo->start = cvt_time(time);
 	while (1)
 	{
-		if (minfo->dflag != std)
+		if (minfo->dead == 1)
+			return (NULL);
+		if (minfo->end == E_END && minfo->must_eat != -1)
 		{
-			printf("dflag : %d\n", minfo->dflag);
-			std++;
-			if (std == 1)
+			i = -1;
+			while ((minfo->pidinfo[i].eat_cnt >= minfo->must_eat) && (++i < minfo->philo))
+				i++;
+			if (i == minfo->philo)
 				return (NULL);
 		}
 	}
 }
 
-void	print_status(t_minfo *minfo, t_pstat *pstat)
+int	print_status(t_minfo *minfo, t_pstat *pstat)
 {
-	struct timeval	cur;
-	int				time;
+	int cur;
 
-	if (gettimeofday(&cur, NULL) != 0)
-	{
-		write(2, "gettimeofday error\n", 20);
-		exit(1);
-	}
-	time = minfo->start - cvt_time(cur);
+	cur = get_time();
 	pthread_mutex_lock(&minfo->print_mutex);
-	printf("%dms\t", time);
-	if (pstat->status == -1)
-		printf("%d not cycle !!!!!\n", pstat->philo_num);
-	else if (pstat->status == EAT)
+	printf("%dms\t", cur - minfo->start);
+	if (pstat->status == EAT)
 		printf("%d is eating\n", pstat->philo_num);
 	else if (pstat->status == SLEEP)
 		printf("%d is sleeping\n", pstat->philo_num);
@@ -116,74 +110,88 @@ void	print_status(t_minfo *minfo, t_pstat *pstat)
 		printf("%d died\n", pstat->philo_num);
 	else
 	{
-		printf("status error!\n");
-		exit(1);
+		print_err(minfo, 2);
+		return (-1);
 	}
 	pthread_mutex_unlock(&minfo->print_mutex);
+	return (0);
 }
 
 // philo thread
 void	*philo_cycle(void *arg)
 {
-	t_pstat			*pstat;
-	struct timeval	cur;
+	t_pstat	*pstat;
+	int		cur;
 
 	pstat = (t_pstat *)arg;
-	// EAT
-	pstat->status = EAT;
-	if (gettimeofday(&cur, NULL) != 0)
+	if (pstat->think == 0)
 	{
-		write(2, "gettimeofday error\n", 20);
-		exit(1);
+		pthread_mutex_lock(&pstat->minfo->flag_mutex);
+		pstat->status = DEAD;
+		print_status(pstat->minfo, pstat);
+		pstat->minfo->dead++;
+		pthread_mutex_unlock(&pstat->minfo->flag_mutex);
+		return (NULL);
 	}
-	while (cvt_time(cur) < pstat->minfo->start + pstat->dead_cnt)
+	cur = get_time();
+	pstat->start = cur;
+	while (cur - pstat->start < pstat->dead_cnt)
 	{
+		// EAT
 		pstat->status = EAT;
 		print_status(pstat->minfo, pstat);
-		while (cvt_time(cur) < pstat->minfo->start + pstat->minfo->eat)
+		pstat->minfo->pidinfo[pstat->philo_num - 1].eat_cnt++;
+		while (cur - pstat->start <= pstat->eat)
 		{
-			sleep(1);
-			if (cvt_time(cur) >= pstat->minfo->start + pstat->dead_cnt)
+			usleep(1);
+			cur = get_time();
+			if (cur - pstat->start >= pstat->dead_cnt)
 			{
+				pthread_mutex_lock(&pstat->minfo->flag_mutex);
 				pstat->status = DEAD;
 				print_status(pstat->minfo, pstat);
+				pstat->minfo->dead++;
+				pthread_mutex_unlock(&pstat->minfo->flag_mutex);
 				return (NULL);
 			}
-			if (gettimeofday(&cur, NULL) != 0)
-			{
-				write(2, "gettimeofday error\n", 20);
-				exit(1);
-			}
 		}
+		// SLEEP
+		cur = get_time();
 		pstat->status = SLEEP;
 		print_status(pstat->minfo, pstat);
-		while (cvt_time(cur) < pstat->minfo->start + pstat->minfo->eat + pstat->minfo->sleep)
+		while (cur - (pstat->start + pstat->eat) <= pstat->sleep)
 		{
-			sleep(1);
-			if (cvt_time(cur) >= pstat->minfo->start + pstat->dead_cnt)
+			usleep(1);
+			cur = get_time();
+			if (cur - pstat->start >= pstat->dead_cnt)
 			{
+				pthread_mutex_lock(&pstat->minfo->flag_mutex);
 				pstat->status = DEAD;
 				print_status(pstat->minfo, pstat);
+				pstat->minfo->dead++;
+				pthread_mutex_unlock(&pstat->minfo->flag_mutex);
 				return (NULL);
 			}
-			if (gettimeofday(&cur, NULL) != 0)
-			{
-				write(2, "gettimeofday error\n", 20);
-				exit(1);
-			}
 		}
+		// THINK
+		cur = get_time();
 		pstat->status = THINK;
 		print_status(pstat->minfo, pstat);
-		sleep(1);
-		if (cvt_time(cur) >= pstat->minfo->start + pstat->dead_cnt)
+		while (cur - (pstat->start + pstat->eat + pstat->sleep + 1) != 0)
 		{
-			pstat->status = DEAD;
-			print_status(pstat->minfo, pstat);
-			return (NULL);
+			usleep(1);
+			cur = get_time();
 		}
+		if (cur - pstat->start >= pstat->dead_cnt)
+			break;
+		cur = get_time();
+		pstat->start = cur;
 	}
+	pthread_mutex_lock(&pstat->minfo->flag_mutex);
 	pstat->status = DEAD;
 	print_status(pstat->minfo, pstat);
+	pstat->minfo->dead++;
+	pthread_mutex_unlock(&pstat->minfo->flag_mutex);
 	return (NULL);
 }
 
@@ -195,29 +203,30 @@ int	main(int argc, char *argv[])
 	pthread_t	mt;
 
 	// have to add input exception
-	init_minfo(argc, argv, &minfo);
+	if (init_minfo(argv, &minfo) == 1)
+		return (1);
 	pstat = NULL;
-	pstat = init_pstat(pstat, &minfo);
-	//print_minfo(&minfo);
+	pstat = init_pstat(argc, argv, &minfo, pstat);
+	if (pstat == NULL)
+		return (1);
+	/*
+	print_minfo(&minfo);
+	i = -1;
+	while (++i < minfo.philo)
+		print_pstat(&pstat[i]);
+	*/
 
 	// thread create, detach
 	pthread_create(&mt, NULL, &monitor, (void *)&minfo);
 	
 	i = -1;
 	while (++i < minfo.philo)
-		pthread_create(&minfo.pinfo[i].id, NULL, &philo_cycle, (void *)((t_pstat *)(pstat + i)));
+		pthread_create(&minfo.pidinfo[i].pid, NULL, &philo_cycle, (void *)(pstat + i));
 	
 	i = -1;
 	while (++i < minfo.philo)
-		pthread_detach(minfo.pinfo[i].id);
+		pthread_detach(minfo.pidinfo[i].pid);
 	pthread_join(mt, NULL);
-
-	// mutex destroy
-	i = -1;
-	while (++i < minfo.philo)
-		pthread_mutex_destroy(&minfo.mfork[i]);
-	pthread_mutex_destroy(&minfo.flag_mutex);
-	pthread_mutex_destroy(&minfo.print_mutex);
-	
+	//free_data(&minfo, &pstat);
 	return (0);
 }
