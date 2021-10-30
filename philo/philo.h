@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 01:16:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 04:49:46 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 07:40:42 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_minfo{
 	int				must_eat;
 	int				dead;
 	int				end;
-	pthread_mutex_t	acc_mutex;
 	pthread_mutex_t	flag_mutex;
 	pthread_mutex_t	print_mutex;
 	long long		start;
@@ -57,6 +56,7 @@ typedef struct s_pstat{
 	long long	start;
 }	t_pstat;
 
+int			check_input(int argc, char *argv[]);
 // ft_fuc
 int			ft_atoi(const char *str);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
@@ -66,10 +66,8 @@ t_pstat		*init_pstat(int argc, char *argv[], t_minfo *minfo, t_pstat *pstat);
 // utils
 long long	get_time(void);
 void		ms_sleep(int ms);
-void		print_err(t_minfo *minfo, int errnum);
+void		print_err(int errnum);
 int			print_status(t_minfo *minfo, int philo_num, int stat);
 //
 void		free_data(t_minfo *minfo, t_pstat **pstat);
-void		print_minfo(t_minfo *minfo);
-void		print_pstat(t_pstat *pstat);
 #endif

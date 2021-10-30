@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 19:59:26 by hyojang           #+#    #+#              #
-#    Updated: 2021/10/31 03:05:35 by hyojang          ###   ########.fr        #
+#    Updated: 2021/10/31 07:32:39 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,11 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
-FILES = philo		\
-		ft_atoi		\
-		ft_memcpy	\
-		philo_init	\
+FILES = philo			\
+		ft_atoi			\
+		ft_memcpy		\
+		philo_parsing	\
+		philo_init		\
 		philo_utils
 
 SRCS_DIR = ./
