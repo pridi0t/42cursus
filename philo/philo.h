@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 01:16:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 08:40:29 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/30 10:14:39 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_minfo{
 	int				dflag;
 	pthread_mutex_t	flag_mutex;
 	pthread_mutex_t	print_mutex;
-	struct timeval	start;
+	int				start;
 }	t_minfo;
 
 typedef struct s_pstat{
@@ -53,5 +53,6 @@ typedef struct s_pstat{
 
 int		ft_atoi(const char *str);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+int		cvt_time(struct timeval input);
 void	print_minfo(t_minfo *minfo);
 #endif

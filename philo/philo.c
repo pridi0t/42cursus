@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/30 08:39:12 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/30 10:19:43 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_minfo(int argc, char *argv[], t_minfo *minfo)
 {
-	int i;
+	int				i;
 
 	minfo->philo = ft_atoi(argv[1]);
 	minfo->pinfo = (t_stat *)malloc(sizeof(t_pstat) * minfo->philo);
@@ -32,10 +32,12 @@ void	init_minfo(int argc, char *argv[], t_minfo *minfo)
 	minfo->think = minfo->die - minfo->eat - minfo->sleep;
 	if (minfo->think < 0)
 		minfo->think = 0;
-	minfo->must_eat = 0;
+	minfo->must_eat = -1;
 	if (argc == 6)
 		minfo->must_eat = ft_atoi(argv[5]);
 	minfo->dflag = 0;
+	pthread_mutex_init(&minfo->flag_mutex, NULL);
+	pthread_mutex_init(&minfo->print_mutex, NULL);
 }
 
 t_pstat	*init_pstat(t_pstat *pstat, t_minfo *minfo)
@@ -58,17 +60,19 @@ t_pstat	*init_pstat(t_pstat *pstat, t_minfo *minfo)
 // main thread
 void	*monitor(void *arg)
 {
+	struct timeval	time;
 	t_minfo			*minfo;
 	
 	int std = 0;
 
 	minfo = (t_minfo *)arg;
 	print_minfo(minfo);
-	if (gettimeofday(&minfo->start, NULL) != 0)
+	if (gettimeofday(&time, NULL) != 0)
 	{
 		write(2, "gettimeofday error\n", 20);
 		exit(1);
 	}
+	minfo->start = cvt_time(time);
 	while (1)
 	{
 		if (minfo->dflag != std)
@@ -91,19 +95,19 @@ void	print_status(t_minfo *minfo, t_pstat *pstat)
 		write(2, "gettimeofday error\n", 20);
 		exit(1);
 	}
-	time = (minfo->start.tv_sec * 1000 + minfo->start.tv_usec / 1000) - (cur.tv_sec * 1000 + cur.tv_usec / 1000);
+	time = minfo->start - cvt_time(cur);
 	pthread_mutex_lock(&minfo->print_mutex);
 	printf("%dms\t", time);
 	if (pstat->status == -1)
 		printf("%d not cycle !!!!!\n", pstat->philo_num);
 	else if (pstat->status == EAT)
-		printf("%dis eating\n", pstat->philo_num);
+		printf("%d is eating\n", pstat->philo_num);
 	else if (pstat->status == SLEEP)
-		printf("%dis sleeping\n", pstat->philo_num);
+		printf("%d is sleeping\n", pstat->philo_num);
 	else if (pstat->status == THINK)
-		printf("%dis thinking\n", pstat->philo_num);
+		printf("%d is thinking\n", pstat->philo_num);
 	else if (pstat->status == DEAD)
-		printf("%ddied\n", pstat->philo_num);
+		printf("%d died\n", pstat->philo_num);
 	else
 	{
 		printf("status error!\n");
@@ -115,12 +119,65 @@ void	print_status(t_minfo *minfo, t_pstat *pstat)
 // philo thread
 void	*philo_cycle(void *arg)
 {
-	int		i;
-	t_pstat *pstat;
+	t_pstat			*pstat;
+	struct timeval	cur;
 
 	pstat = (t_pstat *)arg;
-	i = -1;
-
+	// EAT
+	pstat->status = EAT;
+	if (gettimeofday(&cur, NULL) != 0)
+	{
+		write(2, "gettimeofday error\n", 20);
+		exit(1);
+	}
+	while (cvt_time(cur) < pstat->minfo->start + pstat->dead_cnt)
+	{
+		pstat->status = EAT;
+		print_status(pstat->minfo, pstat);
+		while (cvt_time(cur) < pstat->minfo->start + pstat->minfo->eat)
+		{
+			sleep(1);
+			if (cvt_time(cur) >= pstat->minfo->start + pstat->dead_cnt)
+			{
+				pstat->status = DEAD;
+				print_status(pstat->minfo, pstat);
+				return (NULL);
+			}
+			if (gettimeofday(&cur, NULL) != 0)
+			{
+				write(2, "gettimeofday error\n", 20);
+				exit(1);
+			}
+		}
+		pstat->status = SLEEP;
+		print_status(pstat->minfo, pstat);
+		while (cvt_time(cur) < pstat->minfo->start + pstat->minfo->eat + pstat->minfo->sleep)
+		{
+			sleep(1);
+			if (cvt_time(cur) >= pstat->minfo->start + pstat->dead_cnt)
+			{
+				pstat->status = DEAD;
+				print_status(pstat->minfo, pstat);
+				return (NULL);
+			}
+			if (gettimeofday(&cur, NULL) != 0)
+			{
+				write(2, "gettimeofday error\n", 20);
+				exit(1);
+			}
+		}
+		pstat->status = THINK;
+		print_status(pstat->minfo, pstat);
+		sleep(1);
+		if (cvt_time(cur) >= pstat->minfo->start + pstat->dead_cnt)
+		{
+			pstat->status = DEAD;
+			print_status(pstat->minfo, pstat);
+			return (NULL);
+		}
+	}
+	pstat->status = DEAD;
+	print_status(pstat->minfo, pstat);
 	return (NULL);
 }
 
@@ -154,6 +211,7 @@ int	main(int argc, char *argv[])
 	while (++i < minfo.philo)
 		pthread_mutex_destroy(&minfo.mfork[i]);
 	pthread_mutex_destroy(&minfo.flag_mutex);
+	pthread_mutex_destroy(&minfo.print_mutex);
 	
 	return (0);
 }
