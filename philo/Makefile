@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 19:59:26 by hyojang           #+#    #+#              #
-#    Updated: 2021/10/31 07:32:39 by hyojang          ###   ########.fr        #
+#    Updated: 2021/10/31 09:05:26 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 FILES = philo			\
-		ft_atoi			\
-		ft_memcpy		\
+		cycle			\
 		philo_parsing	\
 		philo_init		\
-		philo_utils
+		philo_utils		\
+		ft_atoi			\
+		ft_memcpy
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))

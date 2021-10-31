@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 07:09:19 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 07:44:58 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 08:55:45 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	ft_isdigit(int c)
 
 int	check_input(int argc, char *argv[])
 {
-	int i;
-	int j;
-	int flag;
+	int	i;
+	int	j;
+	int	flag;
 
 	if (argc != 5 && argc != 6)
 		return (1);

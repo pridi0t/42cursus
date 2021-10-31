@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 07:40:44 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 08:50:14 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 long long	get_time(void)
 {
-	struct timeval time;
+	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) != 0)
 		return (-1);
@@ -43,32 +43,28 @@ void	print_err(int errnum)
 		write(2, "arg error\n", 10);
 	else if (errnum == 1)
 		write(2, "gettimeofday error\n", 19);
-	/*
-	if (errnum == 2)
-		write(2, "status error\n", 18);
-	*/
 }
 
-int	print_status(t_minfo *minfo, int philo_num, int stat)
+int	print_status(t_minfo *minfo, t_pstat *pstat, int stat)
 {
 	pthread_mutex_lock(&minfo->print_mutex);
-	printf("%lld ", get_time() - minfo->start);
+	printf("%lld ", get_time() - pstat->start);
 	if (stat == G_FORK)
-		printf("%d has taken a fork\n", philo_num);
+		printf("%d has taken a fork\n", pstat->philo_num);
 	else if (stat == EAT)
 	{
-		printf("%d is eating\n", philo_num);
-		(minfo->pidinfo[philo_num].eat_cnt)++;
+		printf("%d is eating\n", pstat->philo_num);
+		(minfo->pidinfo[pstat->philo_num].eat_cnt)++;
 	}
 	else if (stat == SLEEP)
-		printf("%d is sleeping\n", philo_num);
+		printf("%d is sleeping\n", pstat->philo_num);
 	else if (stat == THINK)
-		printf("%d is thinking\n", philo_num);
+		printf("%d is thinking\n", pstat->philo_num);
 	else if (stat == DEAD)
 	{
-		printf("%d died\n", philo_num);
+		printf("%d died\n", pstat->philo_num);
 		minfo->dead++;
-		minfo->pidinfo[philo_num].status = 0;
+		minfo->pidinfo[pstat->philo_num].status = 0;
 	}
 	else
 		return (-1);
