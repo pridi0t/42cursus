@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 20:01:59 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 20:32:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	main(int argc, char *argv[])
 	flag = init_all(argc, argv, &minfo);
 	if (flag == 1)
 		start_cycle(&minfo);
-	free_all(&minfo);
+	if (flag != 2)
+		free_all(&minfo);
 	return (0);
 }

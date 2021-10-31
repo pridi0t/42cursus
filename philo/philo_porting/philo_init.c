@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 03:01:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 19:55:42 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 20:32:31 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int	init_mutex(t_minfo *minfo)
 int	init_all(int argc, char *argv[], t_minfo *minfo)
 {
 	if (parse_arg(argc, argv, minfo) == 1)
+	{
 		print_err(0);
+		return (-2);
+	}
 	else if (init_pinfo(minfo) == -1)
 		print_err(1);
 	else if (init_mutex(minfo) == -1)
