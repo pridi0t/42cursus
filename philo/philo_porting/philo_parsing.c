@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 07:09:19 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 12:16:07 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 19:16:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	parse_arg(int argc, char *argv[], t_minfo *minfo)
 {
 	if (check_arg(argc, argv) == 1)
 		return (1);
-	tminfo->philo = ft_atoi(argv[1]);
-	tminfo->dead_cnt = ft_atoi(argv[2]);
-	tminfo->eat = ft_atoi(argv[3]);
-	tminfo->sleep = ft_atoi(argv[4]);
+	minfo->philo = ft_atoi(argv[1]);
+	minfo->dead_cnt = ft_atoi(argv[2]);
+	minfo->eat = ft_atoi(argv[3]);
+	minfo->sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		tminfo->must_eat = ft_atoi(argv[5]);
+		minfo->must_eat = ft_atoi(argv[5]);
 	return (0);
 }

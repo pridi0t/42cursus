@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 01:16:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 12:50:41 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 19:21:53 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-/*
-# define D_END 10
-# define E_END 20
-# define DEAD 0
-# define G_FORK 1
-# define EAT 2
-# define SLEEP 3
-# define THINK 4
-*/
 typedef struct s_minfo	t_minfo;
 typedef struct s_pinfo {
 	pthread_t		pt;
@@ -49,6 +40,7 @@ typedef struct s_minfo {
 	int				must_eat;
 	int				dead;
 	int				end;
+	int				err;
 	long long		start;
 	pthread_mutex_t	print;
 	pthread_t		mt;
@@ -56,5 +48,9 @@ typedef struct s_minfo {
 
 int			parse_arg(int argc, char *argv[], t_minfo *minfo);
 long long	get_time(void);
+void		ms_sleep(int ms);
 void		print_err(int errnum);
+void		print_status(t_pinfo *parr, t_minfo *minfo, char *str);
+void		start_cycle(t_minfo *minfo);
+int			ft_atoi(const char *str);
 #endif

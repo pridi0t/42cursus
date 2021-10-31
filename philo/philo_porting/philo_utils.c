@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 12:27:54 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 19:19:41 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long long	get_time(void)
 		return (-1);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
-/*
+
 void	ms_sleep(int ms)
 {
 	long long	goal;
@@ -36,7 +36,6 @@ void	ms_sleep(int ms)
 			usleep(sleep_time);
 	}
 }
-*/
 
 void	print_err(int errnum)
 {
@@ -47,31 +46,22 @@ void	print_err(int errnum)
 	else if (errnum == 2)
 		write(2, "mutex error\n", 12);
 	else if (errnum == 3)
+		write(2, "thread create err\n", 18);
+	else if (errnum == 4)
 		write(2, "gettimeofday error\n", 19);
 }
 
-/*
-void	print_status(t_minfo *minfo, t_pstat *pstat, int stat)
+void	print_status(t_pinfo *parr, t_minfo *minfo, char *str)
 {
-	pthread_mutex_lock(&minfo->print_mutex);
-	printf("%lld ", get_time() - minfo->start);
-	if (stat == G_FORK)
-		printf("%d has taken a fork\n", pstat->philo_num + 1);
-	else if (stat == EAT)
+	long long now;
+
+	pthread_mutex_lock(&minfo->print);
+	now = get_time();
+	if (minfo->dead != -1 || minfo->end == 1)
 	{
-		printf("%d is eating\n", pstat->philo_num + 1);
-		(minfo->pidinfo[pstat->philo_num].eat_cnt)++;
+		pthread_mutex_unlock(&minfo->print);
+		return ;
 	}
-	else if (stat == SLEEP)
-		printf("%d is sleeping\n", pstat->philo_num + 1);
-	else if (stat == THINK)
-		printf("%d is thinking\n", pstat->philo_num + 1);
-	else if (stat == DEAD)
-	{
-		printf("%d died\n", pstat->philo_num + 1);
-		minfo->dead++;
-		minfo->pidinfo[pstat->philo_num].status = 0;
-	}
-	pthread_mutex_unlock(&minfo->print_mutex);
+	printf("%lld %d %s", now - minfo->start, parr->idx + 1, str);
+	pthread_mutex_unlock(&minfo->print);
 }
-*/
