@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 19:19:41 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 19:46:38 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_err(int errnum)
 
 void	print_status(t_pinfo *parr, t_minfo *minfo, char *str)
 {
-	long long now;
+	long long	now;
 
 	pthread_mutex_lock(&minfo->print);
 	now = get_time();

@@ -6,78 +6,60 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 19:31:35 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 20:01:59 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_pinfo(t_minfo *minfo)
+int	cnt_ate(t_minfo *minfo)
 {
 	int	i;
+	int	cnt;
 
-	minfo->parr = malloc(sizeof(t_pinfo) * minfo->philo);
-	minfo->mfork = malloc(sizeof(pthread_mutex_t) * minfo->philo);
-	if (minfo->parr == 0 || minfo->mfork == 0)
-		return (-1);
-	minfo->start = get_time();
-	minfo->dead = -1;
-	if (minfo->must_eat == 0)
-		minfo->must_eat = -1;
+	cnt = 0;
 	i = -1;
 	while (++i < minfo->philo)
 	{
-		memset(&minfo->parr[i], 0, sizeof(t_pinfo));
-		minfo->parr[i].idx = i;
-		minfo->parr[i].last_eat = minfo->start;
-		minfo->parr[i].minfo = minfo;
+		if (minfo->parr[i].eat_cnt >= minfo->must_eat)
+			cnt++;
 	}
-	return (0);
+	return (cnt);
 }
 
-int	init_mutex(t_minfo *minfo)
+void	*print_die(t_minfo *minfo, long long cur, int i)
 {
-	int	i;
+	pthread_mutex_lock(&minfo->print);
+	minfo->dead = i;
+	printf("%lld %d died\n", cur - minfo->start, i + 1);
+	pthread_mutex_unlock(&minfo->print);
+	return (NULL);
+}
 
-	i = -1;
-	while (++i < minfo->philo)
+void	*monitor(void *arg)
+{
+	t_minfo		*minfo;
+	long long	cur;
+	int			i;
+
+	minfo = (t_minfo *)arg;
+	while (minfo->dead < 0)
 	{
-		if (pthread_mutex_init(&minfo->mfork[i], NULL) != 0)
-			return (-1);
-		minfo->parr[i].l_hand = &minfo->mfork[i];
-		minfo->parr[i].r_hand = &minfo->mfork[(i + 1) % minfo->philo];
+		i = -1;
+		while (++i < minfo->philo)
+		{
+			cur = get_time();
+			if ((minfo->must_eat != -1) && cnt_ate(minfo) == minfo->philo)
+			{
+				minfo->end = 1;
+				return (NULL);
+			}
+			if ((cur - minfo->parr[i].last_eat) <= minfo->dead_cnt)
+				continue ;
+			return (print_die(minfo, cur, i));
+		}
 	}
-	if (pthread_mutex_init(&minfo->print, 0))
-		return (-1);
-	return (0);
-}
-
-int	init_all(int argc, char *argv[], t_minfo *minfo)
-{
-	if (parse_arg(argc, argv, minfo) == 1)
-		print_err(0);
-	else if (init_pinfo(minfo) == -1)
-		print_err(1);
-	else if (init_mutex(minfo) == -1)
-		print_err(2);
-	else
-		return (1);
-	return (-1);
-}
-
-void	free_all(t_minfo *minfo)
-{
-	int	i;
-
-	pthread_join(minfo->mt, NULL);
-	i = -1;
-	while (++i < minfo->philo)
-		pthread_join(minfo->parr[i].pt, NULL);
-	i = -1;
-	while (++i < minfo->philo)
-		pthread_mutex_destroy(&minfo->mfork[i]);
-	free(minfo->parr);
-	free(minfo->mfork);
+	return (NULL);
 }
 
 int	main(int argc, char *argv[])
@@ -89,7 +71,6 @@ int	main(int argc, char *argv[])
 	flag = init_all(argc, argv, &minfo);
 	if (flag == 1)
 		start_cycle(&minfo);
-	//printf("%d %d %d %d %d\n", minfo.philo, minfo.dead_cnt, minfo.eat, minfo.sleep, minfo.must_eat);
 	free_all(&minfo);
 	return (0);
 }

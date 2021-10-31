@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 19:59:26 by hyojang           #+#    #+#              #
-#    Updated: 2021/10/31 19:15:36 by hyojang          ###   ########.fr        #
+#    Updated: 2021/10/31 19:49:38 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@ NAME = philo
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-#CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 RM = rm -f
 
 FILES = philo			\
+		philo_init		\
 		philo_parsing	\
 		philo_utils		\
 		cycle			\
