@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 10:39:07 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 11:15:58 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,21 @@ void	print_err(int errnum)
 void	print_status(t_minfo *minfo, t_pstat *pstat, int stat)
 {
 	pthread_mutex_lock(&minfo->print_mutex);
-	printf("%lld ", get_time() - pstat->start);
+	printf("%lld ", get_time() - minfo->start);
 	if (stat == G_FORK)
-		printf("%d has taken a fork\n", pstat->philo_num);
+		printf("%d has taken a fork\n", pstat->philo_num + 1);
 	else if (stat == EAT)
 	{
-		printf("%d is eating\n", pstat->philo_num);
+		printf("%d is eating\n", pstat->philo_num + 1);
 		(minfo->pidinfo[pstat->philo_num].eat_cnt)++;
 	}
 	else if (stat == SLEEP)
-		printf("%d is sleeping\n", pstat->philo_num);
+		printf("%d is sleeping\n", pstat->philo_num + 1);
 	else if (stat == THINK)
-		printf("%d is thinking\n", pstat->philo_num);
+		printf("%d is thinking\n", pstat->philo_num + 1);
 	else if (stat == DEAD)
 	{
-		printf("%d died\n", pstat->philo_num);
+		printf("%d died\n", pstat->philo_num + 1);
 		minfo->dead++;
 		minfo->pidinfo[pstat->philo_num].status = 0;
 	}

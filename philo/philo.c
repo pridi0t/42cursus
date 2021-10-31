@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 10:27:15 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 10:52:36 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char *argv[])
 	pthread_create(&mt, NULL, &monitor, (void *)&minfo);
 	i = -1;
 	while (++i < minfo.philo)
-		pthread_create(&minfo.pidinfo[i].pid, NULL, &philo_cycle, (void *)(pstat + i));
+		pthread_create(&minfo.pidinfo[i].pid, NULL, &philo_cycle, (void *)&pstat[i]);
 	i = -1;
 	while (++i < minfo.philo)
 		pthread_join(minfo.pidinfo[i].pid, NULL);

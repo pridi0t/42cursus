@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 03:01:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 10:22:46 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 11:01:58 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_pstat	*init_pstat(int argc, char *argv[], t_minfo *minfo, t_pstat *pstat)
 	while (++i < minfo->philo)
 	{
 		pstat[i].minfo = minfo;
-		pstat[i].philo_num = (i + 1);
+		pstat[i].philo_num = i;
 		pstat[i].dead_cnt = ft_atoi(argv[2]);
 		pstat[i].start = 0;
 		pstat[i].eat = ft_atoi(argv[3]);
