@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 09:03:44 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 11:15:59 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 11:21:55 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	eat(t_minfo *minfo, t_pstat *pstat)
 {
-	if (minfo->philo == 1)
-		return (0);
 	if (pstat->philo_num % 2 == 0)
 	{
 		pthread_mutex_lock(&minfo->mfork[pstat->philo_num]);
@@ -63,7 +61,7 @@ void	*philo_cycle(void *arg)
 	pstat = (t_pstat *)arg;
 	pstat->start = get_time();
 	pstat->minfo->pidinfo[pstat->philo_num].status = 1;
-	if (pstat->think == 0)
+	if (pstat->think == 0 | pstat->minfo->philo == 1)
 	{
 		print_status(pstat->minfo, pstat, DEAD);
 		return (NULL);
