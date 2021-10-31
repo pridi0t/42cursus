@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 09:03:44 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 09:06:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 10:39:06 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	eat(t_minfo *minfo, t_pstat *pstat)
 {
+	if (minfo->philo == 1)
+		return (0);
 	if (pstat->philo_num % 2 == 0)
 	{
 		pthread_mutex_lock(&minfo->mfork[pstat->philo_num]);
@@ -28,13 +30,13 @@ int	eat(t_minfo *minfo, t_pstat *pstat)
 		pthread_mutex_lock(&minfo->mfork[pstat->philo_num]);
 		print_status(pstat->minfo, pstat, G_FORK);
 	}
-	print_status(pstat->minfo, pstat, EAT);
 	if (pstat->dead_cnt <= pstat->eat)
 	{
 		pthread_mutex_unlock(&minfo->mfork[pstat->philo_num]);
 		pthread_mutex_unlock(&minfo->mfork[(pstat->philo_num + 1) % pstat->philo_num]);
 		return (0);
 	}
+	print_status(pstat->minfo, pstat, EAT);
 	ms_sleep(pstat->eat);
 	pthread_mutex_unlock(&minfo->mfork[pstat->philo_num]);
 	pthread_mutex_unlock(&minfo->mfork[(pstat->philo_num + 1) % pstat->philo_num]);
@@ -59,25 +61,29 @@ void	*philo_cycle(void *arg)
 	t_pstat	*pstat;
 
 	pstat = (t_pstat *)arg;
-	pstat->minfo->pidinfo[pstat->philo_num].status = 1;
 	pstat->start = get_time();
-	if (pstat->think == 0 || pstat->philo_num == 1)
+	pstat->minfo->pidinfo[pstat->philo_num].status = 1;
+	if (pstat->think == 0)
 	{
 		print_status(pstat->minfo, pstat, DEAD);
 		return (NULL);
 	}
 	while (get_time() - pstat->start < pstat->dead_cnt)
 	{
-		if (eat(pstat->minfo, pstat) == 0)
+		if (eat(pstat->minfo, pstat) != 1)
 			break ;
-		print_status(pstat->minfo, pstat, SLEEP);
 		if ((pstat->dead_cnt - pstat->eat) > pstat->sleep)
+		{
+			print_status(pstat->minfo, pstat, SLEEP);
 			ms_sleep(pstat->sleep);
+		}
 		else
 			break ;
-		print_status(pstat->minfo, pstat, THINK);
-		if ((pstat->dead_cnt - pstat->eat - pstat->sleep) >= 1)
+		if ((pstat->dead_cnt - pstat->eat - pstat->sleep) > 1)
+		{
+			print_status(pstat->minfo, pstat, THINK);
 			ms_sleep(1);
+		}
 		else
 			break ;
 		pstat->start = get_time();

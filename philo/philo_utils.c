@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 03:54:41 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 08:50:14 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 10:39:07 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	print_err(int errnum)
 		write(2, "arg error\n", 10);
 	else if (errnum == 1)
 		write(2, "gettimeofday error\n", 19);
+	else if (errnum == 2)
+		write(2, "malloc error\n", 13);
 }
 
-int	print_status(t_minfo *minfo, t_pstat *pstat, int stat)
+void	print_status(t_minfo *minfo, t_pstat *pstat, int stat)
 {
 	pthread_mutex_lock(&minfo->print_mutex);
 	printf("%lld ", get_time() - pstat->start);
@@ -66,10 +68,7 @@ int	print_status(t_minfo *minfo, t_pstat *pstat, int stat)
 		minfo->dead++;
 		minfo->pidinfo[pstat->philo_num].status = 0;
 	}
-	else
-		return (-1);
 	pthread_mutex_unlock(&minfo->print_mutex);
-	return (0);
 }
 
 /*

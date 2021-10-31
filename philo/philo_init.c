@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/31 03:01:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 08:56:49 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 10:22:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ int	init_minfo(char *argv[], t_minfo *minfo)
 
 	minfo->philo = ft_atoi(argv[1]);
 	minfo->pidinfo = (t_pidinfo *)malloc(sizeof(t_pidinfo) * minfo->philo);
-	memset(minfo->pidinfo, 0, sizeof(int) * minfo->philo);
+	if (minfo->pidinfo == NULL)
+		return (-1);
+	memset(minfo->pidinfo, 0, sizeof(t_pidinfo) * minfo->philo);
 	pthread_mutex_init(&minfo->flag_mutex, NULL);
 	pthread_mutex_init(&minfo->print_mutex, NULL);
 	minfo->mfork = (pthread_mutex_t \
 			*)malloc(sizeof(pthread_mutex_t) * minfo->philo);
+	if (minfo->mfork == NULL)
+		return (-1);
 	i = -1;
 	while (++i < minfo->philo)
 		pthread_mutex_init(&minfo->mfork[i], NULL);
@@ -39,6 +43,8 @@ t_pstat	*init_pstat(int argc, char *argv[], t_minfo *minfo, t_pstat *pstat)
 	int		i;
 
 	pstat = (t_pstat *)malloc(sizeof(t_pstat) * minfo->philo);
+	if (pstat == NULL)
+		return (pstat);
 	if (argc == 6)
 	{
 		minfo->must_eat = ft_atoi(argv[5]);

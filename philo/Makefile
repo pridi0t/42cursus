@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 19:59:26 by hyojang           #+#    #+#              #
-#    Updated: 2021/10/31 09:05:26 by hyojang          ###   ########.fr        #
+#    Updated: 2021/10/31 10:40:12 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = philo
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+#CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 RM = rm -f
 
 FILES = philo			\

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/28 01:16:15 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 09:06:22 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 10:22:47 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void		*philo_cycle(void *arg);
 long long	get_time(void);
 void		ms_sleep(int ms);
 void		print_err(int errnum);
-int			print_status(t_minfo *minfo, t_pstat *pstat, int stat);
+void		print_status(t_minfo *minfo, t_pstat *pstat, int stat);
 void		free_data(t_minfo *minfo, t_pstat **pstat);
 #endif

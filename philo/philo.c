@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 20:01:11 by hyojang           #+#    #+#             */
-/*   Updated: 2021/10/31 09:04:49 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/10/31 10:27:15 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,26 @@ int	main(int argc, char *argv[])
 		print_err(0);
 		return (1);
 	}
-	if (init_minfo(argv, &minfo) == 1)
+	if (init_minfo(argv, &minfo) == -1)
+	{
+		print_err(2);
 		return (1);
+	}
 	pstat = NULL;
 	pstat = init_pstat(argc, argv, &minfo, pstat);
 	if (pstat == NULL)
+	{
+		// free_minfo
+		print_err(2);
 		return (1);
+	}
 	pthread_create(&mt, NULL, &monitor, (void *)&minfo);
 	i = -1;
 	while (++i < minfo.philo)
 		pthread_create(&minfo.pidinfo[i].pid, NULL, &philo_cycle, (void *)(pstat + i));
 	i = -1;
 	while (++i < minfo.philo)
-		pthread_detach(minfo.pidinfo[i].pid);
+		pthread_join(minfo.pidinfo[i].pid, NULL);
 	pthread_join(mt, NULL);
 	//free_data(&minfo, &pstat);
 	return (0);
