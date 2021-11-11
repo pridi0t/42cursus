@@ -6,18 +6,19 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2021/11/11 20:09:24 by hyojang          ###   ########.fr        #
+#    Updated: 2021/11/11 22:44:49 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = PhoneBook
 
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
-FILES = megaphone 
+FILES = phonebook	\
+		Contact
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
