@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 20:08:46 by hyojang           #+#    #+#             */
-/*   Updated: 2021/11/12 04:06:19 by jitlee           ###   ########.fr       */
+/*   Updated: 2021/11/12 05:47:39 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 PhoneBook::PhoneBook()
 {
-	// add initialize pbook?
 	this->index = -1;
 	this->cnt = 0;
 }
@@ -51,11 +50,20 @@ void PhoneBook::print_table()
 		this->pbook[i].print_format_info();
 	}
 	std::cout << "---------------------------------------------" << std::endl;
+}
 
+int PhoneBook::check_invalid(std::string str)
+{
+	if ((int)str.size() != 1)
+		return (-1);
+	if (str[0] >= '1' && str[0] <= '7')
+		return (str[0] - '0');
+	return (-1);
 }
 
 void PhoneBook::search()
 {
+	std::string tmp;
 	int input;
 
 	if (this->cnt == 0)
@@ -64,11 +72,16 @@ void PhoneBook::search()
 		return ;
 	}
 	print_table();
-	std::cout << "input index(0 ~ " << (this->cnt - 1) << ") : ";
-	std::cin >> input;
-	if (input >= this->cnt)
+	std::cout << "input index(~ " << (this->cnt - 1) << ") : ";
+	if (std::getline(std::cin, tmp) == NULL)
 	{
-		std::cout << "=== index not exist ===" << std::endl;
+		std::cout << std::endl;
+		exit(1);
+	}
+	input = check_invalid(tmp);
+	if (input < 0)
+	{
+		std::cout << "=== invalid index ===" << std::endl;
 		return ;
 	}
 	this->pbook[input].print_info();

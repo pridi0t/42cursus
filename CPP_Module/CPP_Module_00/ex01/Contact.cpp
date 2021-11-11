@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 22:42:16 by hyojang           #+#    #+#             */
-/*   Updated: 2021/11/12 04:08:03 by jitlee           ###   ########.fr       */
+/*   Updated: 2021/11/12 05:18:28 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void Contact::input_string(std::string &str, std::string notice)
 	while (1)
 	{
 		std::cout << notice << " : ";
-		getline(std::cin, str);
+		if (getline(std::cin, str) == NULL)
+		{
+			std::cout << std::endl;
+			exit(1);
+		}
 		if (str.size() > 0)
 		{
 			i = -1;
@@ -43,7 +47,11 @@ void Contact::input_phone_number(std::string &str, std::string notice)
 	while (1)
 	{
 		std::cout << notice << "(only number) : ";
-		getline(std::cin, str);
+		if (getline(std::cin, str) == NULL)
+		{
+			std::cout << std::endl;
+			exit(1);
+		}
 		if (str.size() > 0)
 		{
 			i = -1;
@@ -63,7 +71,7 @@ void Contact::input_phone_number(std::string &str, std::string notice)
 void Contact::cut_string(std::string str)
 {
 	if (str.size() > 10)
-		std::cout << str.substr(0, 9) << "." << std::endl;
+		std::cout << str.substr(0, 9) << ".";
 	else
 		std::cout << std::setw(10) << std::right << str;
 }

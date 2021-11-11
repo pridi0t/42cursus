@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 01:45:30 by hyojang           #+#    #+#             */
-/*   Updated: 2021/11/12 02:11:24 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/11/12 05:09:17 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@ int main()
 		std::cout << "input command[ADD, SEARCH, EXIT] : ";
 		
 		if (std::getline(std::cin, input) == NULL)
+		{
+			std::cout << std::endl;
 			exit(1);
+		}
 		if (std::cin.eof())
+		{
+			std::cout << std::endl;
 			exit(1);
+		}
 
 		if (input.compare("ADD") == 0)
 			phone_book.add();
