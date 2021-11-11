@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 22:42:16 by hyojang           #+#    #+#             */
-/*   Updated: 2021/11/12 03:53:03 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/11/12 04:08:03 by jitlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void Contact::cut_string(std::string str)
 	if (str.size() > 10)
 		std::cout << str.substr(0, 9) << "." << std::endl;
 	else
-		std::cout << std::setw(10) << std::right << this->first_name;
+		std::cout << std::setw(10) << std::right << str;
 }
 
 void Contact::init_info()

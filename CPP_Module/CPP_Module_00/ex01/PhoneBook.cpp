@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 20:08:46 by hyojang           #+#    #+#             */
-/*   Updated: 2021/11/12 03:39:35 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/11/12 04:06:19 by jitlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 PhoneBook::PhoneBook()
 {
 	// add initialize pbook?
-	this->index = 0;
+	this->index = -1;
 	this->cnt = 0;
 }
 
@@ -47,7 +47,7 @@ void PhoneBook::print_table()
 	std::cout << "|   index  |first name| lastname | nickname |" << std::endl;
 	while (++i < this->cnt)
 	{
-		std::cout << "|" << std::setw(10) << std::right << this->index;
+		std::cout << "|" << std::setw(10) << std::right << i;
 		this->pbook[i].print_format_info();
 	}
 	std::cout << "---------------------------------------------" << std::endl;
