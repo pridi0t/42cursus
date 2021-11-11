@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/05/10 20:01:05 by hyojang           #+#    #+#              #
-#    Updated: 2021/11/11 04:29:57 by marvin           ###   ########seoul.kr   #
+#    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
+#    Updated: 2021/11/11 13:52:34 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-FILES = 
+FILES = megaphone 
 
 SRCS_DIR = ./
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(FILES)))
+SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
 
 OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
