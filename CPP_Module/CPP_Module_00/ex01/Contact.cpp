@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 22:42:16 by hyojang           #+#    #+#             */
-/*   Updated: 2021/11/12 00:59:59 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/11/12 03:53:03 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void Contact::input_phone_number(std::string &str, std::string notice)
 {
 	int i;
 
-	// add 010-nnnn-nnnn
 	while (1)
 	{
 		std::cout << notice << "(only number) : ";
@@ -61,7 +60,15 @@ void Contact::input_phone_number(std::string &str, std::string notice)
 	}
 }
 
-void init_info()
+void Contact::cut_string(std::string str)
+{
+	if (str.size() > 10)
+		std::cout << str.substr(0, 9) << "." << std::endl;
+	else
+		std::cout << std::setw(10) << std::right << this->first_name;
+}
+
+void Contact::init_info()
 {
 	this->first_name.clear();
 	this->last_name.clear();
@@ -79,11 +86,22 @@ void Contact::input_info()
 	Contact::input_string(this->darkest_secret, "darkest_secret");
 }
 
+void Contact::print_format_info()
+{
+	std::cout << "|";
+	cut_string(this->first_name);
+	std::cout << "|";
+	cut_string(this->last_name);
+	std::cout << "|";
+	cut_string(this->nickname);
+	std::cout << "|" << std::endl;
+}
+
 void Contact::print_info()
 {
 	std::cout << "first name : " << this->first_name << std::endl;
 	std::cout << "last name : " << this->last_name << std::endl;
 	std::cout << "nickname : " << this->nickname << std::endl;
-	std::cout << "phone number : " << this->phone_number << std::endl;
+	std::cout << "phone number : " << this->phone_number.substr(0, 3) << "-" << this->phone_number.substr(3, 4) << "-" << this->phone_number.substr(7, 4) << std::endl;
 	std::cout << "darkest_secret : " << this->darkest_secret << std::endl;
 }
