@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 20:08:46 by hyojang           #+#    #+#             */
-/*   Updated: 2021/11/12 05:47:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/11/13 01:24:06 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int PhoneBook::check_invalid(std::string str)
 {
 	if ((int)str.size() != 1)
 		return (-1);
-	if (str[0] >= '1' && str[0] <= '7')
+	if (str[0] >= '0' && str[0] <= '7')
 		return (str[0] - '0');
 	return (-1);
 }
@@ -79,7 +79,7 @@ void PhoneBook::search()
 		exit(1);
 	}
 	input = check_invalid(tmp);
-	if (input < 0)
+	if (input < 0 || input >= this->cnt)
 	{
 		std::cout << "=== invalid index ===" << std::endl;
 		return ;
