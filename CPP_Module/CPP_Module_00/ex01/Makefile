@@ -6,14 +6,14 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2021/11/12 01:48:18 by hyojang          ###   ########.fr        #
+#    Updated: 2021/11/15 13:57:51 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = PhoneBook
 
-CC = clang++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXX = clang++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
@@ -28,10 +28,10 @@ OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 
 .cpp.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 all: $(NAME)
 
