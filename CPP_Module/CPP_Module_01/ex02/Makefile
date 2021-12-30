@@ -6,11 +6,11 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2021/12/30 22:00:12 by hyojang          ###   ########.fr        #
+#    Updated: 2021/12/30 22:14:41 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Zombie
+NAME = BRAIN
 
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
