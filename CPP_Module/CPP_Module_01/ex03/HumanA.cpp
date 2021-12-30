@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 15:50:48 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/31 00:38:11 by hyojang          ###   ########.fr       */
+/*   Created: 2021/12/31 00:30:52 by hyojang           #+#    #+#             */
+/*   Updated: 2021/12/31 00:57:39 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "HumanA.hpp"
 
-#include <iostream>
+HumanA(std::string name, Weapon weapon)
+{
+	this->name = name;
+	this->weapon = weapon->getType();
+}
 
-class Zombie {
-	private:
-		std::string	name;
-	public:
-		Zombie(std::string name);
-		~Zombie();
-		void		Announce();
-};
+void	setType(Weapon weapon)
+{
+	this->weapon = weapon;
+}
 
-Zombie	*newZombie(std::string name);
-void	randomChump(std::string name);
-
-# endif
+void	attack()
+{
+	std::cout << this->name << "attacks with his " << this->weapon << std::endl;
+}

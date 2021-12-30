@@ -6,12 +6,12 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:50:48 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/30 22:03:59 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/12/31 00:38:26 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef ZOMBIE__HPP
-# define ZOMBIE__HPP
+# ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <iostream>
 #include <cstring>
