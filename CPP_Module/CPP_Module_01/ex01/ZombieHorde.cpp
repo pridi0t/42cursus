@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 11:53:29 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/30 22:04:15 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/12/30 22:54:56 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ Zombie	*zombieHorde(int N, std::string name)
 
 	for (int i = 0 ; i < N ; i++) {
 		zom_arr[i].setName(name + std::to_string(i + 1));
-		zom_arr[i].Announce();
 	}
 
 	return (zom_arr);
