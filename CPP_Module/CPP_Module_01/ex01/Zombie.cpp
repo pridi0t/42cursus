@@ -6,16 +6,17 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:08:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/29 18:15:41 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/12/30 21:54:12 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name) 
+int Zombie::num = 0;
+
+Zombie::Zombie() 
 {
-	this->name = name;
-	Announce();
+	this->name = "DEFAULT_ZOMBIE" + std::to_string(++num);
 }
 
 Zombie::~Zombie()
@@ -26,4 +27,9 @@ Zombie::~Zombie()
 void	Zombie::Announce()
 {
 	std::cout << "<" << this->name << "> BraiiiiiiinnnzzzZ..." << std::endl;
+}
+
+void	Zombie::setName(std::string name)
+{
+	this->name = name;
 }

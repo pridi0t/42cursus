@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 15:50:48 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/30 12:48:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/12/30 21:41:41 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 class Zombie {
 	private:
 		std::string	name;
-		void		Announce();
+		static int num;
 	public:
-		Zombie(std::string name);
+		Zombie();
 		~Zombie();
+		void		Announce();
+		void		setName(std::string name);
 };
 
-Zombie	*zombieHorde(int N, std::string name);
+Zombie		*zombieHorde(int N, std::string name);
 
 # endif

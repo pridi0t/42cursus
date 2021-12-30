@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:08:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/29 18:15:41 by hyojang          ###   ########.fr       */
+/*   Updated: 2021/12/30 20:50:01 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 Zombie::Zombie(std::string name) 
 {
 	this->name = name;
-	Announce();
 }
 
 Zombie::~Zombie()
