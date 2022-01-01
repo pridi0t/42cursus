@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/31 00:30:52 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/01 11:07:49 by hyojang          ###   ########.fr       */
+/*   Created: 2022/01/01 11:03:00 by hyojang           #+#    #+#             */
+/*   Updated: 2022/01/01 11:26:16 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "HumanB.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon) : name(name), weapon(weapon)
+HumanB::HumanB(std::string name)
 {
+	this->name = name;
+	this->weapon = NULL;
 }
 
-void	HumanA::attack()
+HumanB::HumanB(std::string name, Weapon weapon)
 {
-	std::cout << this->name << " attacks with his " << (this->weapon).getType() << std::endl;
+	this->name = name;
+	*(this->weapon) = weapon;
+}
+
+void	HumanB::setWeapon(Weapon &weapon)
+{
+	this->weapon = &weapon;
+}
+
+void	HumanB::attack()
+{
+	std::cout << this->name << " attacks with his " << (this->weapon)->getType() << std::endl;
 }
