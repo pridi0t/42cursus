@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/01/01 19:57:58 by hyojang          ###   ########.fr        #
+#    Updated: 2022/01/13 14:48:28 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
-FILES = main
+FILES = main	\
+		Karen
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
