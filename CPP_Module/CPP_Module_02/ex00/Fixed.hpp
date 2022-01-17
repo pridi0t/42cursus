@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/17 15:32:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/17 19:14:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class Fixed {
 
 	public:
 		Fixed();
-		// copy constructor
-		// assignation operator overload
+		Fixed(const Fixed& fix);	// copy constructor
+		Fixed  &Fixed::operator = (const Fixed &fix);
 		~Fixed();
 
 		int		getRawBits(void);
