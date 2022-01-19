@@ -6,11 +6,11 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/01/17 15:02:04 by hyojang          ###   ########.fr        #
+#    Updated: 2022/01/19 18:57:52 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Fixed
+NAME = a.out
 
 CXX = clang++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

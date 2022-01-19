@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/17 19:14:30 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/19 19:45:37 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 
 class Fixed {
 	private:
-		int integer_parts;
-		int fractional_parts;
+		int value;
+		static const int fbit = 8;
 
 	public:
 		Fixed();
-		Fixed(const Fixed& fix);	// copy constructor
-		Fixed  &Fixed::operator = (const Fixed &fix);
+		Fixed(const Fixed& fix);
+		Fixed& operator=(const Fixed &fix);
 		~Fixed();
 
-		int		getRawBits(void);
-		void	setRawbits(int const raw);
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 };
 
 # endif
