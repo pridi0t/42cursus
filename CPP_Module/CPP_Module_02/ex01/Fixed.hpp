@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/20 19:16:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/26 19:29:51 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Fixed {
 		Fixed(const float fvalue);	// float
 		Fixed(const Fixed& fix);
 		Fixed& operator=(const Fixed &fix);
+		// << overload
 		~Fixed();
 
 		int		getRawBits(void) const;
@@ -34,5 +35,7 @@ class Fixed {
 		float	toFloat(void) const;
 		int		toInt(void) const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed &fix);
 
 # endif
