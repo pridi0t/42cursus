@@ -6,12 +6,13 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:26:53 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/26 20:10:58 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/26 21:44:52 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+// constructor
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
@@ -36,6 +37,7 @@ Fixed::Fixed(const Fixed& fix)
 	(*this) = fix;
 }
 
+// assignation operator overload
 Fixed  &Fixed::operator = (const Fixed &fix)
 {
 	std::cout << "Assignation operator called" << std::endl;
@@ -43,11 +45,17 @@ Fixed  &Fixed::operator = (const Fixed &fix)
 	return (*this);
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed &fix)
+bool operator > (const Fixed &fix)
 {
-	return (os << fix.toFloat());
+	return (getRawBits() > fix.getRawBits());
 }
+//bool operator < (const Fixed &fix);		// <
+//bool operator >= (const Fixed &fix);	// >=
+//bool operator <= (const Fixed &fix);	// <=
+//bool operator == (const Fixed &fix);	// ==
+//bool operator != (const Fixed &fix);	// !=
 
+// Destructor
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
@@ -71,4 +79,9 @@ float	Fixed::toFloat(void) const
 int		Fixed::toInt(void) const
 {
 	return (int)((double)this->value / 256);
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed &fix)
+{
+	return (os << fix.toFloat());
 }
