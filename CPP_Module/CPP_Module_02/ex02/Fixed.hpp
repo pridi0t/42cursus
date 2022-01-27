@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/26 21:44:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 08:33:29 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ class Fixed {
 		Fixed& operator = (const Fixed &fix);
 
 		// Comparision operators
-		bool operator > (const Fixed &fix);		// >
-		//bool operator < (const Fixed &fix);	// <
-		//bool operator >= (const Fixed &fix);	// >=
-		//bool operator <= (const Fixed &fix);	// <=
-		//bool operator == (const Fixed &fix);	// ==
-		//bool operator != (const Fixed &fix);	// !=
+		bool operator > (const Fixed &fix);
+		bool operator < (const Fixed &fix);
+		bool operator >= (const Fixed &fix);
+		bool operator <= (const Fixed &fix);
+		bool operator == (const Fixed &fix);
+		bool operator != (const Fixed &fix);
 
 		// Arithmetic operators
-		// +
+		Fixed operator + (const Fixed &fix);	// +
 		// -
 		// *
 		// /

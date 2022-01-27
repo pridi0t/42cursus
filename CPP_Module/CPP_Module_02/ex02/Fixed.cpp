@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:26:53 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/26 21:44:52 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 08:33:29 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,43 @@ Fixed::Fixed(const Fixed& fix)
 }
 
 // assignation operator overload
-Fixed  &Fixed::operator = (const Fixed &fix)
+Fixed	&Fixed::operator = (const Fixed &fix)
 {
 	std::cout << "Assignation operator called" << std::endl;
 	setRawBits(fix.getRawBits());
 	return (*this);
 }
 
-bool operator > (const Fixed &fix)
+// Comparision operators
+bool	Fixed::operator > (const Fixed &fix)
 {
 	return (getRawBits() > fix.getRawBits());
 }
-//bool operator < (const Fixed &fix);		// <
-//bool operator >= (const Fixed &fix);	// >=
-//bool operator <= (const Fixed &fix);	// <=
-//bool operator == (const Fixed &fix);	// ==
-//bool operator != (const Fixed &fix);	// !=
+
+bool	Fixed::operator < (const Fixed &fix)
+{
+	return (getRawBits() < fix.getRawBits());
+}
+
+bool Fixed::operator >= (const Fixed &fix)
+{
+	return (getRawBits() >= fix.getRawBits());
+}
+
+bool Fixed::operator <= (const Fixed &fix)
+{
+	return (getRawBits() <= fix.getRawBits());
+}
+
+bool Fixed::operator == (const Fixed &fix)
+{
+	return (getRawBits() == fix.getRawBits());
+}
+
+bool Fixed::operator != (const Fixed &fix)
+{
+	return (getRawBits() != fix.getRawBits());
+}
 
 // Destructor
 Fixed::~Fixed()

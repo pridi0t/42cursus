@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 18:13:33 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/26 21:27:03 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 08:25:05 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int main(void) {
 	Fixed	a(10.2f);
 	Fixed	b;
 
-	b = Fixed(20.1f);
-	std::cout << (a > b) << std::endl;
+	b = Fixed(10.3f);
+	std::cout << "=== result === " << std::endl;
+	std::cout << a << " < " << b << " : " << (a < b) << std::endl;
+	std::cout << b << " < " << a << " : " << (b < a) << std::endl;
+	std::cout << a << " < " << a << " : " << (a < a) << std::endl;
 
 	return 0;
 }
