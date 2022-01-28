@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:26:53 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/28 10:23:27 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 12:01:11 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,52 +56,79 @@ bool	Fixed::operator < (const Fixed &fix)
 	return (getRawBits() < fix.getRawBits());
 }
 
-bool Fixed::operator >= (const Fixed &fix)
+bool	Fixed::operator >= (const Fixed &fix)
 {
 	return (getRawBits() >= fix.getRawBits());
 }
 
-bool Fixed::operator <= (const Fixed &fix)
+bool	Fixed::operator <= (const Fixed &fix)
 {
 	return (getRawBits() <= fix.getRawBits());
 }
 
-bool Fixed::operator == (const Fixed &fix)
+bool	Fixed::operator == (const Fixed &fix)
 {
 	return (getRawBits() == fix.getRawBits());
 }
 
-bool Fixed::operator != (const Fixed &fix)
+bool	Fixed::operator != (const Fixed &fix)
 {
 	return (getRawBits() != fix.getRawBits());
 }
 
 // Arithmetic operators
-Fixed Fixed::operator + (const Fixed &fix)
+Fixed	Fixed::operator + (const Fixed &fix)
 {
 	Fixed result(*this);
 	result.setRawBits(result.getRawBits() + fix.getRawBits());
 	return (result);
 }
 
-Fixed Fixed::operator - (const Fixed &fix)
+Fixed	Fixed::operator - (const Fixed &fix)
 {
 	Fixed result(*this);
 	result.setRawBits(result.getRawBits() - fix.getRawBits());
 	return (result);
 }
 
-Fixed Fixed::operator * (const Fixed &fix)
+Fixed	Fixed::operator * (const Fixed &fix)
 {
 	Fixed result(*this);
 	result.setRawBits(result.getRawBits() * fix.getRawBits() / 256);	// 2^8 = 256
 	return (result);
 }
 
-Fixed Fixed::operator / (const Fixed &fix)
+Fixed	Fixed::operator / (const Fixed &fix)
 {
 	Fixed result(*this);
 	result.setRawBits(result.getRawBits() * 256 / fix.getRawBits());	// 2^8 = 256
+	return (result);
+}
+
+// Increment/Decrement operators
+Fixed&	Fixed::operator ++ ()
+{
+	++(this->value);
+	return (*this);
+}
+
+Fixed	Fixed::operator ++ (int)
+{
+	Fixed result(*this);
+	++(*this);
+	return (result);
+}
+
+Fixed&	Fixed::operator -- ()
+{
+	--(this->value);
+	return (*this);
+}
+
+Fixed	Fixed::operator -- (int)
+{
+	Fixed result((*this));
+	--(*this);
 	return (result);
 }
 

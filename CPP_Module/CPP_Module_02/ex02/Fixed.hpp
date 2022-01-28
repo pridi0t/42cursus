@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/28 10:23:28 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 12:03:01 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,24 @@ class Fixed {
 		Fixed& operator = (const Fixed &fix);
 
 		// Comparision operators
-		bool operator > (const Fixed &fix);
-		bool operator < (const Fixed &fix);
-		bool operator >= (const Fixed &fix);
-		bool operator <= (const Fixed &fix);
-		bool operator == (const Fixed &fix);
-		bool operator != (const Fixed &fix);
+		bool	operator > (const Fixed &fix);
+		bool	operator < (const Fixed &fix);
+		bool	operator >= (const Fixed &fix);
+		bool	operator <= (const Fixed &fix);
+		bool	operator == (const Fixed &fix);
+		bool	operator != (const Fixed &fix);
 
 		// Arithmetic operators
-		Fixed operator + (const Fixed &fix);	// +
-		Fixed operator - (const Fixed &fix);	// -
-		Fixed operator * (const Fixed &fix);	// *
-		Fixed operator / (const Fixed &fix);	// /
+		Fixed	operator + (const Fixed &fix);
+		Fixed	operator - (const Fixed &fix);
+		Fixed	operator * (const Fixed &fix);
+		Fixed	operator / (const Fixed &fix);
 
-		// etc
-		// ++f
-		// f++
-		// --f
-		// f--
+		// Increment/Decrement operators
+		Fixed&	operator ++ ();
+		Fixed	operator ++ (int);
+		Fixed&	operator -- ();
+		Fixed	operator -- (int);
 
 		// Destructor
 		~Fixed();
