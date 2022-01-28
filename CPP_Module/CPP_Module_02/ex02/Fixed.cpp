@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:26:53 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/28 08:33:29 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 10:23:27 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 // constructor
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 	this->value = 0;
 }
 
 Fixed::Fixed(const int ivalue)
 {
-	std::cout << "Int constructor called" << std::endl;
+	//std::cout << "Int constructor called" << std::endl;
 	this->value = roundf(ivalue * 256);		// 2^8 = 256
 }
 
 Fixed::Fixed(const float fvalue)
 {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 	this->value = roundf(fvalue * 256);		// 2^8 = 256
 }
 
 Fixed::Fixed(const Fixed& fix)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	(*this) = fix;
 }
 
 // assignation operator overload
 Fixed	&Fixed::operator = (const Fixed &fix)
 {
-	std::cout << "Assignation operator called" << std::endl;
+	//std::cout << "Assignation operator called" << std::endl;
 	setRawBits(fix.getRawBits());
 	return (*this);
 }
@@ -76,10 +76,39 @@ bool Fixed::operator != (const Fixed &fix)
 	return (getRawBits() != fix.getRawBits());
 }
 
+// Arithmetic operators
+Fixed Fixed::operator + (const Fixed &fix)
+{
+	Fixed result(*this);
+	result.setRawBits(result.getRawBits() + fix.getRawBits());
+	return (result);
+}
+
+Fixed Fixed::operator - (const Fixed &fix)
+{
+	Fixed result(*this);
+	result.setRawBits(result.getRawBits() - fix.getRawBits());
+	return (result);
+}
+
+Fixed Fixed::operator * (const Fixed &fix)
+{
+	Fixed result(*this);
+	result.setRawBits(result.getRawBits() * fix.getRawBits() / 256);	// 2^8 = 256
+	return (result);
+}
+
+Fixed Fixed::operator / (const Fixed &fix)
+{
+	Fixed result(*this);
+	result.setRawBits(result.getRawBits() * 256 / fix.getRawBits());	// 2^8 = 256
+	return (result);
+}
+
 // Destructor
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 
 int		Fixed::getRawBits(void) const

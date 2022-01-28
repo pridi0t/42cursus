@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/28 08:33:29 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 10:23:28 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ class Fixed {
 
 		// Arithmetic operators
 		Fixed operator + (const Fixed &fix);	// +
-		// -
-		// *
-		// /
+		Fixed operator - (const Fixed &fix);	// -
+		Fixed operator * (const Fixed &fix);	// *
+		Fixed operator / (const Fixed &fix);	// /
 
 		// etc
 		// ++f
