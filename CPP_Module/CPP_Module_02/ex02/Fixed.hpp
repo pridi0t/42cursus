@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/28 12:12:02 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/28 19:48:15 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ class Fixed {
 		Fixed	operator / (const Fixed &fix);
 
 		// Increment/Decrement operators
-		Fixed&	operator ++ ();
-		Fixed	operator ++ (int);
-		Fixed&	operator -- ();
-		Fixed	operator -- (int);
+		Fixed&		operator ++ ();
+		const Fixed	operator ++ (int);
+		Fixed&		operator -- ();
+		const Fixed	operator -- (int);
 
 		// Destructor
 		~Fixed();
@@ -60,7 +60,11 @@ class Fixed {
 		int		toInt(void) const;
 		// public static member functions overloads
 		// min
+		static Fixed&		min(Fixed &a, Fixed &b);
+		static const Fixed&	min(const Fixed &a, const Fixed &b);
 		// max
+		static Fixed&		max(Fixed &a, Fixed &b);
+		static const Fixed&	max(const Fixed &a, const Fixed &b);
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed &fix);
