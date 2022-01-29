@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:26:53 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/28 20:01:43 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 10:25:25 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int ivalue)
 {
-	this->value = roundf(ivalue * 256);		// 2^8 = 256
+	this->value = roundf(ivalue * (1 << this->fbit));
 }
 
 Fixed::Fixed(const float fvalue)
 {
-	this->value = roundf(fvalue * 256);		// 2^8 = 256
+	this->value = roundf(fvalue * (1 << this->fbit));
 }
 
 Fixed::Fixed(const Fixed& fix)
@@ -41,32 +41,32 @@ Fixed	&Fixed::operator = (const Fixed &fix)
 }
 
 // Comparision operators
-bool	Fixed::operator > (const Fixed &fix)
+bool	Fixed::operator > (const Fixed &fix) const
 {
 	return (getRawBits() > fix.getRawBits());
 }
 
-bool	Fixed::operator < (const Fixed &fix)
+bool	Fixed::operator < (const Fixed &fix) const
 {
 	return (getRawBits() < fix.getRawBits());
 }
 
-bool	Fixed::operator >= (const Fixed &fix)
+bool	Fixed::operator >= (const Fixed &fix) const
 {
 	return (getRawBits() >= fix.getRawBits());
 }
 
-bool	Fixed::operator <= (const Fixed &fix)
+bool	Fixed::operator <= (const Fixed &fix) const
 {
 	return (getRawBits() <= fix.getRawBits());
 }
 
-bool	Fixed::operator == (const Fixed &fix)
+bool	Fixed::operator == (const Fixed &fix) const
 {
 	return (getRawBits() == fix.getRawBits());
 }
 
-bool	Fixed::operator != (const Fixed &fix)
+bool	Fixed::operator != (const Fixed &fix) const
 {
 	return (getRawBits() != fix.getRawBits());
 }
@@ -89,14 +89,21 @@ Fixed	Fixed::operator - (const Fixed &fix)
 Fixed	Fixed::operator * (const Fixed &fix)
 {
 	Fixed result(*this);
-	result.setRawBits(result.getRawBits() * fix.getRawBits() / 256);	// 2^8 = 256
+	result.setRawBits(result.getRawBits() * fix.getRawBits() / (1 << this->fbit));
 	return (result);
 }
 
 Fixed	Fixed::operator / (const Fixed &fix)
 {
+	// exception 
+	if (fix.getRawBits() == 0)
+	{
+		std::cout << "not divisible by zero" << std::endl;
+		exit(1);
+	}
+
 	Fixed result(*this);
-	result.setRawBits(result.getRawBits() * 256 / fix.getRawBits());	// 2^8 = 256
+	result.setRawBits(result.getRawBits() * (1 << this->fbit) / fix.getRawBits());
 	return (result);
 }
 
@@ -143,17 +150,16 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return ((double)this->value / 256);
+	return ((double)this->value / (1 << this->fbit));
 }
 
 int		Fixed::toInt(void) const
 {
-	return (int)((double)this->value / 256);
+	return (int)((double)this->value / (1 << this->fbit));
 }
 
 Fixed&	Fixed::min(Fixed &a, Fixed &b)
 {
-	//if ((Fixed)a < (Fixed)b)
 	if (a < b)
 		return (a);
 	return (b);
@@ -161,7 +167,6 @@ Fixed&	Fixed::min(Fixed &a, Fixed &b)
 
 const Fixed&	Fixed::min(const Fixed &a, const Fixed &b)
 {
-	//if ((Fixed)a < (Fixed)b)
 	if (a < b)
 		return (a);
 	return (b);
@@ -169,7 +174,6 @@ const Fixed&	Fixed::min(const Fixed &a, const Fixed &b)
 
 Fixed&	Fixed::max(Fixed &a, Fixed &b)
 {
-	//if ((Fixed)a > (Fixed)b)
 	if (a > b)
 		return (a);
 	return (b);
@@ -177,7 +181,6 @@ Fixed&	Fixed::max(Fixed &a, Fixed &b)
 
 const Fixed&	Fixed::max(const Fixed &a, const Fixed &b)
 {
-	//if ((Fixed)a > (Fixed)b)
 	if (a > b)
 		return (a);
 	return (b);

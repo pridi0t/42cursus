@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/28 19:48:15 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 09:37:17 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ class Fixed {
 		Fixed& operator = (const Fixed &fix);
 
 		// Comparision operators
-		bool	operator > (const Fixed &fix);
-		bool	operator < (const Fixed &fix);
-		bool	operator >= (const Fixed &fix);
-		bool	operator <= (const Fixed &fix);
-		bool	operator == (const Fixed &fix);
-		bool	operator != (const Fixed &fix);
+		bool	operator > (const Fixed &fix) const;
+		bool	operator < (const Fixed &fix) const;
+		bool	operator >= (const Fixed &fix) const;
+		bool	operator <= (const Fixed &fix) const;
+		bool	operator == (const Fixed &fix) const;
+		bool	operator != (const Fixed &fix) const;
 
 		// Arithmetic operators
 		Fixed	operator + (const Fixed &fix);
@@ -58,11 +58,10 @@ class Fixed {
 		void	setRawBits(int const raw);
 		float	toFloat(void) const;
 		int		toInt(void) const;
+		
 		// public static member functions overloads
-		// min
 		static Fixed&		min(Fixed &a, Fixed &b);
 		static const Fixed&	min(const Fixed &a, const Fixed &b);
-		// max
 		static Fixed&		max(Fixed &a, Fixed &b);
 		static const Fixed&	max(const Fixed &a, const Fixed &b);
 };

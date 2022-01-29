@@ -6,7 +6,7 @@
 //   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2022/01/20 18:13:33 by hyojang           #+#    #+#             //
-/*   Updated: 2022/01/28 20:02:34 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 10:25:43 by hyojang          ###   ########.fr       */
 //                                                                            //
 // ////////////////////////////////////////////////////////////////////////// //
 
@@ -27,5 +27,6 @@ int main(void) {
 	std::cout << b << std::endl;
 
 	std::cout << Fixed::max(a, b) << std::endl;
+	
 	return 0;
 }
