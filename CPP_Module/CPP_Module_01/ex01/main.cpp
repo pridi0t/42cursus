@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 17:38:20 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/30 22:55:50 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 11:21:42 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int main()
 
 	zom_arr = zombieHorde(count, "zombie");
 	for (int i = 0 ; i < count ; i++) {
-		zom_arr[i].Announce();
+		zom_arr[i].announce();
 	}
-	delete [] zom_arr;
+	delete[] zom_arr;
 
 	return (0);
 }

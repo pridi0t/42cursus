@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 16:08:51 by hyojang           #+#    #+#             */
-/*   Updated: 2021/12/30 22:57:01 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 11:19:41 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Zombie::~Zombie()
 	std::cout << "<" << this->name << "> died (X_X)" << std::endl;
 }
 
-void	Zombie::Announce()
+void	Zombie::announce()
 {
 	std::cout << "<" << this->name << "> BraiiiiiiinnnzzzZ..." << std::endl;
 }
