@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 02:09:19 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/13 15:42:43 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 14:15:00 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	Karen::etc(void)
 void	Karen::complain(std::string level)
 {
 	int			i = 0;
-	std::string	str[5] = {"debug", "info", "warning", "error", "etc"};
+	std::string	str[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "ETC"};
 	void		(Karen::*farr[5])(void) = { &Karen::debug, &Karen::info, &Karen::warning, &Karen::error, &Karen::etc};
 	void		(Karen::*fptr)(void);
 

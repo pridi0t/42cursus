@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 02:09:19 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/13 17:24:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 14:20:02 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,19 @@ void	Karen::complain(std::string level)
 	switch (i) {
 		case 0:
 			(this->*(farr[0]))();
+			std::cout << std::endl;
 		case 1:
 			(this->*(farr[1]))();
+			std::cout << std::endl;
 		case 2:
 			(this->*(farr[2]))();
+			std::cout << std::endl;
 		case 3:
 			(this->*(farr[3]))();
+			std::cout << std::endl;
 			break;
 		default:
 			(this->*(farr[4]))();
+			std::cout << std::endl;
 	}
 }

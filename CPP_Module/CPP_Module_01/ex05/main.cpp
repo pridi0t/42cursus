@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/13 15:41:42 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 14:17:10 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int main(void)
 	Karen karen;
 
 	karen.complain(" ");
-	karen.complain("error");
-	karen.complain("warning");
-	karen.complain("info");
-	karen.complain("debug");
+	karen.complain("ERROR");
+	karen.complain("WARNING");
+	karen.complain("INFO");
+	karen.complain("DEBUG");
 	
 	return (0);
 }
