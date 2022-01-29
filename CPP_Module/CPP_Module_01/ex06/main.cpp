@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/13 17:21:38 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/29 13:49:53 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,6 @@ int main(int argc, char *argv[])
 	}
 	level = argv[1];
 	karen.complain(level);
-	/*
-	std::cout << "==" << std::endl;
-	karen.complain("");
-	std::cout << "==" << std::endl;
-	karen.complain("error");
-	std::cout << "==" << std::endl;
-	karen.complain("warning");
-	std::cout << "==" << std::endl;
-	karen.complain("info");
-	std::cout << "==" << std::endl;
-	karen.complain("debug");
-	*/
+	
 	return (0);
 }
