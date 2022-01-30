@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:26:53 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/30 11:56:16 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/30 12:31:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Fixed::Fixed()
 
 Fixed::Fixed(const int ivalue)
 {
-	this->value = roundf(ivalue * (1 << this->fbit));
+	this->value = (ivalue * (1 << this->fbit));
 }
 
 Fixed::Fixed(const float fvalue)
