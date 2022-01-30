@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:26:53 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/29 10:25:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/30 11:56:16 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ const Fixed&	Fixed::max(const Fixed &a, const Fixed &b)
 	return (b);
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed &fix)
+std::ostream& operator << (std::ostream& os, const Fixed &fix)
 {
 	return (os << fix.toFloat());
 }

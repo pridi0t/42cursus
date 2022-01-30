@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 15:11:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/01/26 19:39:13 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/01/30 12:01:53 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ class Fixed {
 		int		toInt(void) const;
 };
 
-std::ostream& operator<<(std::ostream& os, const Fixed &fix);
+std::ostream& operator << (std::ostream& os, const Fixed &fix);
 
 # endif
