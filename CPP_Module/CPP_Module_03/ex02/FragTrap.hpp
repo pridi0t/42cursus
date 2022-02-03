@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 10:29:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:42:22 by hyojang          ###   ########.fr       */
+/*   Created: 2022/02/03 19:12:44 by hyojang           #+#    #+#             */
+/*   Updated: 2022/02/03 20:03:56 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+# ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
 #include <iostream>
-#include <iomanip>
+#include "ClapTrap.hpp"
 
-class ClapTrap {
-	private:
-		std::string		name;
-		unsigned int	hitpoints;
-		unsigned int	energy_points;
-		unsigned int	attack_damage;
-
+class FragTrap : public ClapTrap {
 	public:
 		// Constructor
-		ClapTrap();
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &c);
-		
+		FragTrap();
+		FragTrap(std::string name);
+		FragTrap(const FragTrap &f);
+
 		// Assignation operator overload
-		ClapTrap& operator = (const ClapTrap &c);
+		FragTrap& operator = (const FragTrap &f);
 
 		// Destructor
-		~ClapTrap();
+		~FragTrap();
 
+		// override
 		void attack(std::string const & target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
 
-		void status();
+		void highFivesGuys(void);
 };
 
 # endif

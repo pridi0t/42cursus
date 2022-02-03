@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:29:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:42:22 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/03 19:49:48 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <iomanip>
 
 class ClapTrap {
-	private:
+	protected:
 		std::string		name;
 		unsigned int	hitpoints;
 		unsigned int	energy_points;

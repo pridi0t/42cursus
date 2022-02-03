@@ -1,45 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/03 10:29:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:42:22 by hyojang          ###   ########.fr       */
+/*   Created: 2022/02/03 14:31:16 by hyojang           #+#    #+#             */
+/*   Updated: 2022/02/03 18:46:13 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+# ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
 
 #include <iostream>
-#include <iomanip>
+#include "ClapTrap.hpp"
 
-class ClapTrap {
+class ScavTrap : public ClapTrap {
 	private:
-		std::string		name;
-		unsigned int	hitpoints;
-		unsigned int	energy_points;
-		unsigned int	attack_damage;
+		int	mode;
 
 	public:
 		// Constructor
-		ClapTrap();
-		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &c);
-		
+		ScavTrap();
+		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap &s);
+
 		// Assignation operator overload
-		ClapTrap& operator = (const ClapTrap &c);
+		ScavTrap& operator = (const ScavTrap &s);
 
 		// Destructor
-		~ClapTrap();
+		~ScavTrap();
 
+		// override
 		void attack(std::string const & target);
-		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
-
 		void status();
+
+		void guardGate();
 };
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:30:24 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:43:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/03 19:51:21 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ ClapTrap::ClapTrap()
 ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "<" << name << "> constructor called" << std::endl;
-	
+
 	this->name = name;
 	this->hitpoints = 10;
 	this->energy_points = 10;
@@ -43,7 +43,7 @@ ClapTrap::ClapTrap(const ClapTrap &c)
 ClapTrap &ClapTrap::operator = (const ClapTrap &c)
 {
 	std::cout << "assignation operator called" << std::endl;
-	
+
 	this->name = c.name;
 	this->hitpoints = c.hitpoints;
 	this->energy_points = c.energy_points;
