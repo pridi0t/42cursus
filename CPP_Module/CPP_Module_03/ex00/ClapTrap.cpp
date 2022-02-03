@@ -6,33 +6,60 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:30:24 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 14:44:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/03 18:19:48 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
+// Constructor
+ClapTrap::ClapTrap()
+{
+	std::cout << "default constructor called" << std::endl;
+	
+	this->name = "";
+	this->hitpoints = 10;
+	this->energy_point = 10;
+	this->attack_damage = 0;
+}
+
 ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "<" << name << "> constructor called" << std::endl;
-
+	
 	this->name = name;
 	this->hitpoints = 10;
 	this->energy_point = 10;
 	this->attack_damage = 0;
 }
 
+ClapTrap::ClapTrap(const ClapTrap &c)
+{
+	(*this) = c;
+}
+
+// Assignation operator overload
+ClapTrap &ClapTrap::operator = (const ClapTrap &c)
+{
+	this->name = c.name;
+	this->hitpoints = c.hitpoints;
+	this->energy_point = c.energy_point;
+	this->attack_damage = c.attack_damage;
+	return (*this);
+}
+
+// Destructor
 ClapTrap::~ClapTrap()
 {
 	std::cout << "<" << this->name << "> destructor called" << std::endl;
 }
 
-void ClapTrap::attack(std::string const & target)
+void	ClapTrap::attack(std::string const & target)
 {
 	std::cout << "<" << name << "> attacks " << "<" << target << ">, causing <" << attack_damage << "> points of damage!" << std::endl;
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (hitpoints > amount)
 		hitpoints -= amount;
@@ -42,7 +69,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 	std::cout << "<" << name << "> takes <" << amount << "> damage" << std::endl;
 }
 
-void ClapTrap::beRepaired(unsigned int amount)
+void	ClapTrap::beRepaired(unsigned int amount)
 {
 	hitpoints += amount;
 	if (hitpoints >= 10)
