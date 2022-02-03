@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:30:24 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 14:19:35 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/03 14:26:02 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 	if (energy_point >= max)
 		energy_point = max;
 	
-	std::cout << "<" << name << "> repair completed (" << amount << ")" << std::endl;
+	std::cout << "<" << name << "> has been repaird by <" << amount << ">" << std::endl;
 }
 
 void	ClapTrap::status()
