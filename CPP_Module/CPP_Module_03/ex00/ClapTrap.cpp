@@ -6,19 +6,19 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:30:24 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 14:26:02 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/03 14:44:45 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(std::string name) : max(10)
+ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "<" << name << "> constructor called" << std::endl;
 
 	this->name = name;
-	this->hitpoints = max;
-	this->energy_point = max;
+	this->hitpoints = 10;
+	this->energy_point = 10;
 	this->attack_damage = 0;
 }
 
@@ -45,11 +45,11 @@ void ClapTrap::takeDamage(unsigned int amount)
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	hitpoints += amount;
-	if (hitpoints >= max)
-		hitpoints = max;
+	if (hitpoints >= 10)
+		hitpoints = 10;
 	energy_point += amount;
-	if (energy_point >= max)
-		energy_point = max;
+	if (energy_point >= 10)
+		energy_point = 10;
 	
 	std::cout << "<" << name << "> has been repaird by <" << amount << ">" << std::endl;
 }
