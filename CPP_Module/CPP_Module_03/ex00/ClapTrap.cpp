@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:30:24 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 18:19:48 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/03 18:39:26 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap(const ClapTrap &c)
 {
+	std::cout << "copy constructor called" << std::endl;
 	(*this) = c;
 }
 
 // Assignation operator overload
 ClapTrap &ClapTrap::operator = (const ClapTrap &c)
 {
+	std::cout << "assignation operator called" << std::endl;
+	
 	this->name = c.name;
 	this->hitpoints = c.hitpoints;
 	this->energy_point = c.energy_point;
