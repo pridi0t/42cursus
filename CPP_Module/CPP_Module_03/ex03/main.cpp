@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 04:29:14 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 04:58:44 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@ int main(void)
 
 	//a->status();
 
+	DiamondTrap a;
+	//a.attack("aaaa");
+	//a.status();
 	return 0;
 }

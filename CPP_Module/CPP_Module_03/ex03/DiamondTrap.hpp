@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 20:11:55 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 04:28:47 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 04:59:35 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap {
+class DiamondTrap : public FragTrap, public ScavTrap {
 	private:
 		std::string name;
 
@@ -32,9 +33,9 @@ class DiamondTrap : public ScavTrap, public FragTrap {
 
 		// Destructor
 		~DiamondTrap();
-
-		// override
-
+	
+		void attack(std::string const & target);
+		
 		void whoAmI();
 };
 
