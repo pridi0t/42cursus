@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:32:29 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:50:38 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:16:52 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "[ScavTrap] default constructor called" << std::endl;
 	this->mode = 0;
-	this->hitpoints = 100;
+	this->max_hp = 100;
+	this->hitpoints = this->max_hp;
 	this->energy_points = 50;
 	this->attack_damage = 20;
 }
@@ -27,7 +28,8 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	std::cout << "[ScavTrap] <" << name << "> constructor called" << std::endl;
 
 	this->mode = 0;
-	this->hitpoints = 100;
+	this->max_hp = 100;
+	this->hitpoints = this->max_hp;
 	this->energy_points = 50;
 	this->attack_damage = 20;
 }
@@ -41,7 +43,10 @@ ScavTrap::ScavTrap(const ScavTrap &s)
 // Assignation operator overload
 ScavTrap &ScavTrap::operator = (const ScavTrap &s)
 {
+	std::cout << "[ScavTrap] assignation operator called" << std::endl;
+	
 	this->name = s.name;
+	this->max_hp = s.max_hp;
 	this->hitpoints = s.hitpoints;
 	this->energy_points = s.energy_points;
 	this->attack_damage = s.attack_damage;
@@ -58,18 +63,6 @@ ScavTrap::~ScavTrap()
 void	ScavTrap::attack(std::string const & target)
 {
 	std::cout << "[ScavTrap] <" << name << "> attacks " << "<" << target << ">, causing <" << attack_damage << "> points of damage!" << std::endl;
-}
-
-void	ScavTrap::beRepaired(unsigned int amount)
-{
-	hitpoints += amount;
-	if (hitpoints >= 100)
-		hitpoints = 100;
-	energy_points += amount;
-	if (energy_points >= 50)
-		energy_points = 50;
-	
-	std::cout << "[ScavTrap] <" << name << "> has been repaird by <" << amount << ">" << std::endl;
 }
 
 void ScavTrap::status()

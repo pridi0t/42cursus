@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:13:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 20:04:28 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:29:08 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ FragTrap::FragTrap() : ClapTrap()
 {
 	std::cout << "[FragTrap] default constructor called" << std::endl;
 
-	this->hitpoints = 100;
+	this->max_hp = 100;
+	this->hitpoints = max_hp;
 	this->energy_points = 100;
 	this->attack_damage = 30;
 }
@@ -26,7 +27,8 @@ FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
 	std::cout << "[FragTrap] <" << name << "> constructor called" << std::endl;
 	
-	this->hitpoints = 100;
+	this->max_hp = 100;
+	this->hitpoints = max_hp;
 	this->energy_points = 100;
 	this->attack_damage = 30;
 }
@@ -43,6 +45,7 @@ FragTrap &FragTrap::operator = (const FragTrap &f)
 	std::cout << "[FragTrap] assignation operator called" << std::endl;
 	
 	this->name = f.name;
+	this->max_hp = f.max_hp;
 	this->hitpoints = f.hitpoints;
 	this->energy_points = f.energy_points;
 	this->attack_damage = f.attack_damage;

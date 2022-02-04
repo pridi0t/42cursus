@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:29:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:49:48 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:09:21 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class ClapTrap {
 	protected:
 		std::string		name;
+		unsigned int	max_hp;
 		unsigned int	hitpoints;
 		unsigned int	energy_points;
 		unsigned int	attack_damage;
