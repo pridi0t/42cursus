@@ -9,9 +9,10 @@ echo "set autoindent" >> ~/.vimrc
 echo "set cindent" >> ~/.vimrc
 echo "set showmatch" >> ~/.vimrc
 echo "set nofixendofline" >> ~/.vimrc
+echo "map <F2> <c-w><c-w>" >> ~/.vimrc
 export MAIL="hyojang@student.42seoul.kr"
-alias cc="gcc -Werror -Wall -Wextra"
-alias norm="norminette"
+#alias cc="gcc -Werror -Wall -Wextra"
+#alias norm="norminette"
 
 # Stdheader
 #mkdir -p ~/.vim/plugin

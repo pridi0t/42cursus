@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 02:31:11 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:51:04 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ int main(void)
 	// heap
 	FragTrap *b = new FragTrap("heapB");
 	b->status();
+
+	// parent class test
+	std::cout << std::endl << "ClapTrap test ======================" << std::endl;
+	a.takeDamage(10);
+	a.status();
+	a.beRepaired(200);
+	a.status();
 
 	// override test
 	std::cout << std::endl << "override test ======================" << std::endl;
