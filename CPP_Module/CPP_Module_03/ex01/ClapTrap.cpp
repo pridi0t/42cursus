@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:30:24 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:45:28 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:10:44 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ ClapTrap::ClapTrap()
 	std::cout << "default constructor called" << std::endl;
 	
 	this->name = "";
-	this->hitpoints = 10;
+	this->max_hp = 10;
+	this->hitpoints = this->max_hp;
 	this->energy_points = 10;
 	this->attack_damage = 0;
 }
@@ -28,7 +29,8 @@ ClapTrap::ClapTrap(std::string name)
 	std::cout << "<" << name << "> constructor called" << std::endl;
 
 	this->name = name;
-	this->hitpoints = 10;
+	this->max_hp = 10;
+	this->hitpoints = this->max_hp;
 	this->energy_points = 10;
 	this->attack_damage = 0;
 }
@@ -45,6 +47,7 @@ ClapTrap &ClapTrap::operator = (const ClapTrap &c)
 	std::cout << "assignation operator called" << std::endl;
 
 	this->name = c.name;
+	this->max_hp = c.max_hp;
 	this->hitpoints = c.hitpoints;
 	this->energy_points = c.energy_points;
 	this->attack_damage = c.attack_damage;
@@ -75,11 +78,8 @@ void	ClapTrap::takeDamage(unsigned int amount)
 void	ClapTrap::beRepaired(unsigned int amount)
 {
 	hitpoints += amount;
-	if (hitpoints >= 10)
-		hitpoints = 10;
-	energy_points += amount;
-	if (energy_points >= 10)
-		energy_points = 10;
+	if (hitpoints >= max_hp)
+		hitpoints = max_hp;
 	
 	std::cout << "<" << name << "> has been repaird by <" << amount << ">" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 19:02:26 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:18:16 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(void)
 	b->status();
 
 	// repaire test
-	std::cout << std::endl << "1-3) repaire test(override) ===========" << std::endl;
+	std::cout << std::endl << "1-3) repaire test =====================" << std::endl;
 	b->beRepaired(30);
 	b->status();
 	b->beRepaired(500);

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:31:16 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 18:46:13 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 02:17:14 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ class ScavTrap : public ClapTrap {
 
 		// override
 		void attack(std::string const & target);
-		void beRepaired(unsigned int amount);
 		void status();
 
 		void guardGate();
