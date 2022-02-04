@@ -6,21 +6,22 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/03 19:42:07 by hyojang          ###   ########.fr        #
+#    Updated: 2022/02/05 03:33:48 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = FRAGTRAP
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 
 RM = rm -f
 
 FILES = main		\
 		ClapTrap	\
 		ScavTrap	\
-		FragTrap
+		FragTrap	\
+		DiamondTrap
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))

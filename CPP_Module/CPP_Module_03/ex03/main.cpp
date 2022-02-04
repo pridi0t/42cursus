@@ -6,34 +6,20 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/03 20:06:37 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 04:29:14 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(void)
 {
-	// stack
-	FragTrap a("stackA");
-	a.status();
+	//DiamondTrap *a = new DiamondTrap();
+	//ClapTrap *cptr = static_cast<ClapTrap *>(a);
 
-	// heap
-	FragTrap *b = new FragTrap("heapB");
-	b->status();
-
-	// override test
-	std::cout << std::endl << "override test ======================" << std::endl;
-	a.attack("enemy");
-	a.status();
-
-	// child class test
-	std::cout << std::endl << "FragTrap test ======================" << std::endl;
-	a.highFivesGuys();
-	b->highFivesGuys();
-
-	delete b;
+	//a->status();
 
 	return 0;
 }
