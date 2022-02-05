@@ -6,11 +6,11 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/05 04:38:36 by hyojang          ###   ########.fr        #
+#    Updated: 2022/02/05 22:23:35 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FRAGTRAP
+NAME = DIAMONDTRAP
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow

@@ -6,11 +6,10 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 02:18:16 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 23:01:39 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
 
 int main(void)
@@ -45,8 +44,6 @@ int main(void)
 
 	// child class test
 	std::cout << std::endl << "2) guardGate test =====================" << std::endl;
-	b->guardGate();
-	b->status();
 	b->guardGate();
 	b->status();
 
