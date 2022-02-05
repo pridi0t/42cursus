@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:31:16 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 02:17:14 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 21:53:25 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 #include <iostream>
 #include "ClapTrap.hpp"
+
+#define S_HP	100
+#define S_EP	50
+#define S_DMG	20
 
 class ScavTrap : public ClapTrap {
 	private:

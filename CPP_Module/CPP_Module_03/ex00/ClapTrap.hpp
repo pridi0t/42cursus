@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:29:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 02:04:10 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 21:48:25 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 
 #include <iostream>
 #include <iomanip>
+
+#define C_HP	10
+#define C_EP	10
+#define C_DMG	0
 
 class ClapTrap {
 	private:

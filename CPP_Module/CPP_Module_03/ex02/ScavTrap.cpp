@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:32:29 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 02:16:52 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 21:53:24 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "[ScavTrap] default constructor called" << std::endl;
 	this->mode = 0;
-	this->max_hp = 100;
-	this->hitpoints = this->max_hp;
-	this->energy_points = 50;
-	this->attack_damage = 20;
+	this->max_hp = S_HP;
+	this->hitpoints = max_hp;
+	this->energy_points = S_EP;
+	this->attack_damage = S_DMG;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
@@ -28,10 +28,10 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	std::cout << "[ScavTrap] <" << name << "> constructor called" << std::endl;
 
 	this->mode = 0;
-	this->max_hp = 100;
-	this->hitpoints = this->max_hp;
-	this->energy_points = 50;
-	this->attack_damage = 20;
+	this->max_hp = S_HP;
+	this->hitpoints = max_hp;
+	this->energy_points = S_EP;
+	this->attack_damage = S_DMG;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &s)

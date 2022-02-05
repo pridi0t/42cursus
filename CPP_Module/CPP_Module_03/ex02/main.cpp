@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 14:45:23 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 21:17:26 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 22:02:59 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int main(void)
 
 	// parent class test
 	std::cout << std::endl << "ClapTrap test ======================" << std::endl;
+	a.attack("enemy");
+	a.status();
 	a.takeDamage(10);
 	a.status();
 	a.beRepaired(200);
