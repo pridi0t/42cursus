@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 20:11:11 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 22:57:37 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 23:58:56 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ DiamondTrap::DiamondTrap() : ClapTrap("_clap_name"), ScavTrap(), FragTrap()
 {
 	std::cout << "[DiamondTrap] default constructor called" << std::endl;
 
-	this->cname = ClapTrap::name;
-	this->FragTrap::max_hp = 100;
-	this->FragTrap::hitpoints = FragTrap::max_hp;
-	this->ScavTrap::energy_points = 50;
-	this->ScavTrap::attack_damage = 20;
+	this->name = "";
+	this->max_hp = F_HP;
+	this->hitpoints = this->max_hp;
+	this->energy_points = S_EP;
+	this->attack_damage = F_DMG;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
 {
 	std::cout << "[DiamondTrap] <" << name << "> constructor called" << std::endl;
 	
-	this->cname = ClapTrap::name;
-	this->FragTrap::max_hp = 100;
-	this->FragTrap::hitpoints = FragTrap::max_hp;
-	this->ScavTrap::energy_points = 50;
-	this->ScavTrap::attack_damage = 20;
+	this->name = name;
+	this->max_hp = F_HP;
+	this->hitpoints = this->max_hp;
+	this->energy_points = S_EP;
+	this->attack_damage = F_DMG;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &d)
@@ -47,7 +47,6 @@ DiamondTrap &DiamondTrap::operator = (const DiamondTrap &d)
 	std::cout << "[DiamondTrap] assignation operator called" << std::endl;
 	
 	this->name = d.name;
-	this->cname = d.cname;
 	this->max_hp = d.max_hp;
 	this->hitpoints = d.hitpoints;
 	this->energy_points = d.energy_points;
@@ -66,7 +65,6 @@ void DiamondTrap::status()
 {
 	std::cout << "------------ status ------------" << std::endl;
 	std::cout << std::setw(14) << std::left << "name" << ": " << this->name << std::endl;
-	std::cout << std::setw(14) << "ClapTrap::Name" << ": " << this->cname << std::endl;
 	std::cout << std::setw(14) << "hitpoints" << ": " << this->hitpoints << std::endl;
 	std::cout << std::setw(14) << "energy points" << ": " << this->energy_points << std::endl;
 	std::cout << std::setw(14) << "attack damage" << ": " << this->attack_damage << std::endl;
@@ -77,5 +75,5 @@ void DiamondTrap::whoAmI()
 {
 	std::cout << "[DiamondTrap] whoAmI called ===" << std::endl;
 	std::cout << "name      : " << this->name << std::endl;
-	std::cout << "clap name : " << this->cname << std::endl;
+	std::cout << "clap name : " << ClapTrap::name << std::endl;
 }
