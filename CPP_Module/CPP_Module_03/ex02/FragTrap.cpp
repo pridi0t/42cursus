@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:13:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 02:29:08 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 21:17:08 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,6 @@ FragTrap &FragTrap::operator = (const FragTrap &f)
 FragTrap::~FragTrap()
 {
 	std::cout << "[FragTrap] <" << name << "> destructor called" << std::endl;
-}
-
-void	FragTrap::attack(std::string const & target)
-{
-	std::cout << "[FragTrap] <" << name << "> attacks " << "<" << target << ">, causing <" << attack_damage << "> points of damage!" << std::endl;
 }
 
 void	FragTrap::highFivesGuys(void)
