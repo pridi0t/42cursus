@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:12:44 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 04:42:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/05 21:22:11 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ class FragTrap : virtual public ClapTrap {
 
 		// Destructor
 		~FragTrap();
-
-		// override
-		void attack(std::string const & target);
 
 		void highFivesGuys(void);
 };
