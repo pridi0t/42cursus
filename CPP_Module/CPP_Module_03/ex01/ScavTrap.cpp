@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:32:29 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 23:00:33 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 01:11:17 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ ScavTrap::ScavTrap() : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "[ScavTrap] <" << name << "> constructor called" << std::endl;
-
 	this->max_hp = S_HP;
 	this->hitpoints = max_hp;
 	this->energy_points = S_EP;
 	this->attack_damage = S_DMG;
+	
+	std::cout << "[ScavTrap] <" << this->name << "> constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &s)

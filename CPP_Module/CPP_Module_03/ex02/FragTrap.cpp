@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 19:13:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 22:00:20 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 01:17:57 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ FragTrap::FragTrap() : ClapTrap()
 
 FragTrap::FragTrap(std::string name): ClapTrap(name)
 {
-	std::cout << "[FragTrap] <" << name << "> constructor called" << std::endl;
-	
 	this->max_hp = F_HP;
 	this->hitpoints = max_hp;
 	this->energy_points = F_EP;
 	this->attack_damage = F_DMG;
+	
+	std::cout << "[FragTrap] <" << this->name << "> constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &f)

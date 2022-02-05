@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:30:24 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 21:48:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 01:08:32 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "<" << name << "> constructor called" << std::endl;
-	
 	this->name = name;
 	this->max_hp = C_HP;
 	this->hitpoints = max_hp;
 	this->energy_points = C_EP;
 	this->attack_damage = C_DMG;
+	
+	std::cout << "<" << this->name << "> constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &c)

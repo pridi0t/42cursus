@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:31:16 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 23:00:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 01:27:26 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define S_EP	50
 #define S_DMG	20
 
-class ScavTrap : virtual public ClapTrap {
+class ScavTrap : public ClapTrap {
 	public:
 		// Constructor
 		ScavTrap();

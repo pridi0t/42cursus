@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:32:29 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/06 00:28:55 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 01:11:17 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "[ScavTrap] default constructor called" << std::endl;
-	
 	this->max_hp = S_HP;
 	this->hitpoints = max_hp;
 	this->energy_points = S_EP;
@@ -25,12 +24,12 @@ ScavTrap::ScavTrap() : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "[ScavTrap] <" << name << "> constructor called" << std::endl;
-
 	this->max_hp = S_HP;
 	this->hitpoints = max_hp;
 	this->energy_points = S_EP;
 	this->attack_damage = S_DMG;
+	
+	std::cout << "[ScavTrap] <" << this->name << "> constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &s)
@@ -55,7 +54,7 @@ ScavTrap &ScavTrap::operator = (const ScavTrap &s)
 // Destructor
 ScavTrap::~ScavTrap()
 {
-	std::cout << "[ScavTrap] <" << this->name << "> destructor called" << std::endl;
+	std::cout << "[ScavTrap] <" << name << "> destructor called" << std::endl;
 }
 
 void	ScavTrap::attack(std::string const & target)
