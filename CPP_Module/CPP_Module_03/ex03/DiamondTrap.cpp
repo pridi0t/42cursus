@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 20:11:11 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/06 01:26:33 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 02:39:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ DiamondTrap::~DiamondTrap()
 }
 
 // Override
+void DiamondTrap::attack(std::string const & target)
+{
+	ScavTrap::attack(target);
+}
+
 void DiamondTrap::status()
 {
 	std::cout << "------------ status ------------" << std::endl;

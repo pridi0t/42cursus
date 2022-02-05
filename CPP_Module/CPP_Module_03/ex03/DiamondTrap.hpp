@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 20:11:55 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 23:37:22 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 02:39:48 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ class DiamondTrap : public ScavTrap, public FragTrap {
 		~DiamondTrap();
 
 		// Override
+		void attack(std::string const & target);
 		void status();
 
 		void whoAmI();
