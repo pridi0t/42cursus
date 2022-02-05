@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:32:29 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 23:00:33 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 00:28:55 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "[ScavTrap] default constructor called" << std::endl;
+	
 	this->max_hp = S_HP;
 	this->hitpoints = max_hp;
 	this->energy_points = S_EP;
@@ -54,7 +55,7 @@ ScavTrap &ScavTrap::operator = (const ScavTrap &s)
 // Destructor
 ScavTrap::~ScavTrap()
 {
-	std::cout << "[ScavTrap] <" << name << "> destructor called" << std::endl;
+	std::cout << "[ScavTrap] <" << this->name << "> destructor called" << std::endl;
 }
 
 void	ScavTrap::attack(std::string const & target)
