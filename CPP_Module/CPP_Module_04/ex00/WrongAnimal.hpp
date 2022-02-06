@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/06 22:52:12 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 05:18:45 by hyojang          ###   ########.fr       */
+/*   Created: 2022/02/07 05:21:32 by hyojang           #+#    #+#             */
+/*   Updated: 2022/02/07 05:36:48 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+# ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 #include <iostream>
 
-class Animal {
+class WrongAnimal {
 	protected:
 		std::string type;
 
 	public:
 		// Constructor
-		Animal();
-		Animal(const Animal &a);
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal &w);
 		
 		// Assignation operator overload
-		Animal& operator = (const Animal &a);
+		WrongAnimal& operator = (const WrongAnimal &w);
 
 		// Destructor
-		virtual ~Animal();
+		virtual ~WrongAnimal();
 
 		std::string getType() const;
-		virtual void makeSound() const;
+		void makeSound() const;
 };
 
 # endif
