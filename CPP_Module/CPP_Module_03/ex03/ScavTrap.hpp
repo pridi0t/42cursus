@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:31:16 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/05 23:00:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 22:21:40 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class ScavTrap : virtual public ClapTrap {
 		ScavTrap& operator = (const ScavTrap &s);
 
 		// Destructor
-		~ScavTrap();
+		virtual ~ScavTrap();
 
 		// override
 		void attack(std::string const & target);

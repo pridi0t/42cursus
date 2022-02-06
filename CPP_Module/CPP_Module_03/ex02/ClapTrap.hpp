@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 10:29:02 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/06 01:10:13 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/06 22:19:19 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class ClapTrap {
 		ClapTrap& operator = (const ClapTrap &c);
 
 		// Destructor
-		~ClapTrap();
+		virtual ~ClapTrap();
 
 		void attack(std::string const & target);
 		void takeDamage(unsigned int amount);
