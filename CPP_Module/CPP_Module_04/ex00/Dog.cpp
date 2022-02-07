@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:25:50 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 01:17:15 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 06:04:20 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Dog::Dog() : Animal()
 	this->type = "Dog";
 }
 
-Dog::Dog(const Dog &d)
+Dog::Dog(const Dog &d) : Animal()
 {
 	std::cout << "[Dog] copy constructor called" << std::endl;
 

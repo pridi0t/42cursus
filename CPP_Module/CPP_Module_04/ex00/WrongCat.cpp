@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 05:28:51 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 05:36:42 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 06:04:38 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ WrongCat::WrongCat() : WrongAnimal()
 	this->type = "Cat";
 }
 
-WrongCat::WrongCat(const WrongCat &w)
+WrongCat::WrongCat(const WrongCat &w) : WrongAnimal()
 {
 	std::cout << "[WrongCat] copy constructor called" << std::endl;
 

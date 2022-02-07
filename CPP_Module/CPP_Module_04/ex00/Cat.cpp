@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:43:20 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 01:17:27 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 06:03:52 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Cat::Cat() : Animal()
 	this->type = "Cat";
 }
 
-Cat::Cat(const Cat &c)
+Cat::Cat(const Cat &c) : Animal()
 {
 	std::cout << "[Cat] copy constructor called" << std::endl;
 
