@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/07 05:41:30 by hyojang          ###   ########.fr        #
+#    Updated: 2022/02/08 06:37:45 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,9 @@ RM = rm -f
 
 FILES = main		\
 		Animal		\
-		Dog			\
+		Brain		\
 		Cat			\
-		WrongAnimal	\
-		WrongCat
+		Dog
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))

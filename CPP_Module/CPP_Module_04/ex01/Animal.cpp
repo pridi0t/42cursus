@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 23:10:35 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 00:20:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 01:14:28 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Animal::Animal(const Animal &a)
 // Assignation operator overload
 Animal& Animal::operator = (const Animal &a)
 {
-	this->type = a.type;
+	this->type = a.getType();
 	return (*this);
 }
 

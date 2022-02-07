@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:40:35 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 06:42:54 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 06:43:08 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal {
 	private:
-		
+		Brain *cb;
 
 	public:
 		// Constructor
@@ -29,9 +30,14 @@ class Cat : public Animal {
 		Cat& operator = (const Cat &c);
 
 		// Destructor
-		~Cat();
+		virtual ~Cat();
 
+		// Override
 		void makeSound() const;
+
+		Brain getBr() const;
+		void setBr(int index, std::string value);
+		void printBrain();
 };
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 05:21:32 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 05:36:48 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 06:41:32 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class WrongAnimal {
 		WrongAnimal& operator = (const WrongAnimal &w);
 
 		// Destructor
-		virtual ~WrongAnimal();
+		~WrongAnimal();
 
 		std::string getType() const;
 		void makeSound() const;

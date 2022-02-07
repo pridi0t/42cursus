@@ -6,49 +6,71 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/06 22:57:48 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 05:51:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 06:37:37 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 int main(void)
 {
-	// Animal
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	Dog *a = new Dog();
+	Dog *b = new Dog(*a);
 
-	std::cout << "============== Animal ==============" << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	j->makeSound();
-	meta->makeSound();
+	std::cout << a->getType() << std::endl;
+	std::cout << b->getType() << std::endl;
+	a->setBr(0, "a");
+	std::cout << "========== A ==========" << std::endl;
+	a->printBrain();
 
-	delete meta;
-	delete j;
-	delete i;
+	std::cout << std::endl << "========== B ==========" << std::endl;
+	b->printBrain();
 
-	// WrongAnimal
-	std::cout << "=========== WrongAnimal ============" << std::endl;
-	const WrongAnimal* wa = new WrongAnimal();
-	const WrongAnimal* wc = new WrongCat();
-	const WrongCat* c = new WrongCat();
+	*a = *b;
 
-	std::cout << wc->getType() << " " << std::endl;
-	std::cout << c->getType() << " " << std::endl;
-	wa->makeSound();
-	wc->makeSound();
-	c->makeSound();
+	b->setBr(0, "b");
+	std::cout << "========== A ==========" << std::endl;
+	a->printBrain();
 
-	delete wa;
-	delete wc;
-	delete c;
+	std::cout << std::endl << "========== B ==========" << std::endl;
+	b->printBrain();
+	delete a;
+	delete b;
 
+/*
+	Animal *a = new Animal[5];
+
+	for (int i = 0 ; i < 5 ; i++)
+	{
+		a[i] = new Cat();
+		std::cout << a[i]->getType() << std::endl;
+	}
+	
+	delete[] a;
+*/
+
+	/*
+	Brain a;
+	Brain b(a);
+
+	a.setBr(0, "a");
+	std::cout << "========== A ==========" << std::endl;
+	for (int i = 0 ; i < 100 ; i++)
+	{
+		std::cout << a.getBr(i) << " ";
+		if (i % 10 == 9)
+			std::cout << std::endl;
+	}
+	
+	std::cout << "========== B ==========" << std::endl;
+	for (int i = 0 ; i < 100 ; i++)
+	{
+		std::cout << b.getBr(i) << " ";
+		if (i % 10 == 9)
+			std::cout << std::endl;
+	}
+	*/
 	return 0;
 }

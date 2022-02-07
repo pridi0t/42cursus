@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 06:24:16 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/07 06:52:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 05:54:28 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #include <iostream>
 
 class Brain {
-	privte:
-		std::string br[100];
+	private:
+		std::string	br[100];
+		int			size_br;
 
 	public:
 		// Constructor
@@ -28,7 +29,11 @@ class Brain {
 		Brain& operator = (const Brain &b);
 
 		// Destructor
-		virtual ~Brain();
+		~Brain();
+
+		std::string getBr(int index) const;
+		void setBr(int index, std::string value);
+		int getSizeBr() const;
 };
 
 # endif
