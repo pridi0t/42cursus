@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:25:50 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/08 06:38:46 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 08:15:23 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ Dog& Dog::operator = (const Dog &d)
 	{
 		this->type = d.getType();
 		delete (this->db);
+		this->db = NULL;
 		this->db = new Brain(d.getBr());
 	}
 	return (*this);

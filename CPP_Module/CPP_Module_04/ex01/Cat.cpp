@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:43:20 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/08 06:47:06 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/08 08:14:37 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ Cat& Cat::operator = (const Cat &c)
 	{
 		this->type = c.getType();
 		delete (this->cb);
+		this->cb = NULL;
 		this->cb = new Brain(c.getBr());
 	}
 	return (*this);
