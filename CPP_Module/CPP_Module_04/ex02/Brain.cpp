@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 06:47:39 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/08 06:47:04 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 13:44:15 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ Brain::Brain()
 Brain::Brain(const Brain &b)
 {
 	std::cout << "[Brain] copy constructor called" << std::endl;
-	
+
+	this->size_br = 100;	
 	(*this) = b;
 }
 
