@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 06:03:06 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/09 08:56:27 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 09:34:51 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ Character::Character()
 {
 	this->name = "";
 	this->inven_size = 0;
+	for (int i = 0 ; i < 4 ; i++)
+		this->inven[i] = NULL;
 }
 
 Character::Character(std::string name)
 {
 	this->name = name;
 	this->inven_size = 0;
+	for (int i = 0 ; i < 4 ; i++)
+		this->inven[i] = NULL;
 }
 
 Character::Character(const Character &c)
@@ -54,7 +58,6 @@ Character::~Character()
 		if (this->inven[i] != NULL)
 			delete this->inven[i];
 	}
-	this->inven[0] = NULL;
 }
 
 std::string const & Character::getName() const
