@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 00:25:50 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/08 08:15:23 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 14:06:14 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ Dog& Dog::operator = (const Dog &d)
 	if (this != &d)
 	{
 		this->type = d.getType();
-		delete (this->db);
-		this->db = NULL;
+		if (this->db != NULL)
+		{
+			delete (this->db);
+			this->db = NULL;
+		}
 		this->db = new Brain(d.getBr());
 	}
 	return (*this);
@@ -50,6 +53,7 @@ Dog::~Dog()
 	delete this->db;
 }
 
+// Override
 void Dog::makeSound() const
 {
 	std::cout << "[Dog] (U・x・U) woof - woof!!" << std::endl;
