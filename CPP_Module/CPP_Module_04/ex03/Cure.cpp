@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:00:03 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/09 09:06:42 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 10:28:18 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ Cure::Cure(const Cure &c)
 // Assignation operator overload
 Cure& Cure::operator = (const Cure &c)
 {
-	this->type = c.type;
+	if (this != &c)
+		this->type = c.type;
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 07:28:08 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/09 08:57:51 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 10:28:18 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ Ice::Ice(const Ice &i)
 // Assignation operator overload
 Ice& Ice::operator = (const Ice &i)
 {
-	this->type = i.type;
+	if (this != &i)
+		this->type = i.type;
 	return (*this);
 }
 

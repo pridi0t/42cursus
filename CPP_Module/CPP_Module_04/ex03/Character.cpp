@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 06:03:06 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/09 09:34:51 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 10:26:42 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,19 @@ Character::Character(const Character &c)
 // Assignation operator overload
 Character& Character::operator = (const Character &c)
 {
-	this->name = c.name;
-	this->inven_size = c.inven_size;
-	for (int i = 0 ; i < 4 ; i++)
+	if (this != &c)
 	{
-		if (this->inven[i] != NULL)
+		this->name = c.name;
+		this->inven_size = c.inven_size;
+		for (int i = 0 ; i < 4 ; i++)
 		{
-			delete this->inven[i];
-			this->inven[i] = c.inven[i]->clone();
+			if (this->inven[i] != NULL)
+			{
+				delete this->inven[i];
+				this->inven[i] = NULL;
+			}
+			if (c.inven[i] != NULL)
+				this->inven[i] = c.inven[i]->clone();
 		}
 	}
 	return (*this);
