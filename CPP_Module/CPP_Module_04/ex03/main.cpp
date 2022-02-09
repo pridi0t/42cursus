@@ -6,16 +6,22 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 10:00:14 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/08 10:02:47 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 09:05:58 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "AMateria.hpp"
+#include "MateriaSource.hpp"
+#include "Character.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
 int main()
 {
 	IMateriaSource* src = new MateriaSource();
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
-
+	
 	ICharacter* me = new Character("me");
 
 	AMateria* tmp;

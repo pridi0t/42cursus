@@ -5,19 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/08 09:57:18 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/08 09:59:56 by hyojang          ###   ########.fr       */
+/*   Created: 2022/02/09 05:17:26 by hyojang           #+#    #+#             */
+/*   Updated: 2022/02/09 08:08:59 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef MATERIASOURCE_HPP
 # define MATERIASOURCE_HPP
 
-class AMateria {
+#include "IMateriaSource.hpp"
+
+class MateriaSource : public IMateriaSource {
+	private:
+		AMateria	*meta[4];
+		int			meta_size;
+
 	public:
-		virtual ~IMateriaSource() {}
-		virtual void learnMateria(AMateria*) = 0;
-		virtual AMateria* createMateria(std::string const & type) = 0;
+		// Constructor
+		MateriaSource();
+		MateriaSource(const MateriaSource &m);
+
+		// Assignation operator overload
+		MateriaSource& operator = (const MateriaSource &m);
+
+		// Destructor
+		~MateriaSource();
+
+		// Override
+		void learnMateria(AMateria* m);
+		AMateria* createMateria(std::string const & type);
 };
 
 # endif
