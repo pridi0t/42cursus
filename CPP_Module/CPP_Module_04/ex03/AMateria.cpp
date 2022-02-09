@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 05:30:05 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/09 08:47:16 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/09 10:49:52 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ AMateria::AMateria(const AMateria &a)
 // Assignation operator overload
 AMateria& AMateria::operator = (const AMateria &a)
 {
-	this->type = a.type;
+	if (this != &a)
+		this->type = a.type;
 	return (*this);
 }
 

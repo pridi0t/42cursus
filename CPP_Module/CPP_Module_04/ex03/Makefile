@@ -6,14 +6,14 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/09 09:38:41 by hyojang          ###   ########.fr        #
+#    Updated: 2022/02/09 11:45:13 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = a.out
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
