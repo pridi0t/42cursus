@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 14:44:01 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/10 15:10:10 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/11 23:04:36 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ class Bureaucrat {
 		// Exception Class
 		class GradeTooHighException : public std::exception {
 			public:
-				virtual const char* what() const;
+				const char* what() const throw();
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
-				virtual const char* what() const;
+				const char* what() const throw();
 		};
 };
 
