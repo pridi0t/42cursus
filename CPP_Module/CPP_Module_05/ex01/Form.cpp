@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 04:02:49 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 03:28:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 05:56:42 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ Form::Form(const Form &f) : name(f.name), required_grade(f.required_grade), exe_
 Form& Form::operator = (const Form &f)
 {
 	*(const_cast<std::string *>(&name)) = f.name;
+	this->signature = f.signature;
 	*(const_cast<int *>(&required_grade)) = f.required_grade;
 	*(const_cast<int *>(&exe_grade)) = f.exe_grade;
 	return (*this);

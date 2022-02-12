@@ -6,19 +6,19 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 04:02:49 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 03:28:25 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 06:25:04 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 // Constructor
-Form::Form() : name(""), required_grade(150), exe_grade(150)
+Form::Form() : name(""), target(""), required_grade(150), exe_grade(150)
 {
 	this->signature = false;
 }
 
-Form::Form(std::string name, int rgrade, int egrade) : name(name), required_grade(rgrade), exe_grade(egrade)
+Form::Form(std::string name, std::string target, int rgrade, int egrade) : name(name), target(target), required_grade(rgrade), exe_grade(egrade)
 {
 	if (rgrade < 1 || egrade < 1)
 		throw GradeTooHighException();
@@ -40,6 +40,8 @@ Form::Form(const Form &f) : name(f.name), required_grade(f.required_grade), exe_
 Form& Form::operator = (const Form &f)
 {
 	*(const_cast<std::string *>(&name)) = f.name;
+	*(const_cast<std::string *>(&target)) = f.target;
+	this->signature = f.signature;
 	*(const_cast<int *>(&required_grade)) = f.required_grade;
 	*(const_cast<int *>(&exe_grade)) = f.exe_grade;
 	return (*this);
@@ -48,9 +50,15 @@ Form& Form::operator = (const Form &f)
 // Destructor
 Form::~Form() {}
 
+// getter
 std::string Form::getName() const
 {
 	return (this->name);
+}
+
+std::string Form::getTarget() const
+{
+	return (this->target);
 }
 
 int	Form::getSignature() const
@@ -76,7 +84,20 @@ void	Form::beSigned(Bureaucrat &b)
 		throw GradeTooLowException();
 }
 
+void	checkForm(Bureaucrat &b)
+{
+	if (this->signature == false)
+		throw SignException();
+	if (this->exe_grade < b.getGrade())
+		throw GradeTooLowException();
+}
+
 // Exception Class
+const char* Form::SignException::what() const throw()
+{
+	return ("[Form Exception] It is not signed...");
+}
+
 const char* Form::GradeTooHighException::what() const throw()
 {
 	return ("[Form Exception] Grade too high..T.T");

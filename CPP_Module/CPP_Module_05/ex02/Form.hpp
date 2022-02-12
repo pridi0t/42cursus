@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 03:38:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 04:58:47 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 06:24:31 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,23 @@ class Form {
 		// Destructor
 		virtual ~Form();
 
+		// getter
 		std::string		getName() const;
+		std::string		getTarget() const;
 		int				getSignature() const;
 		int				getRequiredGrade() const;
 		int				getExeGrade() const;
+
 		void			beSigned(Bureaucrat &b);
-		virtual void	executeForm(Form const & form) = 0;
+		void			checkForm(Bureaucrat &b);
+		virtual void	execute(Bureaucrat const & excutor) const = 0;
 
 		// Exception Class
+		class SignException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+
 		class GradeTooHighException : public std::exception {
 			public:
 				const char* what() const throw();
