@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 04:02:49 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 06:25:04 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 07:58:19 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Form::Form(std::string name, std::string target, int rgrade, int egrade) : name(
 	this->signature = false;
 }
 
-Form::Form(const Form &f) : name(f.name), required_grade(f.required_grade), exe_grade(f.exe_grade)
+Form::Form(const Form &f) : name(f.name), target(f.target), required_grade(f.required_grade), exe_grade(f.exe_grade)
 {
 	if (f.required_grade < 1 || f.exe_grade < 1)
 		throw GradeTooHighException();
@@ -39,11 +39,11 @@ Form::Form(const Form &f) : name(f.name), required_grade(f.required_grade), exe_
 // Assignation operator overload
 Form& Form::operator = (const Form &f)
 {
-	*(const_cast<std::string *>(&name)) = f.name;
-	*(const_cast<std::string *>(&target)) = f.target;
+	*(const_cast<std::string *>(&this->name)) = f.name;
+	*(const_cast<std::string *>(&this->target)) = f.target;
 	this->signature = f.signature;
-	*(const_cast<int *>(&required_grade)) = f.required_grade;
-	*(const_cast<int *>(&exe_grade)) = f.exe_grade;
+	*(const_cast<int *>(&this->required_grade)) = f.required_grade;
+	*(const_cast<int *>(&this->exe_grade)) = f.exe_grade;
 	return (*this);
 }
 
@@ -84,7 +84,7 @@ void	Form::beSigned(Bureaucrat &b)
 		throw GradeTooLowException();
 }
 
-void	checkForm(Bureaucrat &b)
+void	Form::checkForm(Bureaucrat &b)
 {
 	if (this->signature == false)
 		throw SignException();

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 06:17:13 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 06:39:00 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 06:55:30 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 #include "Form.hpp"
 
 class ShrubberyCreationForm : public Form {
+	private:
+		// Forbidden Constructor
+		ShrubberyCreationForm();
+
 	public:
 		// Constructor
-		ShrubberyCreationForm();
 		ShrubberyCreationForm(std::string name);
 		ShrubberyCreationForm(const ShrubberyCreationForm &s);
 		

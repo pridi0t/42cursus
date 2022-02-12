@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 03:38:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 06:24:31 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 07:58:21 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class Form {
 	public:
 		// Constructor
 		Form();
-		Form(std::string name, int rgrade, int egrade);
+		Form(std::string name, std::string target, int rgrade, int egrade);
 		Form(const Form &f);
 		
 		// Assignation operator overload
