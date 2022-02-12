@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 07:10:04 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/12 20:34:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 01:32:10 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main()
 
 	} catch (std::exception & e)
 	{
-		std::cout << e.what();
+		std::cerr << e.what();
 	}
 	return 0;
 }

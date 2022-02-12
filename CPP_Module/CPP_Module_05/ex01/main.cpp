@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 07:10:04 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/12 20:51:06 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 03:44:49 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,12 @@ int main()
 		Bureaucrat b1("b1", 1);
 		Bureaucrat b2("b2", 150);
 
-		f2.beSigned(b1);
 		std::cout << f2;
-		f2.beSigned(b2);
+		b1.signForm(f2);
+		std::cout << f2;
+		std::cout << f3;
+		b2.signForm(f3);
+		std::cout << f3;
 		
 		// constructor exception
 		//Form f5("f5", 0, 150);
@@ -52,7 +55,7 @@ int main()
 
 	} catch (std::exception & e)
 	{
-		std::cout << e.what();
+		std::cerr << e.what();
 	}
 	return 0;
 }

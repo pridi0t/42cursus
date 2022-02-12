@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 04:02:49 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/12 20:58:35 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 03:28:25 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,25 +68,12 @@ int	Form::getExeGrade() const
 	return (this->exe_grade);
 }
 
-void	Form::beSigned(Bureaucrat b)
+void	Form::beSigned(Bureaucrat &b)
 {
-	try {
-		if (this->required_grade >= b.getGrade())
-			this->signature = true;
-		else
-			throw GradeTooLowException();
-		signForm(b);
-	} catch (exception &e) {
-
-	}
-}
-
-void	Form::signForm(Bureaucrat b)
-{
-	if (this->signature == true)
-		std::cout << "<" << b.getName() << "> signs <" << this->name << ">" << std::endl;
+	if (this->required_grade >= b.getGrade())
+		this->signature = true;
 	else
-		std::cout << "<" << b.getName() << "> cannot signs <" << this->name << "> because <grade is lower than the required grade>";
+		throw GradeTooLowException();
 }
 
 // Exception Class
