@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 07:10:04 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/12 03:24:17 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/12 20:34:19 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ int main()
 
 		Bureaucrat normal3(normal2);
 		normal3.downGrade();
-		std::cout << normal3 << std::endl;
+		std::cout << normal3;
+
+		// function test
+		std::cout << "getName : " << normal3.getName() << std::endl;
+		std::cout << "getGrade : " << normal3.getGrade() << std::endl;
 
 		// assignation constructor
 		Bureaucrat normal4("normal4", 150);
@@ -43,7 +47,7 @@ int main()
 
 	} catch (std::exception & e)
 	{
-		std::cout << "exception catch" << std::endl;
+		std::cout << e.what();
 	}
 	return 0;
 }

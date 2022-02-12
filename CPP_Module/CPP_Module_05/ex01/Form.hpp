@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 03:38:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/12 04:03:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/12 20:14:05 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <iostream>
 #include <exception>
+#include <iomanip>
+
+#include "Bureaucrat.hpp"
 
 class Form {
 	private:
@@ -26,6 +29,7 @@ class Form {
 	public:
 		// Constructor
 		Form();
+		Form(std::string name, int rgrade, int egrade);
 		Form(const Form &f);
 		
 		// Assignation operator overload
@@ -36,10 +40,10 @@ class Form {
 
 		std::string getName() const;
 		int			getSignature() const;
-		void		getRequiredGrade() const;
-		void		getExeGrade() const;
-		void		beSigned();
-		void		signForm();
+		int			getRequiredGrade() const;
+		int			getExeGrade() const;
+		void		beSigned(Bureaucrat b);
+		void		signForm(Bureaucrat b);
 
 		// Exception Class
 		class GradeTooHighException : public std::exception {

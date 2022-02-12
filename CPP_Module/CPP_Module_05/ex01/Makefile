@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/10 13:43:52 by hyojang          ###   ########.fr        #
+#    Updated: 2022/02/12 20:11:38 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 FILES = main		\
-		Bureaucrat
+		Bureaucrat	\
+		Form
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))

@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:37:47 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/11 23:19:34 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/12 19:37:55 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 
 std::ostream& operator << (std::ostream& os, const Bureaucrat &b)
 {
-	os << "========== status ==========" << std::endl;
+	os << "===== Bureaucrat status =====" << std::endl;
 	os << "name  : " << b.getName() << std::endl;
 	os << "grade : " << b.getGrade() << std::endl;
-	os << "============================" << std::endl;
+	os << "=============================" << std::endl;
 	return (os);
 }
