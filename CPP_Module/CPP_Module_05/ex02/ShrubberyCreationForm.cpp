@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 13:22:35 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 13:48:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 16:53:34 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & excutor) const
 \n\
 ------------------------------------------------\n";
 	Form::checkForm(excutor);
-	ofs.open(excutor.getName() + "_shrubbery");
+	ofs.open(this->getTarget() + "_shrubbery");
 	if (!ofs.is_open())
 		throw FileWriteException();
 	ofs << tmp;

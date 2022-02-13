@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:08:50 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 15:57:20 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 16:52:57 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	RobotomyRequestForm::execute(Bureaucrat const & excutor) const
 	if ((rand() % 100 + 1) <= 50)
 	{
 		std::cout << "o(^O^)----->>>>   o<-<  wing~~~~~~" << std::endl;
-		std::cout << "<" << excutor.getName() << "> has been robotomized successfully 50% of the time" << std::endl;
+		std::cout << "<" << this->getTarget() << "> has been robotomized successfully 50% of the time" << std::endl;
 	}
 	else
-		std::cout << "<" << excutor.getName() << "> Robotization failed T.T" << std::endl;
+		std::cout << "<" << this->getTarget() << "> Robotization failed T.T" << std::endl;
 }
