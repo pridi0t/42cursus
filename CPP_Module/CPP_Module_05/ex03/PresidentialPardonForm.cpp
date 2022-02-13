@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 06:59:10 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 12:09:50 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 16:49:46 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@ PresidentialPardonForm& PresidentialPardonForm::operator = (const PresidentialPa
 // Destructor
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
+// Static member function
+Form	*PresidentialPardonForm::create(std::string &target)
+{
+	return (new PresidentialPardonForm(target));
+}
+
 // Override
 void	PresidentialPardonForm::execute(Bureaucrat const & excutor) const
 {
 	Form::checkForm(excutor);
-	std::cout << "<" << excutor.getName() << "> has been pardoned by Zafod Beeblebrox" << std::endl;
+	std::cout << "<" << this->getTarget() << "> has been pardoned by Zafod Beeblebrox" << std::endl;
 }

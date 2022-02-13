@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 06:17:13 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 13:45:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 15:52:28 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ class ShrubberyCreationForm : public Form {
 
 		// Destructor
 		virtual ~ShrubberyCreationForm();
+
+		// Static member function
+		static Form *create(std::string &target);
 
 		// Override
 		void	execute(Bureaucrat const & excutor) const;

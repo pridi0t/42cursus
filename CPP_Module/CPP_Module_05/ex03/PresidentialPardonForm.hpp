@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 06:28:56 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 07:05:08 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 15:52:38 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ class PresidentialPardonForm : public Form {
 
 		// Destructor
 		virtual ~PresidentialPardonForm();
+
+		// Static member function
+		static Form *create(std::string &target);
 
 		// Override
 		void	execute(Bureaucrat const & excutor) const;

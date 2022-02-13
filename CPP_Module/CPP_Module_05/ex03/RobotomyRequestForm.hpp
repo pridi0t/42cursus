@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 06:28:20 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 14:01:03 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 16:01:36 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,24 @@
 #include <ctime>
 #include "Form.hpp"
 
-class RobotmyRequestForm : public Form {
+class RobotomyRequestForm : public Form {
 	private:
 		// Forbidden Constructor
-		RobotmyRequestForm();
+		RobotomyRequestForm();
 
 	public:
 		// Constructor
-		RobotmyRequestForm(std::string target);
-		RobotmyRequestForm(const RobotmyRequestForm &r);
+		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(const RobotomyRequestForm &r);
 		
 		// Assignation operator overload
-		RobotmyRequestForm& operator = (const RobotmyRequestForm &r);
+		RobotomyRequestForm& operator = (const RobotomyRequestForm &r);
 
+		// Static member function
+		static Form *create(std::string &target);
+		
 		// Destructor
-		virtual ~RobotmyRequestForm();
+		virtual ~RobotomyRequestForm();
 
 		// Override
 		void	execute(Bureaucrat const & excutor) const;

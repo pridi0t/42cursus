@@ -6,7 +6,7 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/13 14:03:14 by hyojang          ###   ########.fr        #
+#    Updated: 2022/02/13 15:54:05 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ FILES = main					\
 		Bureaucrat				\
 		Form					\
 		ShrubberyCreationform	\
-		RobotmyRequestForm		\
-		PresidentialPardonForm
+		RobotomyRequestForm		\
+		PresidentialPardonForm	\
+		Intern
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
