@@ -6,31 +6,31 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 10:08:50 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 14:00:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 15:57:20 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RobotmyRequestForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
-RobotmyRequestForm::RobotmyRequestForm() {}
+RobotomyRequestForm::RobotomyRequestForm() {}
 
 // Constructor
-RobotmyRequestForm::RobotmyRequestForm(std::string target) : Form("RobotmyRequestForm", target, 72, 45) {}
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("RobotomyRequestForm", target, 72, 45) {}
 
-RobotmyRequestForm::RobotmyRequestForm(const RobotmyRequestForm &r) : Form(r){}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &r) : Form(r){}
 
 // Assignation operator overload
-RobotmyRequestForm& RobotmyRequestForm::operator = (const RobotmyRequestForm &r)
+RobotomyRequestForm& RobotomyRequestForm::operator = (const RobotomyRequestForm &r)
 {
 	Form::operator=(r);
 	return (*this);
 }
 
 // Destructor
-RobotmyRequestForm::~RobotmyRequestForm() {}
+RobotomyRequestForm::~RobotomyRequestForm() {}
 
 // Override
-void	RobotmyRequestForm::execute(Bureaucrat const & excutor) const
+void	RobotomyRequestForm::execute(Bureaucrat const & excutor) const
 {
 	Form::checkForm(excutor);
 	srand((unsigned int)time(NULL));

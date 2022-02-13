@@ -6,14 +6,14 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 07:10:04 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 13:43:20 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 15:55:21 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
-#include "RobotmyRequestForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
 int main()
@@ -42,9 +42,9 @@ int main()
 	
 	std::cout << "2) RobotmyRequestForm ====================" << std::endl;
 	std::cout << "2-1) constructor test" << std::endl;
-	RobotmyRequestForm r1("r1");
-	RobotmyRequestForm r2(r1);
-	RobotmyRequestForm r3("r3");
+	RobotomyRequestForm r1("r1");
+	RobotomyRequestForm r2(r1);
+	RobotomyRequestForm r3("r3");
 	r2 = r3;
 	std::cout << r1 << std::endl;
 	std::cout << r2 << std::endl;
