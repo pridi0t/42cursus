@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 14:44:01 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 03:03:36 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 10:14:27 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class Bureaucrat {
 		void		upGrade();
 		void		downGrade();
 		void		signForm(Form &f);
+		void		executeForm(Form const & form);
 
 		// Exception Class
 		class GradeTooHighException : public std::exception {

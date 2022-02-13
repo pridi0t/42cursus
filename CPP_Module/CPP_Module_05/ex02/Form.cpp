@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 04:02:49 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 07:58:19 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 11:03:03 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ Form::Form(const Form &f) : name(f.name), target(f.target), required_grade(f.req
 // Assignation operator overload
 Form& Form::operator = (const Form &f)
 {
-	*(const_cast<std::string *>(&this->name)) = f.name;
-	*(const_cast<std::string *>(&this->target)) = f.target;
-	this->signature = f.signature;
-	*(const_cast<int *>(&this->required_grade)) = f.required_grade;
-	*(const_cast<int *>(&this->exe_grade)) = f.exe_grade;
+	if (this != &f)
+	{
+		*(const_cast<std::string *>(&this->name)) = f.name;
+		*(const_cast<std::string *>(&this->target)) = f.target;
+		this->signature = f.signature;
+		*(const_cast<int *>(&this->required_grade)) = f.required_grade;
+		*(const_cast<int *>(&this->exe_grade)) = f.exe_grade;
+	}
 	return (*this);
 }
 
@@ -84,7 +87,7 @@ void	Form::beSigned(Bureaucrat &b)
 		throw GradeTooLowException();
 }
 
-void	Form::checkForm(Bureaucrat &b)
+void	Form::checkForm(const Bureaucrat &b) const
 {
 	if (this->signature == false)
 		throw SignException();

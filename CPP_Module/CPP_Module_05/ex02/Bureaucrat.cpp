@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 13:37:47 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 07:38:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 10:15:54 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,15 @@ void	Bureaucrat::signForm(Form &f)
 		std::cout << "<" << this->name << "> signs <" << f.getName() << ">" << std::endl;
 	} catch (std::exception &e) {
 		std::cerr << "<" << this->name << "> cannot signs <" << f.getName() << "> because <" << e.what() << ">" << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(Form const & form)
+{
+	try {
+		form.execute(*this);
+	} catch (std::exception & e) {
+		std::cerr << e.what() << std::endl;
 	}
 }
 

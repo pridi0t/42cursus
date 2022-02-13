@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 03:38:42 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 07:58:21 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 10:15:57 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class Form {
 		int				getExeGrade() const;
 
 		void			beSigned(Bureaucrat &b);
-		void			checkForm(Bureaucrat &b);
+		void			checkForm(const Bureaucrat &b) const;
 		virtual void	execute(Bureaucrat const & excutor) const = 0;
 
 		// Exception Class
