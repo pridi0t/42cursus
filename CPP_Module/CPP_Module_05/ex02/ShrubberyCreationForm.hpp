@@ -6,13 +6,14 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/13 06:17:13 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/13 06:55:30 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/13 13:45:09 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
+#include <fstream>
 #include "Form.hpp"
 
 class ShrubberyCreationForm : public Form {
@@ -22,17 +23,23 @@ class ShrubberyCreationForm : public Form {
 
 	public:
 		// Constructor
-		ShrubberyCreationForm(std::string name);
+		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm &s);
 		
 		// Assignation operator overload
-		ShrubberyCreation& operator = (const ShrubberyCreationForm &s);
+		ShrubberyCreationForm& operator = (const ShrubberyCreationForm &s);
 
 		// Destructor
 		virtual ~ShrubberyCreationForm();
 
 		// Override
 		void	execute(Bureaucrat const & excutor) const;
+
+		// Exception Class
+		class FileWriteException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 # endif

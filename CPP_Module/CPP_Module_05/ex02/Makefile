@@ -6,11 +6,11 @@
 #    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/13 11:16:38 by hyojang          ###   ########.fr        #
+#    Updated: 2022/02/13 13:51:28 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Form
+NAME = Form2
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -20,8 +20,9 @@ RM = rm -f
 FILES = main					\
 		Bureaucrat				\
 		Form					\
-		PresidentialPardonForm	\
-		RobotmyRequestForm
+		ShrubberyCreationform	\
+		RobotmyRequestForm		\
+		PresidentialPardonForm
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
@@ -39,6 +40,7 @@ all: $(NAME)
 
 clean:
 	$(RM) $(OBJS)
+	$(RM) *shrubbery
 
 fclean: clean
 	$(RM) $(NAME)
