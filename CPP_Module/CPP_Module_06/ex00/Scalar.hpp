@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 00:07:25 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/15 00:31:02 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/15 01:37:39 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 # define SCALAR_HPP
 
 #include <iostream>
+#include <climits>
+#include <cstdlib>
+#include <string>
 
 class Scalar {
 	private:
-		std::string value;	
+		std::string value;
 
 		// Forbidden constructors
 		Scalar();
@@ -38,13 +41,21 @@ class Scalar {
 		float	convertFloat(std::string str);
 		double	convertDouble(std::string str);
 
-		/*
 		// Exception Class
-		class ConstructorException : public std::exception {
+		class ImpossibleException : public std::exception {
 			public:
 				const char* what() const throw();
 		};
-		*/
+
+		class ConvertCharException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+
+		class ConvertIntException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 // ostream overload
