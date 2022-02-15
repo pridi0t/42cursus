@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:36:05 by marvin            #+#    #+#             */
-/*   Updated: 2022/02/15 13:43:09 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/15 23:27:11 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void swap(T &n1, T &n2)
 }
 
 template <typename T>
-T min(T n1, T n2)
+T min(const T n1, const T n2)
 {
     if (n1 < n2)
         return (n1);
@@ -31,7 +31,7 @@ T min(T n1, T n2)
 }
 
 template <typename T>
-T max(T n1, T n2)
+T max(const T n1, const T n2)
 {
     if (n1 > n2)
         return (n1);
