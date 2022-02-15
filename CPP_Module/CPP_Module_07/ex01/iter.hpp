@@ -6,16 +6,22 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:29 by marvin            #+#    #+#             */
-/*   Updated: 2022/02/15 14:03:38 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/15 23:11:34 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef ITER_HPP
 # define ITER_HPP
 
-template <typename T, typename Func = T()()>
-void swap(T *arr, int len, Func func)
+#include <iostream>
+
+template <typename T>
+void iter(T *arr, int len, void (*fptr)(const T&))
 {
+    for (int i = 0 ; i < len ; i++)
+    {
+        (*fptr)(arr[i]);
+    }
 }
 
 # endif
