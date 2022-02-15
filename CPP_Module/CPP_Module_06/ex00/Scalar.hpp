@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 00:07:25 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/15 07:05:14 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/15 07:43:45 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 
 #include <exception>
 #include <iostream>
-#include <cstdlib>
 #include <string>
-#include <iomanip>
-#include <sstream>
 #include <climits>
-#include <cfloat>
 
 class Scalar {
 	private:
-		std::string value;
-		double dvalue;
+		std::string original_value;
+		double		dvalue;
 		
 		// Forbidden constructors
 		Scalar();
@@ -42,15 +38,19 @@ class Scalar {
 		~Scalar();
 
 		// getter
-		std::string getStr() const;
-		double getDouble() const;
+		std::string	getOriginal() const;
+		double		getDvalue() const;
 		
 		char	convertChar(double dvalue);
 		int		convertInt(double dvalue);
 		float	convertFloat(double dvalue);
-		double	convertDouble(double dvalue);
 
 		// Exception Class
+		class ConstructorException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+
 		class ImpossibleException : public std::exception {
 			public:
 				const char* what() const throw();

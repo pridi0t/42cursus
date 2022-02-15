@@ -6,14 +6,14 @@
 #    By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/15 04:07:32 by marvin           ###   ########seoul.kr   #
+#    Updated: 2022/02/15 07:46:44 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = convert
 
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
