@@ -6,19 +6,19 @@
 #    By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/15 00:07:45 by marvin           ###   ########seoul.kr   #
+#    Updated: 2022/02/15 04:07:32 by marvin           ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Bureaucrat
+NAME = convert
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
-FILES = main		\
-		Bureaucrat
+FILES = main	\
+		Scalar
 
 SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))

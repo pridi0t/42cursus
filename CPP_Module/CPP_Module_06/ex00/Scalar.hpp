@@ -6,22 +6,27 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 00:07:25 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/15 01:37:39 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/15 07:05:14 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef SCALAR_HPP
 # define SCALAR_HPP
 
+#include <exception>
 #include <iostream>
-#include <climits>
 #include <cstdlib>
 #include <string>
+#include <iomanip>
+#include <sstream>
+#include <climits>
+#include <cfloat>
 
 class Scalar {
 	private:
 		std::string value;
-
+		double dvalue;
+		
 		// Forbidden constructors
 		Scalar();
 		
@@ -36,10 +41,14 @@ class Scalar {
 		// Destructor
 		~Scalar();
 
-		char	convertChar(std::string str);
-		int		convertInt(std::string str);
-		float	convertFloat(std::string str);
-		double	convertDouble(std::string str);
+		// getter
+		std::string getStr() const;
+		double getDouble() const;
+		
+		char	convertChar(double dvalue);
+		int		convertInt(double dvalue);
+		float	convertFloat(double dvalue);
+		double	convertDouble(double dvalue);
 
 		// Exception Class
 		class ImpossibleException : public std::exception {
@@ -47,18 +56,13 @@ class Scalar {
 				const char* what() const throw();
 		};
 
-		class ConvertCharException : public std::exception {
-			public:
-				const char* what() const throw();
-		};
-
-		class ConvertIntException : public std::exception {
+		class NonDisplayableException : public std::exception {
 			public:
 				const char* what() const throw();
 		};
 };
 
 // ostream overload
-std::ostream& operator << (std::ostream& os, const Scalar &s);
+std::ostream& operator << (std::ostream& os, Scalar &s);
 
 # endif
