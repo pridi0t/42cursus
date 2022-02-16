@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:50:11 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/16 14:08:20 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/16 16:22:08 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int main(int argc, char *argv[])
 		std::cout << "float : impossible" << std::endl;
 		std::cout << "double : impossible" << std::endl;
 	}
-	
 	
 	return 0;
 }
