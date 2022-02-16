@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:44 by marvin            #+#    #+#             */
-/*   Updated: 2022/02/16 01:43:57 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/16 01:49:30 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ int main(void)
         b[i] = str.substr(0, i);
     }
     std::cout << "b size : " << b.getLen() << std::endl;
-    for (int i = 0 ; i < b.getLen() ; i++) {
+    for (int i = 0 ; i < (int)b.getLen() ; i++) {
         std::cout << "b[" << i << "] : " << b[i] << std::endl; 
     }
 
     std::cout << "-------- copy test --------" << std::endl;
-    Array<std::string> copy_b;
-    copy_b = b;
+    const Array<std::string> copy_b = b;
+    
     b[0] = "bbbbbbbbbbbbbb";
     std::cout << "b size : " << b.getLen() << std::endl;
-    for (int i = 0 ; i < b.getLen() ; i++) {
+    for (int i = 0 ; i < (int)b.getLen() ; i++) {
         std::cout << "b[" << i << "] : " << b[i] << std::endl; 
     }
     
     std::cout << "copy_b size : " << copy_b.getLen() << std::endl;
-    for (int i = 0 ; i < copy_b.getLen() ; i++) {
+    for (int i = 0 ; i < (int)copy_b.getLen() ; i++) {
         std::cout << "copy_b[" << i << "] : " << copy_b[i] << std::endl; 
     }
     

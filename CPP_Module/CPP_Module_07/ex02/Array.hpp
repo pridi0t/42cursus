@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 00:13:18 by marvin            #+#    #+#             */
-/*   Updated: 2022/02/16 01:44:24 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/16 01:49:52 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ class Array {
 
         Array(const Array &a)
         {
-            this->arr = new T[a.arr_len];
+            this->arr = new T[a.getLen()];
             this->arr_len = a.arr_len;
-            for (int i = 0 ; i < this->arr_len ; i++)
+            for (int i = 0 ; i < (int)this->getLen() ; i++)
                 this->arr[i] = a.arr[i];
         }
 		
@@ -71,7 +71,7 @@ class Array {
             return (this->arr[idx]);
         }
 
-        int getLen() const
+        unsigned int getLen() const
         {
             return (this->arr_len);
         }
