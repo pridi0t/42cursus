@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:57:44 by marvin            #+#    #+#             */
-/*   Updated: 2022/02/15 23:10:59 by marvin           ###   ########seoul.kr  */
+/*   Updated: 2022/02/16 00:09:07 by marvin           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ int main(void)
 
     iter(tab, 5, print);
     iter(tab2, 5, print);
+    
+    char a[] = {'a', 'b'};
+    iter (a, 2, print);
+    double b[] = {1.2, 2.3};
+    iter (b, 2, print);
     
     return 0;
 }
