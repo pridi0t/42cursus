@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42seoul.kr>         +#+  +:+       +#+         #
+#    By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/11 13:39:27 by hyojang           #+#    #+#              #
-#    Updated: 2022/02/15 13:55:26 by marvin           ###   ########seoul.kr   #
+#    Updated: 2022/02/16 14:19:28 by hyojang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
