@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:48:27 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/16 14:06:30 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/16 16:05:00 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ Scalar::Scalar(std::string str)
     try {
         this->original_value = str;
         this->dvalue = stod(str);
+		if (checkException(this->original_value) == false)
+			throw ConstructorException();
     } catch (std::exception & e) {
         throw ConstructorException();
     }
@@ -82,6 +84,27 @@ float	Scalar::convertFloat(double dvalue)
         throw ImpossibleException();
     }
     return (result);
+}
+
+bool	Scalar::checkException(std::string str)
+{
+	int cnt = 0;
+
+	for (int i = 0 ; i < (int)str.size() ; i++)
+	{
+		if (isalpha(str.at(i)) != 0)
+		{
+			if (!(str.at(i) == 'f' && i == ((int)str.size() - 1)))
+				return (false);
+		}
+		else if (isalnum(str.at(i)) == 0 && str.at(i) != '.')
+			return (false);
+		if (str.at(i) == '.')
+			cnt++;
+	}
+	if (cnt >= 2)
+		return (false);
+	return (true);
 }
 
 // Exception

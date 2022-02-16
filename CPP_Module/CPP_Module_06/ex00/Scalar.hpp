@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 00:07:25 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/16 14:08:09 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/16 15:49:44 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ class Scalar {
 		char	convertChar(double dvalue);
 		int		convertInt(double dvalue);
 		float	convertFloat(double dvalue);
-
+		bool	checkException(std::string str);
+		
 		// Exception Class
 		class ConstructorException : public std::exception {
 			public:
