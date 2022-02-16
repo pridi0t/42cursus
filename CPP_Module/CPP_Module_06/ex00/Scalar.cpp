@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 23:48:27 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/16 16:05:00 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/16 16:20:34 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,15 @@ float	Scalar::convertFloat(double dvalue)
 bool	Scalar::checkException(std::string str)
 {
 	int cnt = 0;
-
+	
+	if (str.compare("nan") == 0 || str.compare("-nan") == 0)
+		return (true);
+	if (str.compare("inf") == 0 || str.compare("-inf") == 0)
+		return (true);
 	for (int i = 0 ; i < (int)str.size() ; i++)
 	{
+		if (i == 0 && (str.at(i) == '+' || str.at(i) == '-'))
+			continue;
 		if (isalpha(str.at(i)) != 0)
 		{
 			if (!(str.at(i) == 'f' && i == ((int)str.size() - 1)))
