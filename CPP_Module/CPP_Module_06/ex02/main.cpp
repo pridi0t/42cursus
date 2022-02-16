@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:53:17 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/16 14:17:34 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/16 16:09:50 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void identify(Base* p)
 void identify(Base& p)
 {
     try {
-        dynamic_cast<A &>(p);
+        (void)dynamic_cast<A &>(p);
         std::cout << "A" << std::endl;
     } catch (std::exception & e) {
         try {
-            dynamic_cast<B &>(p);
+            (void)dynamic_cast<B &>(p);
             std::cout << "B" << std::endl;
         } catch (std::exception & e) {
             std::cout << "C" << std::endl;
