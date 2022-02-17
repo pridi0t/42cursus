@@ -6,12 +6,14 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 00:25:25 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/18 03:12:28 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/18 03:54:18 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef SPAN_HPP
 # define SPAN_HPP
+
+#include <set>
 
 class Span {
 	private:
@@ -32,12 +34,16 @@ class Span {
 		// Destructor
 		~Span();
 
-		void	addNumber(int num);
-		//shortestSpan();
-		//longestSpan();
+		// getter
+		const std::set<int>	&getArr() const;
+		unsigned int		getArrmax() const;
+
+		void		addNumber(int num);
+		long long	shortestSpan();
+		long long	longestSpan();
 		
 		// Exception Class
-		class InsetException : public std::exception {
+		class InsertException : public std::exception {
 			public:
 				const char* what() const throw();
 		};
@@ -46,6 +52,9 @@ class Span {
 			public:
 				const char* what() const throw();
 		};
-}
+};
+
+// ostream overload
+std::ostream& operator << (std::ostream& os, const Span &s);
 
 # endif
