@@ -6,7 +6,7 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:13:38 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/18 14:24:38 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/18 14:46:09 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,25 @@ int main()
 		++it2;
 	}
 	std::stack<int> s(mstack);
+
+	std::cout << "======= rbegin, rend test =======" << std::endl;
+	std::list<int>::reverse_iterator rit = lst.rbegin();
+	std::list<int>::reverse_iterator rite = lst.rend();
+	std::cout << "1) list" << std::endl;
+	while (rit != rite)
+	{
+		std::cout << *rit << std::endl;
+		++rit;
+	}
+	
+	MutantStack<int>::reverse_iterator rit2 = mstack.rbegin();
+	MutantStack<int>::reverse_iterator rite2 = mstack.rend();
+	std::cout << "2) mutantstack" << std::endl;
+	while (rit2 != rite2)
+	{
+		std::cout << *rit2 << std::endl;
+		++rit2;
+	}
 
 	return 0;
 }
