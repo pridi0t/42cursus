@@ -6,12 +6,15 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:13:38 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/18 10:02:39 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/18 14:10:45 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <list>
+#include "mutantstack.hpp"
+
+#include <stack>
 
 int main()
 {
@@ -44,7 +47,6 @@ int main()
 	}
 	std::list<int> l(lst);
 	
-	/*
 	std::cout << "========== MutantStack ==========" << std::endl;
 	MutantStack<int> mstack;
 	
@@ -63,7 +65,7 @@ int main()
 	mstack.push(0);
 
 	MutantStack<int>::iterator it2 = mstack.begin();
-	MutantStack<int>::iterator ite2 = lst.end();
+	MutantStack<int>::iterator ite2 = mstack.end();
 
 	++it2;
 	--it2;
@@ -73,6 +75,6 @@ int main()
 		++it2;
 	}
 	std::stack<int> s(mstack);
-	*/
+
 	return 0;
 }
