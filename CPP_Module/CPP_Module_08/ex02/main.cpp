@@ -6,15 +6,13 @@
 /*   By: hyojang <hyojang@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 09:13:38 by hyojang           #+#    #+#             */
-/*   Updated: 2022/02/18 14:10:45 by hyojang          ###   ########.fr       */
+/*   Updated: 2022/02/18 14:24:38 by hyojang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <list>
-#include "mutantstack.hpp"
-
-#include <stack>
+#include "mutantstack.cpp"
 
 int main()
 {
