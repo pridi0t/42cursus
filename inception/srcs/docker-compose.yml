@@ -10,4 +10,19 @@ services:
             - "80:80"
         expose:
             - "9000"
-        #tty: true
+        network:
+            - inception_net
+
+    mariadb:
+        container_name: mariadb
+        image: mariadb
+        build: ./requirements/mariadb/
+        restart: always
+        expose:
+            - "3306"
+        network:
+            - inception_net
+
+network:
+    inception_net:
+        driver: bridge
