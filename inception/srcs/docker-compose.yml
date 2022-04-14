@@ -8,9 +8,7 @@ services:
         restart: always
         ports:
             - "80:80"
-        expose:
-            - "9000"
-        network:
+        networks:
             - inception_net
 
     mariadb:
@@ -20,9 +18,21 @@ services:
         restart: always
         expose:
             - "3306"
-        network:
+        networks:
             - inception_net
+        depends_on:
+            - nginx
 
-network:
+        tty: true
+        volumes:
+            - ./data:/data
+
+networks:
     inception_net:
         driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: "192.168.1.0/24"
+                  gateway: "192.168.1.1"
+

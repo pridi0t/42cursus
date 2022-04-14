@@ -1,6 +1,6 @@
 FROM debian:buster
 
-RUN apt update && \
-	apt install -y nginx
+RUN apt-get update
+RUN apt-get install -y nginx
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
