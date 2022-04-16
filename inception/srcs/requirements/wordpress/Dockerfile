@@ -12,5 +12,4 @@ RUN mv /tmp/wordpress /var/www/html
 RUN chown -R www-data:www-data /var/www/html/wordpress/
 RUN chmod -R 755 /var/www/html/wordpress/
 
-# wp-config.php
-
+RUN cp ./conf/wp-config.php /var/www/html/wordpress/
