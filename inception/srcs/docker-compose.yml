@@ -23,9 +23,22 @@ services:
         depends_on:
             - nginx
 
+    wordpress:
+        container_name: wordpress
+        image: wordpress
+        build: ./requirements/wordpress/
+        restart: always
+        expose:
+            - "9000"
+        networks:
+            - inception_net
+        depends_on:
+            - nginx
+            - mariadb
+
         tty: true
         volumes:
-            - ./data:/data
+        - ./data:/data
 
 networks:
     inception_net:
@@ -35,4 +48,3 @@ networks:
             config:
                 - subnet: "192.168.1.0/24"
                   gateway: "192.168.1.1"
-
