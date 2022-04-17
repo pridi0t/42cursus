@@ -1,4 +1,4 @@
-CREATE DATABASE wordpress_db;
-CREATE USER 'wordpress_user'@'%' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'%';
+CREATE DATABASE ${MD_DBNAME};
+CREATE USER '${MD_ID}'@'%' IDENTIFIED BY '${MD_PW}';
+GRANT ALL PRIVILEGES ON wordpress_db.* TO '${MD_ID}'@'%';
 flush privileges;

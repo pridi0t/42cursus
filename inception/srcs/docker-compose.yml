@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 
 services:
     nginx:
@@ -7,7 +7,7 @@ services:
         image: nginx
         restart: always
         ports:
-            - "80:80"
+            - "443:443"
         volumes:
             - wordpress_volume:/var/www/html/wordpress
         networks:
@@ -26,7 +26,10 @@ services:
             - inception_net
         depends_on:
             - nginx
-        tty: true
+        environment:
+            MD_DBNAME:    $(MD_DBNAME)
+            MD_ID:        $(MD_ID)
+            MD_PW:        $(MD_PW)
 
     wordpress:
         build: ./requirements/wordpress/
@@ -42,8 +45,13 @@ services:
         depends_on:
             - nginx
             - mariadb
-
-        tty: true
+        environment:
+            MD_DBNAME:    $(MD_DBNAME)
+            MD_ID:        $(MD_ID)
+            MD_PW:        $(MD_PW)
+            MD_HOST:      $(MD_HOST)
+            MD_ADMIN_ID:  $(MD_ADMIN_ID)
+            MD_ADMIN_PW:  $(MD_ADMIN_PW)
 
 networks:
     inception_net:
