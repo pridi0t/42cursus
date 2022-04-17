@@ -8,6 +8,8 @@ services:
         restart: always
         ports:
             - "80:80"
+        volumes:
+            - ${home}/data:/var/www/html
         networks:
             - inception_net
 
@@ -24,6 +26,7 @@ services:
             - inception_net
         depends_on:
             - nginx
+        tty: true
 
     wordpress:
         container_name: wordpress
@@ -32,6 +35,8 @@ services:
         restart: always
         expose:
             - "9000"
+        volumes:
+            - ${home}/data:/var/www/html
         networks:
             - inception_net
         depends_on:

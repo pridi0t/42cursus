@@ -1,4 +1,5 @@
 CREATE DATABASE wordpress_db;
-GRANT ALL ON wordpress_db.* TO 'wordpress_user'@'%' IDENTIFIED BY 'password';
+CREATE USER 'wordpress_user'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wordpress_user'@'%';
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
 flush privileges;

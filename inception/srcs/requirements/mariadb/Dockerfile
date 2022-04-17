@@ -7,4 +7,6 @@ COPY ./conf/mariadb_settings.sql /
 RUN /etc/init.d/mysql start && mysql < /mariadb_settings.sql
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
-ENTRYPOINT ["/usr/bin/mysqld_safe"]
+COPY ./conf/runtime_conf.sh /
+
+ENTRYPOINT ["sh", "/runtime_conf.sh"]
