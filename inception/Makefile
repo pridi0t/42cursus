@@ -14,5 +14,7 @@ stop:
 
 clean:
 	docker-compose -f srcs/docker-compose.yml down --rm all -v
+	rm -rf /home/hyojang/data/wordpress/*
+	rm -rf /home/hyojang/data/db/*
 
 .PHONY: settings start stop clean
