@@ -9,7 +9,7 @@ services:
         ports:
             - "80:80"
         volumes:
-            - /home/hyojang/data/wordpress:/var/www/html
+            - wordpress_volume:/var/www/html/wordpress
         networks:
             - inception_net
 
@@ -21,7 +21,7 @@ services:
         expose:
             - "3306"
         volumes:
-            - /home/hyojang/data/db:/data
+            - db_volume:/db
         networks:
             - inception_net
         depends_on:
@@ -36,7 +36,7 @@ services:
         expose:
             - "9000"
         volumes:
-            - /home/hyojang/data/wordpress:/var/www/html
+            - wordpress_volume:/var/www/html/wordpress
         networks:
             - inception_net
         depends_on:
@@ -53,3 +53,17 @@ networks:
             config:
                 - subnet: "192.168.1.0/24"
                   gateway: "192.168.1.1"
+
+volumes:
+    db_volume:
+        driver: local
+        driver_opts:
+            type: 'none'
+            o: 'bind'
+            device: '/home/hyojang/data/db'
+    wordpress_volume:
+        driver: local
+        driver_opts:
+            type: 'none'
+            o: 'bind'
+            device: '/home/hyojang/data/wordpress'
