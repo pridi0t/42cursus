@@ -7,6 +7,8 @@ COPY ./conf/mariadb_settings.sql /
 RUN /etc/init.d/mysql start && mysql < /mariadb_settings.sql
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
 
+COPY ./conf/db_dump.sh /
+COPY ./conf/restore.sh /
 COPY ./conf/runtime_conf.sh /
 
 ENTRYPOINT ["sh", "/runtime_conf.sh"]

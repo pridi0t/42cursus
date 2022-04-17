@@ -61,6 +61,7 @@ volumes:
             type: 'none'
             o: 'bind'
             device: '/home/hyojang/data/db'
+
     wordpress_volume:
         driver: local
         driver_opts:
