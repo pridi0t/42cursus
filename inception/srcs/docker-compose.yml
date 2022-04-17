@@ -2,26 +2,26 @@ version: "3"
 
 services:
     nginx:
+        build: ./requirements/nginx/
         container_name: nginx
         image: nginx
-        build: ./requirements/nginx/
         restart: always
         ports:
             - "80:80"
         volumes:
-            - ${home}/data:/var/www/html
+            - /home/hyojang/data/wordpress:/var/www/html
         networks:
             - inception_net
 
     mariadb:
+        build: ./requirements/mariadb/
         container_name: mariadb
         image: mariadb
-        build: ./requirements/mariadb/
         restart: always
         expose:
             - "3306"
         volumes:
-            - ${home}/data:/var/lib/mysql
+            - /home/hyojang/data/db:/data
         networks:
             - inception_net
         depends_on:
@@ -29,14 +29,14 @@ services:
         tty: true
 
     wordpress:
+        build: ./requirements/wordpress/
         container_name: wordpress
         image: wordpress
-        build: ./requirements/wordpress/
         restart: always
         expose:
             - "9000"
         volumes:
-            - ${home}/data:/var/www/html
+            - /home/hyojang/data/wordpress:/var/www/html
         networks:
             - inception_net
         depends_on:
