@@ -13,6 +13,7 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 
 RUN mkdir -p /run/php
 
+COPY ./conf/runtime_wp_conf.sh /
 COPY ./conf/runtime_conf_copy.sh /
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
 
